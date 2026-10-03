@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Correos enviados | Paletas de Hielo</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="admin">
+
+        <div class="admin__layout">
+            <div id="sidebar-admin"></div>
+            <section
+                class="admin-contenido correos-admin"
+                aria-labelledby="titulo-correos"
+            >
+                <nav
+                    class="correos-admin__breadcrumb"
+                    aria-label="Migas de pan"
+                >
+
+                    <a href="perfiladministrador.html">
+                        Administrador
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <a href="perfiladministrador-mispedidos.html">
+                        Mis pedidos
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <span aria-current="page">
+                        Correos enviados
+                    </span>
+
+                </nav>
+
+                <header class="correos-admin__header">
+
+                    <div>
+
+                        <h1 id="titulo-correos">
+                            Correos enviados
+                        </h1>
+
+                        <p>
+                            Consulta las comunicaciones enviadas
+                            al cliente.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#plantilla-correo"
+                        class="correos-admin__editar"
+                    >
+                        Editar plantilla
+                    </a>
+
+                </header>
+
+                <section
+                    class="correos-cliente"
+                    aria-label="Información del cliente"
+                >
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Cliente
+                        </span>
+
+                        <strong>
+                            Catalina Nieto Osorio
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Correo
+                        </span>
+
+                        <span>
+                            catalinanie@gmail.com
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Referencia
+                        </span>
+
+                        <span>
+                            Pedido #001
+                        </span>
+
+                    </div>
+
+                </section>
+                <section
+                    class="historial-correos"
+                    aria-labelledby="titulo-historial"
+                >
+
+                    <div class="correos-seccion__titulo">
+
+                        <h2 id="titulo-historial">
+                            Historial
+                        </h2>
+
+                        <span>
+                            3 correos
+                        </span>
+
+                    </div>
+
+
+                    <div class="historial-correos__lista">
+
+
+                        <!-- CORREO 1 -->
+
+                        <details
+                            class="correo-card"
+                            open
+                        >
+
+                            <summary class="correo-card__resumen">
+
+                                <div class="correo-card__icono">
+                                    ✉
+                                </div>
+
+
+                                <div class="correo-card__informacion">
+
+                                    <strong>
+                                        Confirmación del pedido
+                                    </strong>
+
+                                    <span>
+                                        Para: catalinanie@gmail.com
+                                    </span>
+
+                                </div>
+
+
+                                <div class="correo-card__meta">
+
+                                    <time datetime="2026-09-20">
+                                        20/09/2026
+                                    </time>
+
+                                    <span class="correo-card__estado">
+                                        Enviado
+                                    </span>
+
+                                </div>
+
+                            </summary>
+
+
+                            <div class="correo-card__contenido">
+
+                                <p class="correo-card__asunto">
+                                    <strong>Asunto:</strong>
+                                    Tu pedido ha sido confirmado
+                                </p>
+
+
+                                <div class="correo-preview">
+
+                                    <div class="correo-preview__header">
+
+                                        <img
+                                            src="assets/imagenes/logo.svg"
+                                            alt="Paletas de Hielo"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="correo-preview__body">
+
+                                        <p>
+                                            Hola
+                                            <strong>Catalina</strong>,
+                                        </p>
+
+                                        <h3>
+                                            ¡Tu pedido fue confirmado!
+                                        </h3>
+
+                                        <p>
+                                            Hemos recibido correctamente
+                                            tu pedido de paletas.
+                                        </p>
+
+                                        <p>
+                                            Nuestro equipo comenzará a
+                                            prepararlo y te mantendremos
+                                            informada sobre su estado.
+                                        </p>
+
+                                        <div class="correo-preview__referencia">
+
+                                            <span>
+                                                Pedido
+                                            </span>
+
+                                            <strong>
+                                                #001
+                                            </strong>
+
+                                        </div>
+
+                                        <p>
+                                            Gracias por elegir
+                                            Paletas de Hielo.
+                                        </p>
+
+                                    </div>
+
+
+                                    <footer class="correo-preview__footer">
+
+                                        <strong>
+                                            Paletas de Hielo
+                                        </strong>
+
+                                        <span>
+                                            Un momento dulce para cada ocasión
+                                        </span>
+
+                                    </footer>
+
+                                </div>
+
+                            </div>
+
+                        </details>
+
+
+                        <!-- CORREO 2 -->
+
+                        <details class="correo-card">
+
+                            <summary class="correo-card__resumen">
+
+                                <div class="correo-card__icono">
+                                    ✉
+                                </div>
+
+
+                                <div class="correo-card__informacion">
+
+                                    <strong>
+                                        Pedido en proceso
+                                    </strong>
+
+                                    <span>
+                                        Para: catalinanie@gmail.com
+                                    </span>
+
+                                </div>
+
+
+                                <div class="correo-card__meta">
+
+                                    <time datetime="2026-09-21">
+                                        21/09/2026
+                                    </time>
+
+                                    <span class="correo-card__estado">
+                                        Enviado
+                                    </span>
+
+                                </div>
+
+                            </summary>
+
+
+                            <div class="correo-card__contenido">
+
+                                <p class="correo-card__asunto">
+
+                                    <strong>Asunto:</strong>
+
+                                    Estamos preparando tu pedido
+
+                                </p>
+
+                                <p class="correo-card__mensaje">
+
+                                    Hola Catalina. Tu pedido se encuentra
+                                    actualmente en proceso de preparación.
+                                    Te notificaremos cuando esté listo
+                                    para continuar con el siguiente paso.
+
+                                </p>
+
+                            </div>
+
+                        </details>
+
+
+                        <!-- CORREO 3 -->
+
+                        <details class="correo-card">
+
+                            <summary class="correo-card__resumen">
+
+                                <div class="correo-card__icono">
+                                    ✉
+                                </div>
+
+
+                                <div class="correo-card__informacion">
+
+                                    <strong>
+                                        Pedido enviado
+                                    </strong>
+
+                                    <span>
+                                        Para: catalinanie@gmail.com
+                                    </span>
+
+                                </div>
+
+
+                                <div class="correo-card__meta">
+
+                                    <time datetime="2026-09-22">
+                                        22/09/2026
+                                    </time>
+
+                                    <span class="correo-card__estado">
+                                        Enviado
+                                    </span>
+
+                                </div>
+
+                            </summary>
+
+
+                            <div class="correo-card__contenido">
+
+                                <p class="correo-card__asunto">
+
+                                    <strong>Asunto:</strong>
+
+                                    ¡Tu pedido está en camino!
+
+                                </p>
+
+                                <p class="correo-card__mensaje">
+
+                                    Hola Catalina. Tu pedido ya fue enviado.
+                                    Esperamos que disfrutes tus Paletas de
+                                    Hielo.
+
+                                </p>
+
+                            </div>
+
+                        </details>
+
+                    </div>
+
+                </section>
+                <section
+                    id="plantilla-correo"
+                    class="plantilla-correo"
+                    aria-labelledby="titulo-plantilla"
+                >
+
+                    <header class="plantilla-correo__header">
+
+                        <div>
+
+                            <span class="plantilla-correo__etiqueta">
+                                Plantilla
+                            </span>
+
+                            <h2 id="titulo-plantilla">
+                                Editar correo
+                            </h2>
+
+                            <p>
+                                Personaliza el contenido que recibirá
+                                el cliente.
+                            </p>
+
+                        </div>
+
+                    </header>
+
+
+                    <form class="plantilla-correo__formulario">
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-asunto">
+                                Asunto
+                            </label>
+
+                            <input
+                                id="plantilla-asunto"
+                                type="text"
+                                value="Tu pedido ha sido confirmado"
+                            >
+
+                        </div>
+
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-titulo">
+                                Título del correo
+                            </label>
+
+                            <input
+                                id="plantilla-titulo"
+                                type="text"
+                                value="¡Tu pedido fue confirmado!"
+                            >
+
+                        </div>
+
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-mensaje">
+                                Mensaje
+                            </label>
+
+                            <textarea
+                                id="plantilla-mensaje"
+                                rows="6"
+                            >Hemos recibido correctamente tu pedido. Nuestro equipo comenzará a prepararlo y te mantendremos informada sobre su estado.</textarea>
+
+                        </div>
+
+
+                        <p class="plantilla-correo__ayuda">
+                            La información del cliente y del pedido
+                            se agregará automáticamente cuando esta
+                            funcionalidad sea conectada al sistema.
+                        </p>
+
+
+                        <button
+                            type="button"
+                            class="plantilla-correo__guardar"
+                        >
+                            Guardar plantilla
+                        </button>
+
+                    </form>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+
+
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>
