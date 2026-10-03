@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mis reservas | Paletas de Hielo</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="admin">
+
+        <div class="admin__layout">
+            <div id="sidebar-admin"></div>
+            <section
+                class="admin-contenido pedidos-admin reservas-admin"
+                aria-labelledby="titulo-reservas"
+            >
+                <nav
+                    class="pedidos-admin__breadcrumb"
+                    aria-label="Migas de pan"
+                >
+
+                    <a href="perfiladministrador.html">
+                        Administrador
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <span aria-current="page">
+                        Mis reservas
+                    </span>
+
+                </nav>
+                <header class="pedidos-admin__header">
+
+                    <div>
+
+                        <h1 id="titulo-reservas">
+                            Mis reservas
+                        </h1>
+
+                        <p>
+                            Consulta y administra las reservas de eventos.
+                        </p>
+
+                    </div>
+
+                </header>
+                <div class="pedidos-admin__filtros">
+
+                    <div class="pedidos-admin__filtro">
+
+                        <label for="filtro-prioridad-reserva">
+                            Prioridad
+                        </label>
+
+                        <select id="filtro-prioridad-reserva">
+
+                            <option value="todas">
+                                Todas
+                            </option>
+
+                            <option value="alta">
+                                Prioridad alta
+                            </option>
+
+                            <option value="media">
+                                Prioridad media
+                            </option>
+
+                            <option value="baja">
+                                Prioridad baja
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="pedidos-admin__filtro">
+
+                        <label for="filtro-estado-reserva">
+                            Estado
+                        </label>
+
+                        <select id="filtro-estado-reserva">
+
+                            <option value="todos">
+                                Todos
+                            </option>
+
+                            <option value="pendiente">
+                                Pendiente
+                            </option>
+
+                            <option value="confirmada">
+                                Confirmada
+                            </option>
+
+                            <option value="finalizada">
+                                Finalizada
+                            </option>
+
+                            <option value="cancelada">
+                                Cancelada
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     LISTA DE RESERVAS
+                     ================================= -->
+                <div class="pedidos-admin__lista">
+
+
+                    <!-- =============================
+                         RESERVA 1
+                         ============================= -->
+                    <article class="pedido-card reserva-card">
+
+                        <div class="pedido-card__principal">
+
+                            <div
+                                class="pedido-card__icono"
+                                aria-hidden="true"
+                            >
+
+                                <img
+                                    src="assets/iconos/reservas.svg"
+                                    alt=""
+                                >
+
+                            </div>
+
+
+                            <div class="pedido-card__informacion">
+
+                                <div class="pedido-card__cabecera">
+
+                                    <h2>
+                                        Catalina Nieto
+                                    </h2>
+
+                                    <span
+                                        class="pedido-card__prioridad
+                                               pedido-card__prioridad--alta"
+                                    >
+                                        Prioridad alta
+                                    </span>
+
+                                </div>
+
+
+                                <a
+                                    href="mailto:catalinanie@gmail.com"
+                                    class="pedido-card__correo"
+                                >
+                                    catalinanie@gmail.com
+                                </a>
+
+
+                                <div class="reserva-card__detalles">
+
+                                    <span>
+                                        50 personas
+                                    </span>
+
+                                    <span aria-hidden="true">•</span>
+
+                                    <time datetime="2026-10-24">
+                                        24 oct. 2026
+                                    </time>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ESTADO -->
+
+                        <div class="pedido-card__estado">
+
+                            <label for="estado-reserva-catalina">
+                                Estado
+                            </label>
+
+                            <select
+                                id="estado-reserva-catalina"
+                                class="pedido-card__select"
+                            >
+
+                                <option
+                                    value="pendiente"
+                                    selected
+                                >
+                                    Pendiente
+                                </option>
+
+                                <option value="confirmada">
+                                    Confirmada
+                                </option>
+
+                                <option value="finalizada">
+                                    Finalizada
+                                </option>
+
+                                <option value="cancelada">
+                                    Cancelada
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =============================
+                         RESERVA 2
+                         ============================= -->
+                    <article class="pedido-card reserva-card">
+
+                        <div class="pedido-card__principal">
+
+                            <div
+                                class="pedido-card__icono"
+                                aria-hidden="true"
+                            >
+
+                                <img
+                                    src="assets/iconos/reservas.svg"
+                                    alt=""
+                                >
+
+                            </div>
+
+
+                            <div class="pedido-card__informacion">
+
+                                <div class="pedido-card__cabecera">
+
+                                    <h2>
+                                        Luisa Hernández
+                                    </h2>
+
+                                    <span
+                                        class="pedido-card__prioridad
+                                               pedido-card__prioridad--media"
+                                    >
+                                        Prioridad media
+                                    </span>
+
+                                </div>
+
+
+                                <a
+                                    href="mailto:luisagern@gmail.com"
+                                    class="pedido-card__correo"
+                                >
+                                    luisagern@gmail.com
+                                </a>
+
+
+                                <div class="reserva-card__detalles">
+
+                                    <span>
+                                        22 personas
+                                    </span>
+
+                                    <span aria-hidden="true">•</span>
+
+                                    <time datetime="2026-10-30">
+                                        30 oct. 2026
+                                    </time>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ESTADO -->
+
+                        <div class="pedido-card__estado">
+
+                            <label for="estado-reserva-luisa">
+                                Estado
+                            </label>
+
+                            <select
+                                id="estado-reserva-luisa"
+                                class="pedido-card__select"
+                            >
+
+                                <option value="pendiente">
+                                    Pendiente
+                                </option>
+
+                                <option
+                                    value="confirmada"
+                                    selected
+                                >
+                                    Confirmada
+                                </option>
+
+                                <option value="finalizada">
+                                    Finalizada
+                                </option>
+
+                                <option value="cancelada">
+                                    Cancelada
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>
