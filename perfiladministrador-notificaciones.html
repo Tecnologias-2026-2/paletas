@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Administrador | Paletas de Hielo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+<main class="admin">
+
+    <div class="admin__layout">
+        <div id="sidebar-admin"></div>
+        <section
+            class="admin-contenido notificaciones"
+            aria-labelledby="titulo-notificaciones"
+        >
+
+            <!--ruta -->
+            <nav
+                class="notificaciones__breadcrumb"
+                aria-label="Migas de pan"
+            >
+                <a href="perfiladministrador.html">
+                    Administrador
+                </a>
+                <span aria-hidden="true">/</span>
+                <a href="perfiladministradorconfiguracion.html">
+                    Configuración
+                </a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">
+                    Notificaciones
+                </span>
+            </nav>
+            <header class="notificaciones__header">
+                <h1 id="titulo-notificaciones">
+                    Notificaciones
+                </h1>
+                <div
+                    class="notificaciones__linea"
+                    aria-hidden="true"
+                ></div>
+                <p class="notificaciones__descripcion">
+                    Elige qué notificaciones deseas recibir.
+                </p>
+
+            </header>
+            <form class="notificaciones-form" action="#">
+                <div class="notificacion-card">
+                    <div class="notificacion-card__icono">
+                        <img
+                            src="assets/iconos/nombre.svg"
+                            alt=""
+                            aria-hidden="true"
+                        >
+                    </div>
+                    <div class="notificacion-card__texto">
+                        <label for="notificacion-compras">
+                            Compra de productos
+                        </label>
+                        <p>
+                            Recibe alertas cuando se realice un nuevo pedido.
+                        </p>
+                    </div>
+
+                    <label
+                        class="notificacion-switch"
+                        aria-label="Activar notificaciones de compra de productos"
+                    >
+                        <input
+                            type="checkbox"
+                            id="notificacion-compras"
+                            name="compras"
+                            checked
+                        >
+
+                        <span class="notificacion-switch__control"></span>
+                    </label>
+                </div>
+                <div class="notificacion-card">
+                    <div class="notificacion-card__icono">
+                        <img
+                            src="assets/iconos/notificacion.svg"
+                            alt=""
+                            aria-hidden="true"
+                        >
+                    </div>
+                    <div class="notificacion-card__texto">
+                        <label for="notificacion-contacto">
+                            Contacto
+                        </label>
+                        <p>
+                            Recibe alertas cuando un cliente solicite
+                            información mediante el formulario.
+                        </p>
+                    </div>
+
+                    <label
+                        class="notificacion-switch"
+                        aria-label="Activar notificaciones de contacto"
+                    >
+                        <input
+                            type="checkbox"
+                            id="notificacion-contacto"
+                            name="contacto"
+                            checked
+                        >
+
+                        <span class="notificacion-switch__control"></span>
+                    </label>
+
+                </div>
+
+                <div class="notificacion-card">
+
+                    <div class="notificacion-card__icono">
+                       <img
+                            src="assets/iconos/correo.svg"
+                            alt=""
+                            aria-hidden="true"
+                        >
+                    </div>
+                    <div class="notificacion-card__texto">
+                        <label for="notificacion-correos">
+                            Correos informativos
+                        </label>
+                        <p>
+                            Recibe noticias, novedades y actualizaciones.
+                        </p>
+                    </div>
+                    <label
+                        class="notificacion-switch"
+                        aria-label="Activar correos informativos"
+                    >
+                        <input
+                            type="checkbox"
+                            id="notificacion-correos"
+                            name="correos"
+                            checked
+                        >
+                        <span class="notificacion-switch__control"></span>
+                    </label>
+                </div>
+                <div class="notificacion-card">
+                    <div class="notificacion-card__icono">
+                        <img
+                            src="assets/iconos/calendario.svg"
+                            alt=""
+                            aria-hidden="true"
+                        >
+                    </div>
+                    <div class="notificacion-card__texto">
+                        <label for="notificacion-eventos">
+                            Eventos y actividades
+                        </label>
+
+                        <p>
+                            Recibe información sobre eventos especiales.
+                        </p>
+                    </div>
+
+                    <label
+                        class="notificacion-switch"
+                        aria-label="Activar notificaciones de eventos y actividades"
+                    >
+                        <input
+                            type="checkbox"
+                            id="notificacion-eventos"
+                            name="eventos"
+                            checked
+                        >
+
+                        <span class="notificacion-switch__control"></span>
+                    </label>
+
+                </div>
+                <div class="notificaciones-form__acciones">
+
+                    <a
+                        href="perfiladministradorconfiguracion.html"
+                        class="notificaciones-form__cancelar"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="button"
+                        class="notificaciones-form__guardar"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+    <!-- FOOTER GLOBAL -->
+    <div id="footer"></div>
+
+
+    <!-- Componentes globales -->
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>
