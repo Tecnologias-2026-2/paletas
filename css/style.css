@@ -1011,6 +1011,7 @@ body {
     .admin-contenido {
         padding: 30px 5px;
     }
+}
     .admin-contenido__bienvenida {
         text-align: center;
     }
@@ -1025,6 +1026,13 @@ body {
 
     opacity: 0;
     pointer-events: none;
+}
+
+
+/* El label se comporta como botón */
+
+.admin-sidebar__opcion--logout {
+    cursor: pointer;
 }
 /* El label se comporta como botón */
 .admin-sidebar__opcion--logout {
@@ -1045,6 +1053,30 @@ body {
         opacity 0.25s ease,
         visibility 0.25s ease;
 }
+.logout-modal__fondo {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(40, 40, 40, 0.55);
+    cursor: pointer;
+}
+.logout-modal__contenido {
+    position: relative;
+    z-index: 1;
+    width: min(90%, 420px);
+    padding: 35px 30px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    transform: translateY(15px);
+    transition: transform 0.25s ease;
+}
+.logout-modal__contenido h2 {
+    margin: 0 0 12px;
+
 
 .logout-modal__fondo {
     position: absolute;
@@ -1374,6 +1406,7 @@ body {
         transform 0.2s ease,
         background-color 0.2s ease;
 }
+/* CANCELAR */
 .logout-modal__boton--cancelar {
     background-color: #eeeeee;
 
@@ -1382,6 +1415,7 @@ body {
 .logout-modal__boton--cancelar:hover {
     background-color: #e2e2e2;
 }
+/* CERRAR SESIÓN */
 
 .logout-modal__boton--cerrar {
     background-color: #ff70b4;
@@ -1428,11 +1462,33 @@ body {
     .logout-modal__boton {
         transition: none;
     }
+
+
     .logout-modal__boton--cerrar:hover {
         transform: none;
     }
 
 }
+
+.pedidos-admin {
+    width: 100%;
+}
+
+.pedidos-admin__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 12px;
+
+    color: rgba(0, 0, 0, 0.45);
+
+    font-size: 0.85rem;
+}
+
+
+.pedidos-admin__breadcrumb a {
+    color: rgba(0, 0, 0, 0.45);
 .notificaciones {
     width: 100%;
     min-width: 0;
@@ -1466,12 +1522,18 @@ body {
 }
 
 
+.pedidos-admin__breadcrumb a:hover {
 .notificaciones__breadcrumb a:hover {
 .info-personal__breadcrumb a:hover {
     color: #ff70b4;
 }
 
 
+.pedidos-admin__breadcrumb span[aria-current="page"] {
+    color: #229db9;
+}
+
+.pedidos-admin__header {
 .notificaciones__breadcrumb span {
 .info-personal__breadcrumb span {
     color: rgba(0, 0, 0, 0.35);
@@ -1552,11 +1614,280 @@ body {
 }
 
 
+.pedidos-admin__header h1 {
 .info-personal__header h1 {
     margin: 0;
 
     color: #ff70b4;
 
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 500;
+}
+
+
+.pedidos-admin__header p {
+    margin: 7px 0 0;
+
+    color: rgba(0, 0, 0, 0.60);
+
+    font-size: 0.95rem;
+}
+
+.pedidos-admin__filtros {
+    margin-bottom: 25px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.pedidos-admin__filtro {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.pedidos-admin__filtro label {
+    color: rgba(0, 0, 0, 0.60);
+
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+
+.pedidos-admin__filtro select {
+    min-width: 150px;
+
+    padding: 9px 35px 9px 12px;
+
+    border: 1px solid #dddddd;
+    border-radius: 9px;
+
+    background-color: #ffffff;
+
+    color: rgba(0, 0, 0, 0.70);
+
+    font: inherit;
+    font-size: 0.85rem;
+
+    cursor: pointer;
+}
+
+
+.pedidos-admin__filtro select:focus-visible {
+    outline: 3px solid rgba(255, 112, 180, 0.25);
+    outline-offset: 2px;
+
+    border-color: #ff70b4;
+}
+
+.pedidos-admin__lista {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+/* =========================================
+   TARJETA DE PEDIDO
+   ========================================= */
+
+.pedido-card {
+    width: 100%;
+
+    padding: 18px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+
+    box-sizing: border-box;
+
+    background-color: #f4f0f3;
+
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 14px;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.pedido-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.10);
+}
+
+.pedido-card__principal {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.pedido-card__icono {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ffffff;
+
+    border-radius: 10px;
+}
+
+
+.pedido-card__icono img {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+}
+
+
+.pedido-card__informacion {
+    min-width: 0;
+}
+
+
+.pedido-card__cabecera {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.pedido-card__cabecera h2 {
+    margin: 0;
+
+    color: rgba(0, 0, 0, 0.72);
+
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+.pedido-card__prioridad {
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* Prioridad alta */
+
+.pedido-card__prioridad--alta {
+    background-color: rgba(255, 112, 180, 0.15);
+
+    color: #e95099;
+}
+
+
+/* Prioridad media */
+
+.pedido-card__prioridad--media {
+    background-color: rgba(34, 157, 185, 0.13);
+
+    color: #229db9;
+}
+.pedido-card__correo {
+    display: inline-block;
+
+    margin-top: 5px;
+
+    color: rgba(0, 0, 0, 0.58);
+
+    font-size: 0.8rem;
+
+    text-decoration: none;
+}
+
+
+.pedido-card__correo:hover {
+    color: #229db9;
+
+    text-decoration: underline;
+}
+
+
+.pedido-card__cantidad {
+    margin: 5px 0 0;
+
+    color: rgba(0, 0, 0, 0.50);
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================================
+   ESTADO
+   ========================================= */
+
+.pedido-card__estado {
+    min-width: 150px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+
+.pedido-card__estado label {
+    color: rgba(0, 0, 0, 0.50);
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+
+/* SELECT DE ESTADO */
+
+.pedido-card__select {
+    width: 100%;
+
+    padding: 9px 34px 9px 12px;
+
+    border: 1px solid rgba(255, 112, 180, 0.35);
+    border-radius: 9px;
+
+    background-color: #ffffff;
+
+    color: #e95099;
+
+    font: inherit;
+    font-size: 0.8rem;
     font-size: clamp(1.7rem, 3vw, 2.15rem);
     font-weight: 500;
 
@@ -2109,6 +2440,92 @@ body {
     cursor: pointer;
 
     transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.pedido-card__select:hover {
+    border-color: #ff70b4;
+}
+
+
+.pedido-card__select:focus-visible {
+    outline: 3px solid rgba(255, 112, 180, 0.20);
+    outline-offset: 2px;
+
+    border-color: #ff70b4;
+}
+@media (max-width: 750px) {
+
+    .pedidos-admin__filtros {
+        justify-content: flex-start;
+    }
+
+
+    .pedido-card {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .pedido-card__estado {
+        width: 100%;
+    }
+
+
+    .pedido-card__select {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .pedido-card {
+        padding: 15px;
+    }
+
+
+    .pedido-card__principal {
+        align-items: flex-start;
+    }
+
+
+    .pedido-card__cabecera {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+
+    .pedidos-admin__filtro {
+        width: 100%;
+    }
+
+
+    .pedidos-admin__filtro select {
+        width: 100%;
+    }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .pedido-card,
+    .pedido-card__select {
+        transition: none;
+    }
+
+
+    .pedido-card:hover {
+        transform: none;
+    }
+
         background-color 0.2s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
