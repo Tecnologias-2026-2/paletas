@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Perfil Administrador-Información Personal | Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+        <!-- HEADER GLOBAL -->
+<div id="header"></div>
+<main class="admin">
+
+    <div class="admin__layout">
+        <div id="sidebar-admin"></div>
+        <section
+            class="admin-contenido info-personal"
+            aria-labelledby="titulo-info-personal"
+        >
+            <nav
+                class="info-personal__breadcrumb"
+                aria-label="Migas de pan"
+            >
+
+                <a href="perfiladministrador.html">
+                    Administrador
+                </a>
+
+                <span aria-hidden="true">/</span>
+
+                <a href="perfiladministradorconfiguracion.html">
+                    Configuración
+                </a>
+
+                <span aria-hidden="true">/</span>
+
+                <span aria-current="page">
+                    Información Personal
+                </span>
+
+            </nav>
+            <header class="info-personal__header">
+
+                <h1 id="titulo-info-personal">
+                    Información personal
+                </h1>
+
+                <div
+                    class="info-personal__linea"
+                    aria-hidden="true"
+                ></div>
+
+                <p class="info-personal__descripcion">
+                    Actualiza los datos principales de tu perfil
+                    de administrador.
+                </p>
+
+            </header>
+            <form
+                class="info-personal-form"
+                action="#"
+            >
+
+                <!-- =================================
+                     NOMBRE
+                     ================================= -->
+
+                <div class="info-personal-form__campo">
+
+                    <div
+                        class="info-personal-form__icono"
+                        aria-hidden="true"
+                    >
+                        <img
+                            src="assets/iconos/nombre.svg"
+                            alt=""
+                        >
+                    </div>
+                    <div class="info-personal-form__contenido">
+
+                        <label for="nombre-admin">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre-admin"
+                            name="nombre"
+                            value="Fernanda Saldivar"
+                            autocomplete="name"
+                        >
+                    </div>
+                </div>
+                <div class="info-personal-form__campo">
+
+                    <div
+                        class="info-personal-form__icono"
+                        aria-hidden="true"
+                    >
+                        <img
+                            src="assets/iconos/notificacion.svg"
+                            alt=""
+                        >
+                    </div>
+
+
+                    <div class="info-personal-form__contenido">
+
+                        <label for="correo-admin">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correo-admin"
+                            name="correo"
+                            value="fergld@gmail.com"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+                </div>
+                <div class="info-personal-form__foto">
+                    <div class="info-personal-form__foto-texto">
+                        <label for="foto-admin">
+                            Foto de perfil
+                        </label>
+
+                        <p>
+                            Selecciona una imagen para actualizar
+                            tu foto de perfil.
+                        </p>
+
+                    </div>
+                    <input
+                        type="file"
+                        id="foto-admin"
+                        name="foto"
+                        accept="image/png, image/jpeg, image/webp"
+                    >
+                </div>
+                <div class="info-personal-form__acciones">
+
+                    <a
+                        href="perfiladministradorconfiguracion.html"
+                        class="info-personal-form__cancelar"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="button"
+                        class="info-personal-form__guardar"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+    <!-- FOOTER GLOBAL -->
+    <div id="footer"></div>
+
+
+    <!-- Componentes globales -->
+    <script src="js/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Configuración - Seguridad | Paletas de Hielo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+    <main class="admin">
+    <div class="admin__layout">
+        <!-- =========================================
+             SIDEBAR GLOBAL
+             ========================================= -->
+        <div id="sidebar-admin"></div>
+        <!-- =========================================
+             ISSUE 4 - SEGURIDAD
+             ========================================= -->
+        <section
+            class="admin-contenido seguridad"
+            aria-labelledby="titulo-seguridad"
+        >
+            <!-- =====================================
+                 MIGAS DE PAN
+                 ===================================== -->
+
+            <nav
+                class="seguridad__breadcrumb"
+                aria-label="Migas de pan"
+            >
+                <a href="perfiladministrador.html">
+                    Administrador
+                </a>
+
+                <span aria-hidden="true">/</span>
+
+                <a href="perfiladministradorconfiguracion.html">
+                    Configuración
+                </a>
+
+                <span aria-hidden="true">/</span>
+
+                <span aria-current="page">
+                    Seguridad
+                </span>
+            </nav>
+
+
+            <!-- =====================================
+                 ENCABEZADO
+                 ===================================== -->
+
+            <header class="seguridad__header">
+
+                <h1 id="titulo-seguridad">
+                    Seguridad
+                </h1>
+
+                <div
+                    class="seguridad__linea"
+                    aria-hidden="true"
+                ></div>
+
+                <p class="seguridad__descripcion">
+                    Actualiza tu contraseña para mantener
+                    segura tu cuenta de administrador.
+                </p>
+
+            </header>
+
+
+            <!-- =====================================
+                 FORMULARIO
+                 ===================================== -->
+
+            <form
+                class="seguridad-form"
+                action="#"
+            >
+
+                <!-- CONTRASEÑA ACTUAL -->
+
+                <div class="seguridad-form__grupo">
+
+                    <label for="contrasena-actual">
+                        Contraseña actual
+                    </label>
+
+                    <input
+                        type="password"
+                        id="contrasena-actual"
+                        name="contrasena-actual"
+                        placeholder="Ingresa tu contraseña actual"
+                        autocomplete="current-password"
+                    >
+
+                </div>
+
+
+                <!-- NUEVA CONTRASEÑA -->
+
+                <div class="seguridad-form__grupo">
+
+                    <label for="nueva-contrasena">
+                        Nueva contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="nueva-contrasena"
+                        name="nueva-contrasena"
+                        placeholder="Ingresa una nueva contraseña"
+                        autocomplete="new-password"
+                    >
+
+                </div>
+
+
+                <!-- CONFIRMAR CONTRASEÑA -->
+
+                <div class="seguridad-form__grupo">
+
+                    <label for="confirmar-contrasena">
+                        Confirmar nueva contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmar-contrasena"
+                        name="confirmar-contrasena"
+                        placeholder="Confirma tu nueva contraseña"
+                        autocomplete="new-password"
+                    >
+
+                </div>
+
+
+                <!-- =================================
+                     ACCIONES
+                     ================================= -->
+
+                <div class="seguridad-form__acciones">
+
+                    <a
+                        href="perfiladministradorconfiguracion.html"
+                        class="seguridad-form__cancelar"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="button"
+                        class="seguridad-form__guardar"
+                    >
+                        Guardar cambios
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+   
+    <!-- FOOTER GLOBAL -->
+    <div id="footer"></div>
+    <script src="js/components.js"></script>
+</body>
+</html>
