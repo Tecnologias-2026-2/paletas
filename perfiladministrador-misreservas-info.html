@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Detalle de reserva | Paletas de Hielo</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="admin">
+
+        <div class="admin__layout">
+
+            <!-- SIDEBAR GLOBAL -->
+
+            <div id="sidebar-admin"></div>
+
+            <section
+                class="admin-contenido detalle-reserva"
+                aria-labelledby="titulo-reserva"
+            >
+
+                <!-- MIGAS DE PAN -->
+
+                <nav
+                    class="detalle-reserva__breadcrumb"
+                    aria-label="Migas de pan"
+                >
+
+                    <a href="perfiladministrador.html">
+                        Administrador
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <a href="perfiladministrador-misreservas.html">
+                        Mis reservas
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <span aria-current="page">
+                        Catalina Nieto
+                    </span>
+
+                </nav>
+
+                <article class="reserva-resumen">
+
+                    <div class="reserva-resumen__encabezado">
+
+                        <div>
+
+                            <p class="reserva-resumen__etiqueta">
+                                Información de la reserva
+                            </p>
+
+                            <h1 id="titulo-reserva">
+                                Reserva de Catalina Nieto
+                            </h1>
+
+                        </div>
+
+                        <span class="reserva-resumen__estado">
+                            Confirmada
+                        </span>
+
+                    </div>
+
+                    <div class="reserva-resumen__datos">
+
+                        <div class="reserva-resumen__dato">
+
+                            <span>
+                                Tipo de evento
+                            </span>
+
+                            <strong>
+                                Boda
+                            </strong>
+
+                        </div>
+
+
+                        <div class="reserva-resumen__dato">
+
+                            <span>
+                                Fecha
+                            </span>
+
+                            <strong>
+                                15 de octubre de 2026
+                            </strong>
+
+                        </div>
+
+
+                        <div class="reserva-resumen__dato">
+
+                            <span>
+                                Invitados
+                            </span>
+
+                            <strong>
+                                50 personas
+                            </strong>
+
+                        </div>
+
+
+                        <div class="reserva-resumen__dato">
+
+                            <span>
+                                Producto solicitado
+                            </span>
+
+                            <strong>
+                                50 paletas de frutas frescas
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="reserva-resumen__correos"
+                    >
+                        Ver correos enviados
+                    </button>
+
+                </article>
+
+                <section
+                    class="reserva-datos"
+                    aria-labelledby="titulo-detalles-reserva"
+                >
+
+                    <header class="reserva-seccion__encabezado">
+
+                        <h2 id="titulo-detalles-reserva">
+                            Detalles de la reserva
+                        </h2>
+
+                        <div
+                            class="reserva-seccion__linea"
+                            aria-hidden="true"
+                        ></div>
+
+                    </header>
+
+
+                    <div class="reserva-datos__formulario">
+
+                        <!-- NOMBRE -->
+
+                        <div class="reserva-campo reserva-campo--completo">
+
+                            <label for="reserva-nombre">
+                                Nombre del cliente
+                            </label>
+
+                            <input
+                                id="reserva-nombre"
+                                type="text"
+                                value="Catalina Nieto Osorio"
+                                readonly
+                            >
+
+                        </div>
+
+                        <div class="reserva-campo reserva-campo--completo">
+
+                            <label for="reserva-direccion">
+                                Dirección del evento
+                            </label>
+
+                            <input
+                                id="reserva-direccion"
+                                type="text"
+                                value="Cra 19a #63c-37"
+                                readonly
+                            >
+
+                        </div>
+
+                        <div class="reserva-campo reserva-campo--completo">
+
+                            <label for="reserva-correo">
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                id="reserva-correo"
+                                type="email"
+                                value="carollli@gmail.com"
+                                readonly
+                            >
+
+                        </div>
+
+                        <div class="reserva-campo">
+
+                            <label for="reserva-telefono">
+                                Teléfono
+                            </label>
+
+                            <input
+                                id="reserva-telefono"
+                                type="tel"
+                                value="+57 3115550548"
+                                readonly
+                            >
+
+                        </div>
+                        <div class="reserva-campo">
+
+                            <label for="reserva-ciudad">
+                                Ciudad / País
+                            </label>
+
+                            <input
+                                id="reserva-ciudad"
+                                type="text"
+                                value="Bogotá / Colombia"
+                                readonly
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section
+                    class="reserva-evento"
+                    aria-labelledby="titulo-evento"
+                >
+
+                    <header class="reserva-seccion__encabezado">
+
+                        <h2 id="titulo-evento">
+                            Información del evento
+                        </h2>
+
+                        <div
+                            class="reserva-seccion__linea"
+                            aria-hidden="true"
+                        ></div>
+
+                    </header>
+
+
+                    <div class="reserva-evento__grid">
+
+                        <article class="reserva-evento__item">
+
+                            <span>
+                                Evento
+                            </span>
+
+                            <strong>
+                                Boda
+                            </strong>
+
+                        </article>
+
+
+                        <article class="reserva-evento__item">
+
+                            <span>
+                                Fecha reservada
+                            </span>
+
+                            <strong>
+                                15 de octubre de 2026
+                            </strong>
+
+                        </article>
+
+
+                        <article class="reserva-evento__item">
+
+                            <span>
+                                Cantidad estimada
+                            </span>
+
+                            <strong>
+                                50 invitados
+                            </strong>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <section
+                    class="reserva-proceso"
+                    aria-labelledby="titulo-proceso-reserva"
+                >
+
+                    <header class="reserva-seccion__encabezado">
+
+                        <h2 id="titulo-proceso-reserva">
+                            Notificaciones del proceso
+                        </h2>
+
+                        <div
+                            class="reserva-seccion__linea"
+                            aria-hidden="true"
+                        ></div>
+
+                    </header>
+
+
+                    <div class="reserva-timeline">
+                        <article class="reserva-timeline__evento">
+
+                            <span
+                                class="reserva-timeline__marcador"
+                                aria-hidden="true"
+                            ></span>
+
+                            <div class="reserva-timeline__contenido">
+
+                                <div class="reserva-timeline__cabecera">
+
+                                    <h3>
+                                        Información adicional recibida
+                                    </h3>
+
+                                    <time datetime="2026-09-20">
+                                        20/09/2026
+                                    </time>
+
+                                </div>
+
+                                <p class="reserva-timeline__tipo">
+                                    Mensaje del cliente
+                                </p>
+
+                                <blockquote>
+                                    “Hola, buenas tardes. Estoy atenta a
+                                    cualquier novedad por correo como me
+                                    comentan.”
+                                </blockquote>
+
+                                <span class="reserva-timeline__tiempo">
+                                    Recibido anteriormente
+                                </span>
+
+                            </div>
+
+                        </article>
+
+                        <article class="reserva-timeline__evento">
+
+                            <span
+                                class="reserva-timeline__marcador"
+                                aria-hidden="true"
+                            ></span>
+
+                            <div class="reserva-timeline__contenido">
+
+                                <div class="reserva-timeline__cabecera">
+
+                                    <h3>
+                                        Reserva confirmada
+                                    </h3>
+
+                                    <span class="reserva-timeline__actual">
+                                        Justo ahora
+                                    </span>
+
+                                </div>
+
+                                <p class="reserva-timeline__tipo">
+                                    Actualización de estado
+                                </p>
+
+                                <p>
+                                    La reserva para el evento fue confirmada
+                                    correctamente.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+
+
+    <!-- COMPONENTES -->
+
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>

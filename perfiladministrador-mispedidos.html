@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Mis pedidos | Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER GLOBAL -->
+    <div id="header"></div>
+    <main class="admin">
+        <div class="admin__layout">
+            <!-- SIDEBAR GLOBAL -->
+            <div id="sidebar-admin"></div>
+            <section class="admin-contenido pedidos-admin"
+                     aria-labelledby="titulo-pedidos">
+                <nav class="pedidos-admin__breadcrumb"
+                     aria-label="Migas de pan">
+                    <a href="perfiladministrador.html">
+                        Administrador
+                    </a>
+                    <span aria-hidden="true">/</span>
+                    <span aria-current="page">
+                        Mis pedidos
+                    </span>
+                </nav>
+                <header class="pedidos-admin__header">
+                    <div>
+                        <h1 id="titulo-pedidos">
+                            Mis pedidos
+                        </h1>
+                        <p>
+                            Consulta y actualiza el estado de los pedidos.
+                        </p>
+                    </div>
+                </header>
+                <div class="pedidos-admin__filtros">
+                    <div class="pedidos-admin__filtro">
+                        <label for="filtro-prioridad">
+                            Prioridad
+                        </label>
+                        <select id="filtro-prioridad">
+                            <option>Todas</option>
+                            <option>Prioridad alta</option>
+                            <option>Prioridad media</option>
+                        </select>
+                    </div>
+                    <div class="pedidos-admin__filtro">
+                        <label for="filtro-estado">
+                            Estado
+                        </label>
+                        <select id="filtro-estado">
+                            <option>Todos</option>
+                            <option>Confirmado</option>
+                            <option>En proceso</option>
+                            <option>Enviado</option>
+                            <option>Finalizado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pedidos-admin__lista">
+                    <article class="pedido-card">
+                        <div class="pedido-card__principal">
+                            <div class="pedido-card__icono"
+                                 aria-hidden="true">
+                                <img
+                                    src="assets/iconos/pedidos.svg"
+                                    alt="">
+                            </div>
+                            <div class="pedido-card__informacion">
+                                <div class="pedido-card__cabecera">
+                                    <h2>
+                                        Catalina Nieto
+                                    </h2>
+                                    <span class="pedido-card__prioridad pedido-card__prioridad--alta">
+                                        Prioridad alta
+                                    </span>
+                                </div>
+                                <a href="mailto:catalinanie@gmail.com"
+                                   class="pedido-card__correo">
+                                    catalinanie@gmail.com
+                                </a>
+                                <p class="pedido-card__cantidad">
+                                    Cantidad: 500 unidades
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pedido-card__estado">
+                            <label for="estado-catalina">
+                                Estado
+                            </label>
+
+                            <select
+                                id="estado-catalina"
+                                class="pedido-card__select">
+
+                                <option value="confirmado" selected>
+                                    Confirmado
+                                </option>
+
+                                <option value="proceso">
+                                    En proceso
+                                </option>
+
+                                <option value="enviado">
+                                    Enviado
+                                </option>
+
+                                <option value="finalizado">
+                                    Finalizado
+                                </option>
+                            </select>
+                        </div>
+                    </article>
+                    <article class="pedido-card">
+                        <div class="pedido-card__principal">
+                            <div class="pedido-card__icono"
+                                 aria-hidden="true">
+                                <img
+                                    src="assets/iconos/pedidos.svg"
+                                    alt="">
+                            </div>
+                            <div class="pedido-card__informacion">
+                                <div class="pedido-card__cabecera">
+                                    <h2>
+                                        Luisa Hernández
+                                    </h2>
+                                    <span class="pedido-card__prioridad pedido-card__prioridad--media">
+                                        Prioridad media
+                                    </span>
+                                </div>
+                                <a href="mailto:luisagern@gmail.com"
+                                   class="pedido-card__correo">
+                                    luisagern@gmail.com
+                                </a>
+                                <p class="pedido-card__cantidad">
+                                    Cantidad: 50 unidades
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pedido-card__estado">
+                            <label for="estado-luisa">
+                                Estado
+                            </label>
+                            <select
+                                id="estado-luisa"
+                                class="pedido-card__select">
+                                <option value="confirmado">
+                                    Confirmado
+                                </option>
+                                <option value="proceso" selected>
+                                    En proceso
+                                </option>
+                                <option value="enviado">
+                                    Enviado
+                                </option>
+                                <option value="finalizado">
+                                    Finalizado
+                                </option>
+                            </select>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script src="js/components.js"></script>
+
+</body>
+
+</html>
