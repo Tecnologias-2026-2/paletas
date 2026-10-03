@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+    <body>
+        <div id="header"></div>
+    <main>
+        <!-- issue 2: galeria -->
+       <section class="hero" aria-label="Promociones destacadas">
+    <!-- son los botones invisibes-->
+    <input type="radio" name="carrusel-control" id="slide-1" class="carrusel__radio">
+    <input type="radio" name="carrusel-control" id="slide-2" class="carrusel__radio">
+    <input type="radio" name="carrusel-control" id="slide-3" class="carrusel__radio" checked>
+    <input type="radio" name="carrusel-control" id="slide-4" class="carrusel__radio">
+    <input type="radio" name="carrusel-control" id="slide-5" class="carrusel__radio">
+
+    <div class="carrusel">
+        <div class="carrusel__escenario">
+            <div class="carrusel__item item--1">
+                <img src="assets/imagenes/galeria1.png" alt="Promoción 1">
+            </div>
+            <div class="carrusel__item item--2">
+                <img src="assets/imagenes/galeria2.png" alt="Promoción 2">
+            </div>
+            <div class="carrusel__item item--3">
+                <img src="assets/imagenes/galeria3.png" alt="Promoción 3">
+            </div>
+            <div class="carrusel__item item--4">
+                <img src="assets/imagenes/galeria4.png" alt="Promoción 4">
+            </div>
+            <div class="carrusel__item item--5">
+                <img src="assets/imagenes/galeria5.png" alt="Promoción 5">
+            </div>
+        </div>
+    </div>
+    <div class="carrusel__controles">
+        <!-- flechaizq -->
+        <div class="carrusel__flechas-izq">
+            <label for="slide-5" class="flecha flecha--1">←</label>
+            <label for="slide-1" class="flecha flecha--2">←</label>
+            <label for="slide-2" class="flecha flecha--3">←</label>
+            <label for="slide-3" class="flecha flecha--4">←</label>
+            <label for="slide-4" class="flecha flecha--5">←</label>
+        </div>
+
+        <!-- puntos) -->
+        <div class="carrusel__indicadores">
+            <label for="slide-1" class="dot dot--1"></label>
+            <label for="slide-2" class="dot dot--2"></label>
+            <label for="slide-3" class="dot dot--3"></label>
+            <label for="slide-4" class="dot dot--4"></label>
+            <label for="slide-5" class="dot dot--5"></label>
+        </div>
+
+        <!-- flechadere -->
+        <div class="carrusel__flechas-der">
+            <label for="slide-2" class="flecha flecha--1">→</label>
+            <label for="slide-3" class="flecha flecha--2">→</label>
+            <label for="slide-4" class="flecha flecha--3">→</label>
+            <label for="slide-5" class="flecha flecha--4">→</label>
+            <label for="slide-1" class="flecha flecha--5">→</label>
+        </div>
+
+    </div>
+
+</section>
+        <!-- issue3: colaboración con influencer-->
+<section class="colaboracion" aria-labelledby="titulo-colaboracion">
+    <div class="colaboracion__contenido">
+        <!-- Texto -->
+        <div class="colaboracion__texto">
+            <h2 id="titulo-colaboracion">
+                ¡Creamos una<br>
+                paleta exclusiva<br>
+                junto a nuestra<br>
+                Lulu99!
+            </h2>
+            <p>
+                Ven a probar este sabor<br>
+                edición limitada
+            </p>
+            <a href="#" class="colaboracion__boton">
+                Descubre más
+            </a>
+        </div>
+        <!-- la composicion -->
+        <div class="colaboracion__imagen">
+            <img
+                src="assets/imagenes/imageninfluencer.png"
+                alt="Lulu99 presentando la paleta de edición limitada"
+            >
+        </div>
+    </div>
+    <!-- la franjita amarilla -->
+    <div class="colaboracion__franja" aria-hidden="true"></div>
+
+</section>
+<section class="destacados" aria-labelledby="titulo-destacados">
+    <div class="destacados__header">
+        <h2 id="titulo-destacados" class="destacados__titulo">¡Prueba las mejores paletas de Bogotá!</h2>
+    </div>
+    <div class="destacados__contenedor">
+    
+        <!-- card1: destacados -->
+        <article class="tarjeta tarjeta--azul">
+            <div class="tarjeta__imagen-wrapper">
+               <img src="assets/imagenes/section1.png"
+                    alt="Paleta artesanal de fresa"
+                    class="tarjeta__imagen">
+                
+            </div>
+            <div class="tarjeta__contenido">
+                <h3 class="tarjeta__titulo">Productos Destacados</h3>
+                <p class="tarjeta__descripcion">Descubre nuestras paletas favoritas</p>
+                <a href="/productos" class="tarjeta__boton" aria-label="Descubrir más sobre nuestros productos destacados">Descubre más</a>
+            </div>
+        </article>
+
+        <!-- card2: llegadas -->
+        <article class="tarjeta tarjeta--rosada">
+            <div class="tarjeta__imagen-wrapper">
+               <img src="assets/imagenes/section2.png"
+                    alt="Variedad de paletas"
+                    class="tarjeta__imagen">
+            </div>
+            <div class="tarjeta__contenido">
+                <h3 class="tarjeta__titulo">Nuevas<br>Llegadas</h3>
+                <p class="tarjeta__descripcion">Nuevos sabores que quieres probar</p>
+                <a href="/nuevos-sabores" class="tarjeta__boton" aria-label="Descubrir más sobre los nuevos sabores de paletas">Descubre más</a>
+            </div>
+        </article>
+
+        <!-- card3: eventos -->
+        <article class="tarjeta tarjeta--amarilla">
+            <div class="tarjeta__imagen-wrapper">
+                <img src="assets/imagenes/section3.png"
+                     alt="Paletas en un evento"
+                     class="tarjeta__imagen">
+            </div>
+            <div class="tarjeta__contenido">
+                <h3 class="tarjeta__titulo">Nuestros Eventos</h3>
+                <p class="tarjeta__descripcion">Haz tus eventos más dulces con nosotros</p>
+                <a href="/eventos" class="tarjeta__boton" aria-label="Descubrir más sobre la atención de eventos con paletas">Descubre más</a>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+        <!-- issue5: experiencia y testimonios -->
+<section class="experiencia" aria-label="Experiencia y opiniones de nuestros clientes">
+    <div class="experiencia__contenedor">
+        <!-- la estructura -->
+        <div class="experiencia__imagen">
+            <img
+                src="assets/imagenes/experiencia.png"
+                alt="Más de 15 años de experiencia ofreciendo paletas artesanales"
+                loading="lazy"
+                decoding="async"
+            >
+        </div>
+
+        <!-- testimonios -->
+        <div class="testimonios" aria-label="Opiniones de nuestros clientes">
+            <article class="testimonio">
+                <div class="testimonio__franja" aria-hidden="true"></div>
+                <div class="testimonio__contenido">
+                    <blockquote>
+                        “Siempre para mis eventos compro estas paletas,
+                        la atención y el sabor son increíbles”
+                    </blockquote>
+                    <p class="testimonio__autor">
+                        Samara León B.
+                    </p>
+                </div>
+            </article>
+            <article class="testimonio">
+                <div class="testimonio__franja" aria-hidden="true"></div>
+                <div class="testimonio__contenido">
+                    <blockquote>
+                        “Nunca antes había probado una paleta tan buena.
+                        Los sabores son increíbles y la textura es tan
+                        refrescante.”
+                    </blockquote>
+                    <p class="testimonio__autor">
+                        Camila Arteaga
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+    </main>
+   
+<div id="footer"></div>
+<script src="js/components.js"></script>
+</body>
+</html>
