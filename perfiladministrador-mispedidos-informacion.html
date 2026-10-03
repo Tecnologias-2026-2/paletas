@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+<main class="admin">
+    <div class="admin__layout">
+        <div id="sidebar-admin"></div>
+        <section
+            class="admin-contenido detalle-pedido"
+            aria-labelledby="titulo-detalle-pedido"
+        >
+            <!-- ruta-->
+            <nav
+                class="detalle-pedido__breadcrumb"
+                aria-label="Migas de pan"
+            >
+                <a href="perfiladministrador.html">
+                    Administrador
+                </a>
+                <span aria-hidden="true">/</span>
+                <a href="perfiladministrador-mispedidos.html">
+                    Mis pedidos
+                </a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">
+                    Catalina Nieto Pedido
+                </span>
+            </nav>
+            <section
+                class="pedido-resumen"
+                aria-labelledby="titulo-detalle-pedido"
+            >
+                <div class="pedido-resumen__encabezado">
+                    <div>
+                        <p class="pedido-resumen__etiqueta">
+                            Información pedido
+                        </p>
+
+                        <h1 id="titulo-detalle-pedido">
+                            Catalina Nieto Osorio
+                        </h1>
+                    </div>
+                    <span class="pedido-resumen__estado">
+                        Confirmado
+                    </span>
+                </div>
+                <div class="pedido-resumen__datos">
+                    <div class="pedido-resumen__dato">
+                        <span>Ubicación</span>
+                        <strong>
+                            Chapinero - Barrios Unidos
+                        </strong>
+                    </div>
+                    <div class="pedido-resumen__dato">
+                        <span>Pedido</span>
+                        <strong>
+                            50 Paletas de Frutas Frescas
+                        </strong>
+                    </div>
+                    <div class="pedido-resumen__dato">
+                        <span>Presentación</span>
+                        <strong>
+                            Caja Madera
+                        </strong>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    class="pedido-resumen__correos"
+                >
+                    Ver correos enviados
+                </button>
+            </section>
+            <section
+                class="pedido-datos"
+                aria-labelledby="titulo-envio"
+            >
+                <div class="pedido-seccion__encabezado">
+                    <h2 id="titulo-envio">
+                        Detalles de envío y pago
+                    </h2>
+                    <div
+                        class="pedido-seccion__linea"
+                        aria-hidden="true"
+                    ></div>
+                </div>
+                <div class="pedido-datos__formulario">
+                    <div class="pedido-campo pedido-campo--completo">
+                        <label for="pedido-nombre">
+                            Nombre del cliente
+                        </label>
+                        <input
+                            type="text"
+                            id="pedido-nombre"
+                            value="Catalina Nieto Osorio"
+                            readonly
+                        >
+                    </div>
+                    <div class="pedido-campo pedido-campo--completo">
+                        <label for="pedido-direccion">
+                            Dirección de entrega
+                        </label>
+                        <input
+                            type="text"
+                            id="pedido-direccion"
+                            value="Cra 19a #63c-37"
+                            readonly
+                        >
+
+                    </div>
+                    <!-- Correo -->
+                    <div class="pedido-campo pedido-campo--completo">
+                        <label for="pedido-correo">
+                            Correo electrónico
+                        </label>
+                        <input
+                            type="email"
+                            id="pedido-correo"
+                            value="carollli@gmail.com"
+                            readonly
+                        >
+
+                    </div>
+                    <!-- Teléfono -->
+                    <div class="pedido-campo">
+                        <label for="pedido-telefono">
+                            Teléfono
+                        </label>
+                        <input
+                            type="tel"
+                            id="pedido-telefono"
+                            value="+57 3115550548"
+                            readonly
+                        >
+                    </div>
+                    <!-- Ciudad -->
+                    <div class="pedido-campo">
+                        <label for="pedido-ciudad">
+                            Ciudad / País
+                        </label>
+                        <input
+                            type="text"
+                            id="pedido-ciudad"
+                            value="BOGOTÁ / COLOMBIA"
+                            readonly
+                        >
+                    </div>
+                </div>
+                <div class="pedido-pago">
+                    <div class="pedido-pago__encabezado">
+                        <span class="pedido-pago__titulo">
+                            Método de pago
+                        </span>
+                        <span class="pedido-pago__pasarela">
+                            WOMPI
+                        </span>
+                    </div>
+                    <div class="pedido-pago__detalle">
+                        <span
+                            class="pedido-pago__icono"
+                            aria-hidden="true"
+                        >
+                            ◉
+                        </span>
+                        <div>
+                            <strong>
+                                Tarjeta de Crédito/Débito
+                            </strong>
+                            <p>
+                                Pago procesado mediante WOMPI
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="pedido-proceso"
+                aria-labelledby="titulo-proceso"
+            >
+                <div class="pedido-seccion__encabezado">
+                    <h2 id="titulo-proceso">
+                        Notificaciones - Proceso
+                    </h2>
+                    <div
+                        class="pedido-seccion__linea"
+                        aria-hidden="true"
+                    ></div>
+                </div>
+
+
+                <div class="pedido-timeline">
+                    <article class="pedido-evento">
+                        <div
+                            class="pedido-evento__marcador"
+                            aria-hidden="true"
+                        ></div>
+
+
+                        <div class="pedido-evento__contenido">
+
+                            <div class="pedido-evento__encabezado">
+
+                                <h3>
+                                    Correo de información adicional enviado
+                                </h3>
+
+                                <time datetime="2026-09-20">
+                                    20/09/2026
+                                </time>
+
+                            </div>
+
+
+                            <p class="pedido-evento__tipo">
+                                Respuesta del cliente
+                            </p>
+
+
+                            <blockquote>
+                                “Hola buenas tardes, así es realicé un pago.
+                                Estoy atenta a cualquier novedad por correo
+                                como me comentan.”
+                            </blockquote>
+
+
+                            <span class="pedido-evento__tiempo">
+                                Enviado el 20/09/2026
+                            </span>
+
+                        </div>
+
+                    </article>
+                    <article class="pedido-evento">
+
+                        <div
+                            class="pedido-evento__marcador"
+                            aria-hidden="true"
+                        ></div>
+
+
+                        <div class="pedido-evento__contenido">
+
+                            <div class="pedido-evento__encabezado">
+
+                                <h3>
+                                    Pedido enviado
+                                </h3>
+
+                                <span class="pedido-evento__actual">
+                                    Justo ahora
+                                </span>
+
+                            </div>
+
+
+                            <p>
+                                Correo electrónico enviado con la
+                                información de envío.
+                            </p>
+
+
+                            <span class="pedido-evento__tiempo">
+                                Actualización del estado del pedido
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </div>
+
+</main>
+
+    <div id="footer"></div>
+    <script src="js/components.js"></script>
+</body>
+</html>
