@@ -1094,6 +1094,37 @@ body {
     width: min(90%, 420px);
 
     padding: 35px 30px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    transform: translateY(15px);
+
+    transition: transform 0.25s ease;
+}
+.logout-modal__contenido h2 {
+    margin: 0 0 12px;
+
+    color: #ff70b4;
+
+    font-size: 1.65rem;
+    font-weight: 600;
+}
+.logout-modal__contenido p {
+    margin: 0 auto 28px;
+
+    max-width: 300px;
+
+    color: rgba(0, 0, 0, 0.65);
+
 .admin-login {
     width: 100%;
     min-height: 610px;
@@ -1458,6 +1489,11 @@ body {
 
 .pedidos-admin__breadcrumb a {
     color: rgba(0, 0, 0, 0.45);
+.notificaciones {
+    width: 100%;
+    min-width: 0;
+}
+.notificaciones__breadcrumb {
 .info-personal {
     width: 100%;
     min-width: 0;
@@ -1476,6 +1512,7 @@ body {
 }
 
 
+.notificaciones__breadcrumb a {
 .info-personal__breadcrumb a {
     color: rgba(0, 0, 0, 0.45);
 
@@ -1486,6 +1523,7 @@ body {
 
 
 .pedidos-admin__breadcrumb a:hover {
+.notificaciones__breadcrumb a:hover {
 .info-personal__breadcrumb a:hover {
     color: #ff70b4;
 }
@@ -1496,11 +1534,21 @@ body {
 }
 
 .pedidos-admin__header {
+.notificaciones__breadcrumb span {
 .info-personal__breadcrumb span {
     color: rgba(0, 0, 0, 0.35);
 }
 
 
+.notificaciones__breadcrumb span[aria-current="page"] {
+    color: #229db9;
+}
+.notificaciones__header {
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+.notificaciones__header h1 {
 .info-personal__breadcrumb span[aria-current="page"] {
     color: #229db9;
 }
@@ -1845,6 +1893,7 @@ body {
 
     line-height: 1.2;
 }
+.notificaciones__linea {
 
 
 .info-personal__linea {
@@ -1857,6 +1906,18 @@ body {
 
     border-radius: 10px;
 }
+.notificaciones__descripcion {
+    margin: 12px 0 0;
+
+    color: rgba(0, 0, 0, 0.52);
+
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.notificaciones-form {
+    width: 100%;
+    max-width: 650px;
 
 
 .info-personal__descripcion {
@@ -1877,6 +1938,10 @@ body {
     display: flex;
     flex-direction: column;
 
+    gap: 12px;
+}
+
+.notificacion-card {
     gap: 16px;
 }
 
@@ -1886,6 +1951,16 @@ body {
 
     display: grid;
 
+    grid-template-columns:
+        42px
+        minmax(0, 1fr)
+        auto;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 11px 16px;
     grid-template-columns: 40px minmax(0, 1fr);
 
     align-items: center;
@@ -1905,6 +1980,23 @@ body {
         0 3px 6px rgba(0, 0, 0, 0.12);
 
     transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.notificacion-card:hover {
+    background-color: #faf7f8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 10px rgba(0, 0, 0, 0.12);
+}
+.notificacion-card__icono {
+    width: 38px;
+    height: 38px;
         border-color 0.2s ease,
         box-shadow 0.2s ease,
         background-color 0.2s ease;
@@ -1926,6 +2018,40 @@ body {
     align-items: center;
     justify-content: center;
 
+    flex-shrink: 0;
+}
+
+
+.notificacion-card__icono img {
+    display: block;
+
+    width: 24px !important;
+    height: 24px !important;
+
+    max-width: 24px !important;
+    max-height: 24px !important;
+
+    object-fit: contain;
+}
+
+
+.notificacion-card__simbolo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #229db9;
+
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.notificacion-card__texto {
+    min-width: 0;
+}
+
+
+.notificacion-card__texto label {
     overflow: hidden;
 }
 
@@ -2000,6 +2126,105 @@ body {
     display: block;
 
     margin-bottom: 3px;
+
+    color: rgba(0, 0, 0, 0.75);
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+.notificacion-card__texto p {
+    margin: 0;
+
+    color: rgba(0, 0, 0, 0.52);
+
+    font-size: 0.72rem;
+    line-height: 1.35;
+}
+.notificacion-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.notificacion-switch input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+.notificacion-switch__control {
+    position: relative;
+    display: block;
+    width: 44px;
+    height: 24px;
+    background-color: #d6d6d6;
+    border-radius: 999px;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.notificacion-switch__control::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.2s ease;
+}
+
+.notificacion-switch input:checked
++ .notificacion-switch__control {
+    background-color: #ff70b4;
+}
+
+.notificacion-switch input:checked
++ .notificacion-switch__control::after {
+    transform: translateX(20px);
+}
+
+.notificacion-switch input:focus-visible
++ .notificacion-switch__control {
+    box-shadow:
+        0 0 0 4px rgba(255, 112, 180, 0.25);
+}
+.notificaciones-form__acciones {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 14px;
+}
+/* CANCELAR */
+.notificaciones-form__cancelar {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #f1f1f1;
+    border-radius: 9px;
+    font-size: 0.88rem;
+    font-weight: 500;
+
+    text-decoration: none;
 
     color: rgba(0, 0, 0, 0.72);
 
@@ -2172,6 +2397,24 @@ body {
         background-color 0.2s ease,
         color 0.2s ease;
 }
+.notificaciones-form__cancelar:hover {
+    color: rgba(0, 0, 0, 0.8);
+
+    background-color: #e5e5e5;
+}
+
+/* GUARDAR */
+.notificaciones-form__guardar {
+    min-height: 42px;
+    padding: 0 20px;
+    color: #ffffff;
+    background-color: #ff70b4;
+    border: none;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
 .info-personal-form__cancelar:hover {
     color: rgba(0, 0, 0, 0.8);
 
@@ -2287,6 +2530,7 @@ body {
         transform 0.2s ease,
         box-shadow 0.2s ease;
 }
+.notificaciones-form__guardar:hover {
 .info-personal-form__guardar:hover {
     background-color: #ee5da4;
 
@@ -2295,6 +2539,8 @@ body {
     box-shadow:
         0 4px 10px rgba(255, 112, 180, 0.25);
 }
+.notificaciones-form__guardar:focus-visible,
+.notificaciones-form__cancelar:focus-visible {
 /*accesibilidad*/
 .info-personal-form__guardar:focus-visible,
 .info-personal-form__cancelar:focus-visible,
@@ -2303,6 +2549,11 @@ body {
 
     outline-offset: 3px;
 }
+/* responsivo= */
+
+@media (max-width: 650px) {
+
+    .notificaciones-form {
 /*responsivo */
 
 @media (max-width: 650px) {
@@ -2317,6 +2568,61 @@ body {
     }
 
 
+    .notificacion-card {
+        grid-template-columns:
+            34px
+            minmax(0, 1fr)
+            auto;
+
+        gap: 10px;
+
+        padding: 11px 12px;
+    }
+
+
+    .notificacion-card__icono {
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .notificacion-card__icono img {
+        width: 21px !important;
+        height: 21px !important;
+
+        max-width: 21px !important;
+        max-height: 21px !important;
+    }
+
+
+    .notificacion-switch__control {
+        width: 40px;
+        height: 22px;
+    }
+
+
+    .notificacion-switch__control::after {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    .notificacion-switch input:checked
+    + .notificacion-switch__control::after {
+        transform: translateX(18px);
+    }
+
+
+    .notificaciones-form__acciones {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .notificaciones-form__cancelar,
+    .notificaciones-form__guardar {
+        width: 100%;
     .info-personal-form__campo {
         min-height: 66px;
 
@@ -2511,6 +2817,17 @@ body {
 
 }
 @media (prefers-reduced-motion: reduce) {
+
+    .notificacion-card,
+    .notificacion-switch__control,
+    .notificacion-switch__control::after,
+    .notificaciones-form__guardar {
+        transition: none;
+    }
+    .notificacion-card:hover,
+    .notificaciones-form__guardar:hover {
+        transform: none;
+    }
 
     .info-personal-form__campo,
     .info-personal-form__guardar,
