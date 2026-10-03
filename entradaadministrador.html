@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Administrador | Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <section class="admin-login"
+            aria-labelledby="admin-login-titulo">
+            <div class="admin-login__contenedor">
+                     <header class="admin-login__encabezado">
+                    <h1 id="admin-login-titulo">
+                    Administrador
+                    </h1>
+                                <div class="admin-login__linea"
+                                    aria-hidden="true"></div>
+                            </header>
+                            <div class="admin-login__perfil">
+                                <img
+                                    src="assets/iconos/admin.svg"
+                                    alt=""
+                                    class="admin-login__avatar">
+                                <h2>Fernanda</h2>
+                                <p>fergld@gmail.com</p>
+                            </div>
+                            <!-- Formulario -->
+                            <form class="admin-login__formulario">
+                                <div class="admin-login__campo">
+                                    <label for="password"
+                                        class="visually-hidden">
+                                        Contraseña
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Contraseña:"
+                                        autocomplete="current-password">
+
+                                </div>
+                                <input
+                                    type="checkbox"
+                                    id="modal-recuperacion"
+                class="modal__control"
+            >
+            <label
+                for="modal-recuperacion"
+                class="admin-login__recuperar">
+                Olvidé mi contraseña
+            </label>
+            <div class="modal-recuperacion">
+                <label
+                    for="modal-recuperacion"
+                    class="modal-recuperacion__fondo"
+                    aria-label="Cerrar mensaje">
+                </label>
+                <div class="modal-recuperacion__contenido">
+                <h2>Correo enviado</h2>
+                    <p>
+                        Se ha enviado un correo de recuperación
+                        a tu dirección registrada.
+                    </p>
+                    <label
+                        for="modal-recuperacion"
+                        class="modal-recuperacion__boton">
+                        Aceptar
+                    </label>
+
+                </div>
+
+            </div>                            
+                    <button
+                        type="button"
+                        class="admin-login__boton">
+                        Entrar ahora
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <div id="footer"></div>
+    <!-- los componentes globales -->
+    <script src="js/components.js"></script>
+</body>
+</html>

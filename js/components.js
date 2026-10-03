@@ -12,3 +12,6 @@ async function cargarComponente(id, archivo) {
 cargarComponente("header", "components/header.html");
 cargarComponente("footer", "components/footer.html");
 cargarComponente("sidebar-admin","components/sidebar.html");
+cargarComponente("sidebar-admin","components/sidebar.html");
+cargarComponente("sidebar-admin","components/sidebar.html");
+cargarComponente("footer", "components/footer.html");
