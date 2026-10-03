@@ -812,6 +812,228 @@ body {
     }
 
 }
+/* perfil admin */
+.admin {
+    width: 100%;
+    background-color: #ffffff;
+}
+.admin__layout {
+    width: min(100% - 40px, 1200px);
+    min-height: 650px;
+    margin: 45px auto 65px;
+    display: grid;
+    grid-template-columns: 290px 1fr;
+
+    gap: 55px;
+}
+.admin-sidebar {
+    min-height: 600px;
+    padding: 35px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FEC1DF;
+    border-radius: 20px;
+}
+.admin-sidebar__perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+.admin-sidebar__titulo {
+    margin: 0;
+
+   color: rgba(0, 0, 0, 0.70);
+
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.admin-sidebar__linea {
+    width: 175px;
+    height: 3px;
+
+    margin: 13px auto 25px;
+
+    background-color: #ffe86e;
+}
+.admin-sidebar__avatar {
+    width: 82px;
+    height: 82px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin-sidebar__avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+.admin-sidebar__nombre {
+    margin: 0;
+
+   color: rgba(0, 0, 0, 0.70);
+
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+.admin-sidebar__correo {
+    margin: 3px 0 0;
+
+    color: rgba(0, 0, 0, 0.70);
+
+    font-size: 0.9rem;
+}
+.admin-sidebar__nav {
+    margin-top: 45px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+/* Todas las opciones, incluido logout */
+.admin-sidebar__opcion {
+    width: 100%;
+    min-height: 52px;
+    padding: 10px 17px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.70);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease;
+}
+.admin-sidebar__opcion img {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+.admin-sidebar__opcion:hover {
+    color: #ff70b4;
+    transform: translateX(4px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.admin-sidebar__opcion--activa {
+    color: #ff70b4;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.admin-sidebar__opcion:focus-visible {
+    outline: 3px solid #ffe86e;
+    outline-offset: 3px;
+}
+.admin-sidebar__logout {
+    margin-top: auto;
+    padding-top: 35px;
+}
+.admin-sidebar__opcion--logout {
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.70);
+}
+.admin-sidebar__opcion--logout:hover {
+    color: #ff70b4;
+}
+.admin-contenido {
+    min-width: 0;
+    padding: 45px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-contenido__bienvenida {
+    margin-bottom: 35px;
+}
+.admin-contenido__bienvenida h2 {
+    margin: 0;
+    color: #229db9;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+}
+.admin-contenido__bienvenida p {
+    margin: 8px 0 0;
+    color: rgba(0, 0, 0, 0.70);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+.admin-contenido__vista {
+    width: 100%;
+    flex: 1;
+  
+}
+/* reducir mov*/
+@media (prefers-reduced-motion: reduce) {
+    .admin-sidebar__opcion {
+        transition: none;
+    }
+    .admin-sidebar__opcion:hover {
+        transform: none;
+    }
+}
+/*celular */
+
+@media (max-width: 650px) {
+    .admin__layout {
+        width: min(100% - 30px, 500px);
+
+        margin-top: 25px;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+    .admin-sidebar {
+        min-height: auto;
+    }
+    .admin-sidebar__nav {
+        margin-top: 30px;
+    }
+    .admin-sidebar__logout {
+        margin-top: 25px;
+
+        padding-top: 0;
+    }
+    .admin-contenido {
+        padding: 30px 5px;
+    }
+    .admin-contenido__bienvenida {
+        text-align: center;
+    }
+}
+/* modal de cerrar sesion */
+/* Checkbox invisible */
+.logout-modal__control {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+    pointer-events: none;
+}
+/* El label se comporta como botón */
+.admin-sidebar__opcion--logout {
+    cursor: pointer;
+}
+/* contendero del boton de cerrar sesion */
+
+.logout-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
 .admin-login {
     width: 100%;
     min-height: 610px;
@@ -1021,6 +1243,133 @@ body {
         opacity 0.25s ease,
         visibility 0.25s ease;
 }
+
+.logout-modal__fondo {
+    position: absolute;
+    inset: 0;
+
+    background-color: rgba(40, 40, 40, 0.55);
+
+    cursor: pointer;
+}
+
+.logout-modal__contenido {
+    position: relative;
+    z-index: 1;
+
+    width: min(90%, 420px);
+
+    padding: 35px 30px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    transform: translateY(15px);
+
+    transition: transform 0.25s ease;
+}
+.logout-modal__contenido h2 {
+    margin: 0 0 12px;
+
+    color: #ff70b4;
+
+    font-size: 1.65rem;
+    font-weight: 600;
+}
+.logout-modal__contenido p {
+    margin: 0 auto 28px;
+
+    max-width: 300px;
+
+    color: rgba(0, 0, 0, 0.65);
+
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.logout-modal__acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.logout-modal__boton {
+    min-width: 115px;
+    padding: 10px 18px;
+    box-sizing: border-box;
+    border-radius: 9px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+.logout-modal__boton--cancelar {
+    background-color: #eeeeee;
+
+    color: rgba(0, 0, 0, 0.65);
+}
+.logout-modal__boton--cancelar:hover {
+    background-color: #e2e2e2;
+}
+
+.logout-modal__boton--cerrar {
+    background-color: #ff70b4;
+
+    color: #ffffff;
+}
+
+.logout-modal__boton--cerrar:hover {
+    background-color: #ee5da4;
+
+    transform: translateY(-2px);
+}
+.logout-modal__control:checked ~ .logout-modal {
+    visibility: visible;
+    opacity: 1;
+}
+
+.logout-modal__control:checked
+~ .logout-modal
+.logout-modal__contenido {
+
+    transform: translateY(0);
+}
+@media (max-width: 480px) {
+    .logout-modal__contenido {
+        width: calc(100% - 30px);
+
+        padding: 30px 20px;
+    }
+    .logout-modal__acciones {
+        flex-direction: column;
+    }
+    .logout-modal__boton {
+        width: 100%;
+    }
+
+}
+@media (prefers-reduced-motion: reduce) {
+    .logout-modal,
+    .logout-modal__contenido,
+    .logout-modal__boton {
+        transition: none;
+    }
+    .logout-modal__boton--cerrar:hover {
+        transform: none;
+    }
+
 /*fondo gris */
 .modal-recuperacion__fondo {
     position: absolute;

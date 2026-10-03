@@ -1,0 +1,137 @@
+<aside class="admin-sidebar"
+       aria-label="Panel de administración">
+    <div class="admin-sidebar__perfil">
+
+        <h1 class="admin-sidebar__titulo">
+            Administrador
+        </h1>
+
+        <div class="admin-sidebar__linea"
+             aria-hidden="true">
+        </div>
+
+        <div class="admin-sidebar__avatar">
+            <img
+                src="assets/iconos/adminslide.svg"
+                alt=""
+                aria-hidden="true">
+        </div>
+
+        <h2 class="admin-sidebar__nombre">
+            Fernanda
+        </h2>
+
+        <p class="admin-sidebar__correo">
+            fergld@gmail.com
+        </p>
+
+    </div>
+    <nav class="admin-sidebar__nav"
+         aria-label="Navegación del administrador">
+
+        <a href="#"
+           class="admin-sidebar__opcion">
+
+            <img
+                src="assets/iconos/pedidos.svg"
+                alt=""
+                aria-hidden="true">
+
+            <span>Mis pedidos</span>
+
+        </a>
+        <a href="#"
+           class="admin-sidebar__opcion">
+
+            <img
+                src="assets/iconos/reservas.svg"
+                alt=""
+                aria-hidden="true">
+
+            <span>Mis Reservas</span>
+
+        </a>
+
+
+        <a href="#"
+           class="admin-sidebar__opcion">
+
+            <img
+                src="assets/iconos/configuracion.svg"
+                alt=""
+                aria-hidden="true">
+
+            <span>Configuración</span>
+
+        </a>
+
+    </nav>
+    <!-- cerrar sesiobn -->
+    <div class="admin-sidebar__logout">
+        <input
+            type="checkbox"
+            id="modal-cerrar-sesion"
+            class="logout-modal__control">
+        <label
+            for="modal-cerrar-sesion"
+            class="admin-sidebar__opcion admin-sidebar__opcion--logout">
+            <img
+                src="assets/iconos/cerrar.svg"
+                alt=""
+                aria-hidden="true">
+            <span>Cerrar Sesión</span>
+        </label>
+        <!--la confirmacion -->
+        <div class="logout-modal">
+
+            <!-- Fondo gris -->
+            <label
+                for="modal-cerrar-sesion"
+                class="logout-modal__fondo"
+                aria-label="Cancelar cierre de sesión">
+            </label>
+
+
+            <!-- Caja blanca -->
+            <div class="logout-modal__contenido">
+
+                <h2>
+                    ¿Cerrar sesión?
+                </h2>
+
+                <p>
+                    ¿Estás segura de que deseas
+                    cerrar tu sesión?
+                </p>
+
+
+                <div class="logout-modal__acciones">
+
+                    <!-- Cierra el modal -->
+                    <label
+                        for="modal-cerrar-sesion"
+                        class="logout-modal__boton logout-modal__boton--cancelar">
+
+                        Cancelar
+
+                    </label>
+
+
+                    <!-- Por ahora solo redirige -->
+                    <a
+                        href="entradaadministrador.html"
+                        class="logout-modal__boton logout-modal__boton--cerrar">
+
+                        Cerrar sesión
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
