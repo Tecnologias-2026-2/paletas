@@ -459,9 +459,6 @@ body {
         padding: 30px 5px;
     }
 }
-/* =========================================
-   MODAL - CERRAR SESIÓN
-   ========================================= */
 .logout-modal__control {
     position: absolute;
 
@@ -594,7 +591,6 @@ body {
     }
 }
 @media (prefers-reduced-motion: reduce) {
-
     .logout-modal,
     .logout-modal__contenido,
     .logout-modal__boton {
@@ -642,11 +638,6 @@ body {
     color: #229db9;
 }
 
-
-/* =========================================
-   ENCABEZADO
-   ========================================= */
-
 .pedidos-admin__header {
     margin-bottom: 28px;
 }
@@ -669,11 +660,6 @@ body {
 
     font-size: 0.95rem;
 }
-
-
-/* =========================================
-   FILTROS
-   ========================================= */
 
 .pedidos-admin__filtros {
     margin-bottom: 25px;
@@ -729,11 +715,6 @@ body {
 
     border-color: #ff70b4;
 }
-
-
-/* =========================================
-   LISTA
-   ========================================= */
 
 .pedidos-admin__lista {
     display: flex;
@@ -836,12 +817,6 @@ body {
     font-size: 0.95rem;
     font-weight: 700;
 }
-
-
-/* =========================================
-   PRIORIDADES
-   ========================================= */
-
 .pedido-card__prioridad {
     padding: 4px 9px;
 
@@ -870,12 +845,6 @@ body {
 
     color: #229db9;
 }
-
-
-/* =========================================
-   CORREO Y CANTIDAD
-   ========================================= */
-
 .pedido-card__correo {
     display: inline-block;
 
@@ -968,12 +937,6 @@ body {
 
     border-color: #ff70b4;
 }
-
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
-
 @media (max-width: 750px) {
 
     .pedidos-admin__filtros {
