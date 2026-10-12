@@ -4804,3 +4804,282 @@ body {
     display: block;
     margin: 0;
 }
+
+/* 
+   SECCIÓN EVENTOS 
+    */
+.eventos-hero {
+    background-color: #ffffff;
+    padding: 60px 20px 50px 20px;
+    text-align: center;
+}
+
+.eventos-hero__container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   TÍTULO Y FRANJAS DECORATIVAS
+========================================= */
+
+.eventos-titulo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 25px;
+
+    /* Extender las franjas a todo el ancho de la pantalla */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+
+    position: relative;
+}
+
+/* Franjas rosas */
+.franja-decorativa {
+    height: 32px;
+    flex: 1;
+    min-width: 0;
+    display: block;
+}
+
+/* Franja izquierda: rosa junto al borde exterior */
+.franja-izq {
+    background: linear-gradient(
+        to right,
+        #ff70b4 0%,
+        rgba(255, 112, 180, 0) 100%
+    );
+}
+
+/* Franja derecha: rosa junto al borde exterior */
+.franja-der {
+    background: linear-gradient(
+        to left,
+        #ff70b4 0%,
+        rgba(255, 112, 180, 0) 100%
+    );
+}
+
+/* Título principal */
+.eventos-hero h1 {
+    flex: 0 1 auto;
+    max-width: 650px;
+    margin: 0;
+    padding: 0 30px;
+
+    color: #178592;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    text-align: center;
+}
+
+/* =========================================
+   DESCRIPCIÓN
+========================================= */
+
+.eventos-hero__descripcion {
+    margin: 0 auto 35px auto;
+    max-width: 720px;
+
+    color: #111111;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.eventos-hero__botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    min-height: 46px;
+    padding: 12px 32px;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn--turquesa {
+    background-color: #229db9;
+    color: #ffffff;
+}
+
+.btn--rosado {
+    background-color: #ff70b4;
+    color: #ffffff;
+}
+
+/* =========================================
+   SECCIÓN TIPOS DE EVENTOS
+========================================= */
+
+.tipos-eventos {
+    padding: 40px 20px 80px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+/* Encabezado de tipos de eventos */
+.tipos-eventos__header {
+    margin-bottom: 40px;
+}
+
+.tipos-eventos__header h2 {
+    margin: 0;
+    color: #178592;
+    font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+    font-weight: 500;
+}
+
+.tipos-eventos__header p {
+    margin: 10px 0 0;
+    color: #333333;
+    font-size: 1rem;
+}
+
+/* =========================================
+   CUADRÍCULA DE TARJETAS
+========================================= */
+
+.tipos-eventos__grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 290px), 1fr)
+    );
+
+    gap: 30px;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+/* Tarjetas individuales */
+.evento-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 35px 22px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.09);
+}
+
+/* Iconos de las tarjetas */
+.evento-card__icono-container {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evento-card__icono-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Títulos de las tarjetas */
+.evento-card h3 {
+    margin: 0 0 10px;
+    color: #178592;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Descripciones de las tarjetas */
+.evento-card p {
+    margin: 0;
+    color: #444444;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+/* =========================================
+   ADAPTACIÓN PARA TABLET Y MÓVIL
+========================================= */
+
+@media (max-width: 600px) {
+
+    .eventos-hero {
+        padding: 40px 15px;
+    }
+
+    /* Franjas más delgadas en pantallas pequeñas */
+    .franja-decorativa {
+        height: 20px;
+    }
+
+    /* Reducir el espacio entre franjas y título */
+    .eventos-hero h1 {
+        padding: 0 12px;
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .eventos-titulo-wrapper {
+        margin-bottom: 25px;
+    }
+
+    .eventos-hero__descripcion {
+        font-size: 0.95rem;
+    }
+
+    .eventos-hero__botones {
+        gap: 12px;
+    }
+
+    .btn {
+        padding: 12px 22px;
+    }
+
+    .tipos-eventos {
+        padding: 30px 15px 50px;
+    }
+
+    .tipos-eventos__grid {
+        gap: 20px;
+    }
+
+    .evento-card {
+        padding: 28px 18px;
+    }
+}

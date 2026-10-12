@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="header"></div>
+
+    <main id="main-content">
+        <section class="eventos-hero" aria-labelledby="titulo-eventos-principal">
+            <div class="eventos-hero__container">
+                <div class="eventos-titulo-wrapper">
+                    <div class="franja-decorativa franja-izq" aria-hidden="true"></div>
+                    <h1 id="titulo-eventos-principal">Eventos especiales con<br>Paletas de Bogotá</h1>
+                    <div class="franja-decorativa franja-der" aria-hidden="true"></div>
+                </div>
+                
+                <p class="eventos-hero__descripcion">
+                    Haz de tu celebración un momento inolvidable con nuestras deliciosas paletas de hielo 100% naturales. Personalizamos cada pedido para adaptarlo perfectamente a tu evento.
+                </p>
+                
+                <div class="eventos-hero__botones">
+                    <!-- Botón Reservar Ahora (Turquesa oscuro como en Figma) -->
+                    <a href="#cotizacion" class="btn btn--turquesa" aria-label="Ir a reservar evento">Reservar Ahora</a>
+                    <!-- Botón Ver Galería (Rosado como en Figma) -->
+                    <a href="#galeria-eventos" class="btn btn--rosado" aria-label="Ver galería de eventos">Ver Galería</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de Eventos -->
+        <section class="tipos-eventos" aria-labelledby="titulo-tipos-eventos">
+            <div class="tipos-eventos__header">
+                <h2 id="titulo-tipos-eventos">Tipos de Eventos</h2>
+                <p>Ofrecemos paletas para todo tipo de celebraciones, personaliza tu pedido según el estilo de tu evento.</p>
+            </div>
+
+            <div class="tipos-eventos__grid">
+                <!-- Tarjeta 1: Cumpleaños -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/Icono_pastel.png" alt="Icono Cumpleaños">
+                    </div>
+                    <h3>Cumpleaños</h3>
+                    <p>Hacemos que los cumpleaños sean memorables con nuestras deliciosas paletas artesanales.</p>
+                </article>
+
+                <!-- Tarjeta 2: Bodas -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/icono_corazon.png" alt="Icono Bodas">
+                    </div>
+                    <h3>Bodas</h3>
+                    <p>Disfruta un toque único y refrescante en tu boda con nuestra selección de paletas gourmet.</p>
+                </article>
+
+                <!-- Tarjeta 3: Eventos Corporativos -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/icono_trabajo.png" alt="Icono Corporativo">
+                    </div>
+                    <h3>Eventos Corporativos</h3>
+                    <p>Sorprende a tus clientes y empleados con un detalle original y delicioso.</p>
+                </article>
+
+                <!-- Tarjeta 4: Graduaciones -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/icono_grado.png" alt="Icono Graduaciones">
+                    </div>
+                    <h3>Graduaciones</h3>
+                    <p>Celebra este logro importante con nuestras paletas personalizadas.</p>
+                </article>
+
+                <!-- Tarjeta 5: Fiestas Infantiles -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/icono_celebracion.png" alt="Icono Fiestas Infantiles">
+                    </div>
+                    <h3>Fiestas Infantiles</h3>
+                    <p>Alegra a los pequeños con paletas coloridas y divertidas en sabores que les encanten.</p>
+                </article>
+
+                <!-- Tarjeta 6: Eventos Sociales -->
+                <article class="evento-card">
+                    <div class="evento-card__icono-container">
+                        <img src="assets/imagenes/icono_personitas.png" alt="Icono Eventos Sociales">
+                    </div>
+                    <h3>Eventos Sociales</h3>
+                    <p>Para cualquier ocasión especial, tenemos la paleta perfecta.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer dinámico inyectado por components.js -->
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+</body>
+</html>
