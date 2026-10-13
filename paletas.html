@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paletas | Paletas de Hielo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <div id="header"></div>
+
+    <main id="contenido-principal">
+        <section class="catalogo-paletas" aria-labelledby="titulo-paletas">
+            <h1 id="titulo-paletas" class="visually-hidden">Catálogo de paletas</h1>
+
+            <div class="catalogo-paletas__layout">
+
+                <nav class="catalogo-paletas__filtros" aria-label="Categorías de paletas">
+                    <p class="catalogo-paletas__filtros-titulo">Filtros</p>
+                    <ul class="catalogo-paletas__filtros-lista">
+                        <li><a class="catalogo-paletas__filtro" href="paletas-frutales.html">Frutales</a></li>
+                        <li><a class="catalogo-paletas__filtro" href="paletas-tematicas.html">Temporada</a></li>
+                        <li><a class="catalogo-paletas__filtro" href="paletas-cremosas.html">Cremosas</a></li>
+                    </ul>
+                </nav>
+
+                <aside class="catalogo-paletas__publicidad" aria-label="Promociones">
+                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad1.png" alt="Martes 2x1: en paletas de agua, lleva dos y paga una">
+                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad2.png" alt="Combo familiar 3x2: lleva 3 paletas y paga 2">
+                </aside>
+
+                <div class="catalogo-paletas__productos">
+                    <h2 class="visually-hidden">Productos</h2>
+                    <ul class="catalogo-paletas__grid">
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/frutas-frescas.png" alt="Paleta con trozos de kiwi, fresa y mango" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Frutas Frescas</a></h3>
+                                    <p class="paleta__precio">8.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-frutas-frescas" aria-label="Aumentar cantidad de Paleta de Frutas Frescas">+</button>
+                                    <label class="visually-hidden" for="cantidad-frutas-frescas">Cantidad de Paleta de Frutas Frescas</label>
+                                    <input class="cantidad__campo" id="cantidad-frutas-frescas" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-frutas-frescas" aria-label="Disminuir cantidad de Paleta de Frutas Frescas">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/fresa-cremosa.png" alt="Paleta cremosa de fresa con trozos de fruta" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Fresa Cremosa</a></h3>
+                                    <p class="paleta__precio">9.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-fresa-cremosa" aria-label="Aumentar cantidad de Paleta de Fresa Cremosa">+</button>
+                                    <label class="visually-hidden" for="cantidad-fresa-cremosa">Cantidad de Paleta de Fresa Cremosa</label>
+                                    <input class="cantidad__campo" id="cantidad-fresa-cremosa" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-fresa-cremosa" aria-label="Disminuir cantidad de Paleta de Fresa Cremosa">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/uva-dulce.png" alt="Paleta morada de uva junto a un racimo de uvas" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Uva Dulce</a></h3>
+                                    <p class="paleta__precio">10.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-uva-dulce" aria-label="Aumentar cantidad de Paleta de Uva Dulce">+</button>
+                                    <label class="visually-hidden" for="cantidad-uva-dulce">Cantidad de Paleta de Uva Dulce</label>
+                                    <input class="cantidad__campo" id="cantidad-uva-dulce" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-uva-dulce" aria-label="Disminuir cantidad de Paleta de Uva Dulce">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/chamoy.png" alt="Paleta de chamoy en capas rojas y naranjas" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Chamoy</a></h3>
+                                    <p class="paleta__precio">12.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-chamoy" aria-label="Aumentar cantidad de Paleta Chamoy">+</button>
+                                    <label class="visually-hidden" for="cantidad-chamoy">Cantidad de Paleta Chamoy</label>
+                                    <input class="cantidad__campo" id="cantidad-chamoy" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-chamoy" aria-label="Disminuir cantidad de Paleta Chamoy">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/limon.png" alt="Paleta verde de limón" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Limón</a></h3>
+                                    <p class="paleta__precio">6.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-limon" aria-label="Aumentar cantidad de Paleta de Limón">+</button>
+                                    <label class="visually-hidden" for="cantidad-limon">Cantidad de Paleta de Limón</label>
+                                    <input class="cantidad__campo" id="cantidad-limon" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-limon" aria-label="Disminuir cantidad de Paleta de Limón">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/sandia-festiva.png" alt="Paleta con forma de rodaja de sandía" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Sandía Festiva</a></h3>
+                                    <p class="paleta__precio">9.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-sandia-festiva" aria-label="Aumentar cantidad de Paleta Sandía Festiva">+</button>
+                                    <label class="visually-hidden" for="cantidad-sandia-festiva">Cantidad de Paleta Sandía Festiva</label>
+                                    <input class="cantidad__campo" id="cantidad-sandia-festiva" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-sandia-festiva" aria-label="Disminuir cantidad de Paleta Sandía Festiva">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/coco.png" alt="Paleta de coco cubierta de coco rallado" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Coco</a></h3>
+                                    <p class="paleta__precio">9.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-coco" aria-label="Aumentar cantidad de Paleta de Coco">+</button>
+                                    <label class="visually-hidden" for="cantidad-coco">Cantidad de Paleta de Coco</label>
+                                    <input class="cantidad__campo" id="cantidad-coco" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-coco" aria-label="Disminuir cantidad de Paleta de Coco">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li>
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/mango-dulce.png" alt="Paleta amarilla de mango con trozos de fruta" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Mango Dulce</a></h3>
+                                    <p class="paleta__precio">8.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-mango-dulce" aria-label="Aumentar cantidad de Paleta de Mango Dulce">+</button>
+                                    <label class="visually-hidden" for="cantidad-mango-dulce">Cantidad de Paleta de Mango Dulce</label>
+                                    <input class="cantidad__campo" id="cantidad-mango-dulce" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-mango-dulce" aria-label="Disminuir cantidad de Paleta de Mango Dulce">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/cantidad.js"></script>
+</body>
+</html>
