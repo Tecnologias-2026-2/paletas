@@ -66,10 +66,64 @@ https://www.figma.com/design/yYbdCEPb4kcu9FcK6U2ptk/PROTOTIPO?node-id=4177-20&t=
 🗄️ 6. Diseño de Base de Datos
 
 🧩 7. Documentación del Sistema
-Estructura de Carpetas
-/css
-/assets
+El proyecto es un sitio estático (HTML, CSS y JavaScript) sin proceso de compilación.
+Cada página vive en la raíz del repositorio y comparte estilos y componentes.
 
-Explicar brevemente qué contiene cada carpeta.
+```
+paletas/
+├── assets/
+│   ├── iconos/
+│   └── imagenes/
+│       ├── paletas/
+│       ├── publicidad1.png
+│       └── publicidad2.png
+├── components/
+│   ├── header.html
+│   ├── footer.html
+│   └── sidebar.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── components.js
+│   ├── cantidad.js
+│   ├── carrito.js
+│   └── galeria.js
+├── home.html
+├── paletas.html
+├── mi-carrito.html
+├── eventos.html
+├── entradaadministrador.html
+├── perfiladministrador-*.html
+└── README.md
+```
+
+### /css
+
+Contiene `style.css`, la hoja de estilos única y compartida por todas las páginas.
+
+- Está organizada por secciones, cada una separada por un comentario con el nombre de la página o del componente (por ejemplo `/* ===== PÁGINA PALETAS: CATÁLOGO ===== */`).
+- Los estilos de cada integrante se agregan al final del archivo, para evitar conflictos al unir ramas.
+- Las clases siguen una nomenclatura tipo BEM (`bloque__elemento--modificador`), por ejemplo `paleta__nombre` o `cantidad__boton`.
+- Incluye utilidades de accesibilidad compartidas, como `.visually-hidden` y `.skip-link`.
+- El diseño es responsive: se escribe primero para móvil y se amplía con `@media (min-width: …)`.
+
+### /assets
+
+Contiene los recursos estáticos que usan las páginas.
+
+- **`assets/iconos/`**: íconos del sitio, como los de redes sociales, el carrito y el usuario.
+- **`assets/imagenes/`**: imágenes del sitio.
+  - **`paletas/`**: fotografías de cada producto (frutas frescas, chamoy, coco, halloween, etc.), en formato PNG con nombres en minúsculas y separados por guiones, sin tildes ni `ñ`.
+  - **`publicidad1.png` y `publicidad2.png`**: piezas publicitarias de la columna lateral del catálogo.
+
+### Otras carpetas
+
+- **`/components`**: fragmentos HTML reutilizables (`header`, `footer`, `sidebar`) que se insertan en cada página con `js/components.js`, para no duplicarlos.
+- **`/js`**:
+  - `components.js` carga los componentes compartidos.
+  - `cantidad.js` maneja los controles de cantidad y guarda la selección en `localStorage`.
+  - `carrito.js` muestra el carrito y calcula el subtotal.
+  - `galeria.js` controla la galería.
+- **Raíz**: una página `.html` por vista (`home`, `paletas`, `mi-carrito`, `eventos` y las del perfil de administrador).
 
 🚀 8. Instalación y Ejecución
