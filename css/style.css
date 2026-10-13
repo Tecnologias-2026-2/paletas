@@ -5083,3 +5083,73 @@ body {
         padding: 28px 18px;
     }
 }
+/*  PÁGINA DE PALETAS */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    z-index: 1000;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    background-color: #176f82;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transform: translateY(-120%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
+}
+
+.catalogo-paletas {
+    width: min(100% - 2rem, 77.5rem);
+    margin-inline: auto;
+    padding-block: 2rem;
+}
+.control-cantidad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.control-cantidad__boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.5rem;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    background-color: #176f82;
+    border: 2px solid transparent;
+    border-radius: 0.625rem;
+    cursor: pointer;
+}
+
+.control-cantidad__boton:hover {
+    background-color: #125c6c;
+}
+
+.control-cantidad__boton:active {
+    transform: scale(0.95);
+}
+
+.control-cantidad__boton:focus-visible {
+    outline: 3px solid #fd82c0;
+    outline-offset: 3px;
+}
