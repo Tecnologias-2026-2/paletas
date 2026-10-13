@@ -60,6 +60,8 @@ Este diagrama representa las interacciones entre los actores del sistema y sus f
 Diagrama de Secuencia
 Este diagrama representa el orden temporal de las interacciones entre los participantes del sistema para completar un proceso específico, por ejemplo, la solicitud de una cotización para un evento, desde el ingreso de los datos hasta el registro de la solicitud.
 
+Para visualizacion detallado de todos los diagramas, tantode secuencia como de casos de uso, se accede al siguiente link de figjam: https://www.figma.com/board/14zLS3L92eeXjv5rGyuJ8h/PLANEACI%C3%93N-PROYECTO?node-id=0-1&t=q4isId7fHRNjcfxG-1
+
 🎨 5. URL del Prototipo
 https://www.figma.com/design/yYbdCEPb4kcu9FcK6U2ptk/PROTOTIPO?node-id=4177-20&t=pS4Pk7z6Dpsq69C0-1
 
