@@ -52,22 +52,16 @@ Usabilidad La plataforma debe presentar una interfaz intuitiva con un menú de
 Seguridad de la información El sistema debe proteger los datos personales ingresados por los usuarios en los formularios de contacto y cotización mediante conexiones seguras (HTTPS) y almacenamiento adecuado de la información. 
 
 
-
-
-
 🧠 4. Diagramas UML
 
 Diagrama de Casos de Uso
-
-Explicar brevemente qué muestra el diagrama.
+Este diagrama representa las interacciones entre los actores del sistema y sus funcionalidades principales. Incluye las acciones que pueden realizar los clientes, como consultar productos, gestionar su compra y solicitar cotizaciones, así como las tareas administrativas relacionadas con pedidos y solicitudes de eventos.
 
 Diagrama de Secuencia
-
-Explicar qué proceso representa.
+Este diagrama representa el orden temporal de las interacciones entre los participantes del sistema para completar un proceso específico, por ejemplo, la solicitud de una cotización para un evento, desde el ingreso de los datos hasta el registro de la solicitud.
 
 🎨 5. URL del Prototipo
-https://figma.com/xxxxx
-
+https://www.figma.com/design/yYbdCEPb4kcu9FcK6U2ptk/PROTOTIPO?node-id=4177-20&t=pS4Pk7z6Dpsq69C0-1
 
 🗄️ 6. Diseño de Base de Datos
 

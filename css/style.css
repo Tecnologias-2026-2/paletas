@@ -4819,9 +4819,9 @@ body {
     margin: 0 auto;
 }
 
-/* =========================================
-   TÍTULO Y FRANJAS DECORATIVAS
-========================================= */
+/* ====================
+   SECCION DE EVENTOS 
+======================= */
 
 .eventos-titulo-wrapper {
     display: flex;
@@ -5152,4 +5152,233 @@ body {
 .control-cantidad__boton:focus-visible {
     outline: 3px solid #fd82c0;
     outline-offset: 3px;
+
+/* ================================
+    GALERÍA DE EVENTOS
+================================ */
+
+.galeria-eventos {
+    width: 100%;
+    padding: 10px 0 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* ENCABEZADO */
+
+.galeria-eventos__header {
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.galeria-eventos__header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+
+    width: 100vw;
+    margin: 0 0 25px;
+    margin-left: calc(50% - 50vw);
+
+    color: #ff70b4;
+    font-family: inherit;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    text-align: center;
+}
+
+/* Franjas decorativas */
+
+.galeria-eventos__header h2::before,
+.galeria-eventos__header h2::after {
+    content: "";
+    display: block;
+
+    height: 50px;
+    flex: 1;
+    min-width: 0;
+}
+
+.galeria-eventos__header h2::before {
+    background: linear-gradient(
+        to right,
+        #ffe58a 0%,
+        rgba(255, 229, 138, 0) 100%
+    );
+}
+
+.galeria-eventos__header h2::after {
+    background: linear-gradient(
+        to left,
+        #ffe58a 0%,
+        rgba(255, 229, 138, 0) 100%
+    );
+}
+
+.galeria-eventos__header p {
+    max-width: 900px;
+    margin: 0 auto 17px;
+    padding: 0 20px;
+
+    color: #222;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+/* ================================
+    GALERÍA: 4 IMÁGENES VISIBLES
+================================ */
+
+.galeria-contenedor {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    max-width: none;
+
+    padding: 12px;
+    box-sizing: border-box;
+
+    background-color: #e0f4f7;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.galeria-contenedor::-webkit-scrollbar {
+    display: none;
+}
+
+.galeria-contenedor:active {
+    cursor: grabbing;
+}
+
+.galeria-eventos {
+    width: 100%;
+    
+    padding: 10px 0 100px 0; 
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #fff; 
+    text-align: center;
+    overflow: hidden;
+}
+
+/* TARJETAS PLANAS */
+
+.galeria-card {
+    flex: 0 0 calc((100% - 48px) / 5);
+    height: 400px; 
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    border-radius: 10px;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+/* IMÁGENES */
+
+.galeria-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/* RESPONSIVE - TABLET */
+
+@media (max-width: 900px) {
+    .galeria-eventos {
+        padding-top: 24px;
+    }
+
+    .galeria-eventos__header h2 {
+        gap: 20px;
+        font-size: 24px;
+    }
+
+    .galeria-contenedor {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .galeria-card {
+        flex-basis: calc((100% - 30px) / 4);
+        height: 250px;
+    }
+}
+
+
+/* RESPONSIVE - MÓVIL */
+
+@media (max-width: 600px) {
+    .galeria-eventos {
+        padding-top: 18px;
+    }
+
+    .galeria-eventos__header {
+        padding: 0 16px;
+    }
+
+    .galeria-eventos__header h2 {
+        gap: 12px;
+        margin-bottom: 22px;
+        font-size: 21px;
+    }
+
+    .galeria-eventos__header h2::before,
+    .galeria-eventos__header h2::after {
+        min-width: 15px;
+        height: 20px;
+    }
+
+    .galeria-contenedor {
+        gap: 10px;
+        padding: 8px;
+    }
+
+    .galeria-card {
+        flex-basis: 70%;
+        height: 280px;
+    }
+}
+
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+    .galeria-contenedor {
+        scroll-behavior: auto;
+    }
 }
