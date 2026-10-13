@@ -54,34 +54,11 @@ Seguridad de la información El sistema debe proteger los datos personales ing
 
 🧠 4. Diagramas UML
 
-Requerimientos Funcionales:
-1. Visualización del catálogo de productos El sistema debe permitir a los usuarios visualizar un catálogo de paletas y gelatinas organizado por categorías (Frutales, Cremosas, Especiales/Gourmet y Temporada), mostrando para cada producto una imagen, nombre, descripción, precio según su tamaño (grande o pequeño) y disponibilidad.
+Diagrama de Casos de Uso
+Este diagrama representa las interacciones entre los actores del sistema y sus funcionalidades principales. Incluye las acciones que pueden realizar los clientes, como consultar productos, gestionar su compra y solicitar cotizaciones, así como las tareas administrativas relacionadas con pedidos y solicitudes de eventos.
 
-2. Búsqueda y filtrado de productos La plataforma debe permitir a los usuarios buscar productos mediante una barra de búsqueda y filtrarlos por categoría para facilitar la localización de las paletas o gelatinas deseadas.
-
-3. Selección de cantidad y compra de productos El sistema debe permitir al usuario seleccionar la cantidad de productos mediante controles de incremento y decremento, agregarlos al carrito de compras y generar pedidos tanto individuales como al por mayor.
-
-4. Solicitud de cotización para eventos La plataforma debe permitir que los usuarios soliciten una cotización para eventos a través de un formulario donde registren el tipo de evento, número de invitados, fecha, ubicación y datos de contacto.
-
-5. Visualización de tipos de eventos El sistema debe mostrar una sección con los servicios disponibles para diferentes tipos de eventos, como cumpleaños, bodas, eventos corporativos, graduaciones, fiestas infantiles y eventos sociales, incluyendo una breve descripción de cada servicio.
-
-6.  Galería de eventos realizados La plataforma debe mostrar una galería de imágenes con eventos previamente atendidos por la empresa, permitiendo a los usuarios conocer los montajes, carritos de paletas y presentaciones disponibles.
-
-7. Formulario de contacto El sistema debe permitir que los usuarios envíen consultas, solicitudes o comentarios mediante un formulario que solicite nombre, correo electrónico, teléfono, tipo de evento y mensaje.
-
-8. Gestión de usuarios administradores El sistema debe permitir el acceso mediante autenticación a los administradores de la plataforma, garantizando que únicamente los usuarios autorizados puedan ingresar al panel de administración.
-
-9. Gestión de pedidos
-El sistema debe permitir al administrador visualizar un listado con todos los pedidos realizados por los clientes, mostrando información como el nombre del cliente, productos solicitados, cantidad, fecha, estado del pedido y total de la compra.
-
-10. Actualización del estado de los pedidos El sistema debe permitir al administrador cambiar el estado de un pedido desde el panel de control. Al realizar la actualización, el sistema guardará los cambios directamente en la base de datos para que la información quede disponible en el historial de compras del cliente dentro de la plataforma.
-
-11. Gestión de cotizaciones para eventos La plataforma debe permitir al administrador visualizar las solicitudes de cotización de eventos recibidas (con detalles como tipo de evento, número de invitados, fecha, ubicación y datos de contacto), permitiéndole ingresar la respuesta con la propuesta económica y cambiar su estado (Pendiente, Cotizado, Aprobado, Rechazado) para su consulta en el sistema.
-
-Requerimientos NO funcionales:
-
-Explicar qué proceso representa.
-https://www.figma.com/board/14zLS3L92eeXjv5rGyuJ8h/PLANEACI%C3%93N-PROYECTO?node-id=0-1&t=K6sYq4obPeaVtsEX-1
+Diagrama de Secuencia
+Este diagrama representa el orden temporal de las interacciones entre los participantes del sistema para completar un proceso específico, por ejemplo, la solicitud de una cotización para un evento, desde el ingreso de los datos hasta el registro de la solicitud.
 
 🎨 5. URL del Prototipo
 https://www.figma.com/design/yYbdCEPb4kcu9FcK6U2ptk/PROTOTIPO?node-id=4177-20&t=pS4Pk7z6Dpsq69C0-1
