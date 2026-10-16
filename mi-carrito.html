@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito | Paletas de Hielo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <div id="header"></div>
+
+    <main id="contenido-principal" class="carrito">
+        <h1 id="titulo-carrito" class="carrito__titulo" tabindex="-1">Mi Carrito</h1>
+        <div class="carrito__cinta" aria-hidden="true"></div>
+
+        <section aria-labelledby="titulo-productos-carrito">
+            <h2 id="titulo-productos-carrito" class="visually-hidden">Productos en tu carrito</h2>
+
+            <p id="carrito-vacio" class="carrito__vacio" hidden>
+                Tu carrito está vacío. Elige tus paletas en el <a href="paletas.html">catálogo de paletas</a>.
+            </p>
+
+            <ul id="carrito-lista" class="carrito__lista"></ul>
+        </section>
+
+        <div class="carrito__pie">
+            <fieldset class="empaque">
+                <legend class="empaque__leyenda">¿Cómo te gustaría que empacáramos tus productos?</legend>
+
+                <label class="empaque__opcion">
+                    <input class="empaque__radio" type="radio" name="empaque" value="caja-madera" data-costo="10500">
+                    <span>
+                        <span class="empaque__nombre">Caja Madera</span>
+                        <span class="empaque__costo">Costo : 10.500 COP</span>
+                    </span>
+                </label>
+
+                <label class="empaque__opcion">
+                    <input class="empaque__radio" type="radio" name="empaque" value="caja-carton" data-costo="5500">
+                    <span>
+                        <span class="empaque__nombre">Caja Cartón</span>
+                        <span class="empaque__costo">Costo : 5.500 COP</span>
+                    </span>
+                </label>
+
+                <label class="empaque__opcion">
+                    <input class="empaque__radio" type="radio" name="empaque" value="bolsa-plastica" data-costo="1500">
+                    <span>
+                        <span class="empaque__nombre">Bolsa plástica</span>
+                        <span class="empaque__costo">Costo : 1.500 COP</span>
+                    </span>
+                </label>
+            </fieldset>
+
+            <section class="resumen" aria-label="Resumen de la compra">
+                <div aria-live="polite" aria-atomic="true">
+                    <h2 class="resumen__titulo">Subtotal</h2>
+                    <p id="resumen-total" class="resumen__total">0 COP</p>
+                    <p id="resumen-envio" class="resumen__envio"></p>
+                </div>
+                <a class="resumen__continuar" href="paletas.html">Continuar comprando</a>
+            </section>
+        </div>
+    </main>
+
+    <template id="plantilla-item">
+        <li class="carrito-item">
+            <img class="carrito-item__imagen" alt="">
+            <div class="carrito-item__info">
+                <h3 class="carrito-item__titulo"><a class="carrito-item__nombre" href="paletas.html"></a></h3>
+                <p class="carrito-item__peso"></p>
+            </div>
+            <div class="carrito-item__cantidad">
+                <label class="carrito-item__etiqueta">Cantidad</label>
+                <input class="carrito-item__campo" type="number" inputmode="numeric" min="1" max="99">
+            </div>
+            <p class="carrito-item__precio"></p>
+            <button class="carrito-item__quitar" type="button"><span aria-hidden="true">X</span></button>
+        </li>
+    </template>
+
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/carrito.js"></script>
+</body>
+</html>
