@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contáctanos | Paletas de Hielo</title>
+
+    <!-- Estilos generales del proyecto -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Estilos específicos de Contáctanos -->
+    <link rel="stylesheet" href="css/contactanos.css">
+
+    <!-- Tipografías del proyecto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header compartido -->
+    <div id="header"></div>
+
+    <main class="contactanos">
+
+        <!-- Mapa de ubicación -->
+        <section class="contactanos__mapa"
+                 aria-label="Mapa de ubicación">
+
+            <div class="contactanos__mapa-contenedor">
+                <iframe
+                    src="https://maps.google.com/maps?q=Bogot%C3%A1%2C%20Colombia&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                    title="Mapa de Bogotá, Colombia"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+        </section>
+
+        <!-- Título de puntos físicos -->
+        <section class="contactanos__puntos"
+                 aria-labelledby="contactanos-titulo">
+
+            <div class="contactanos__titulo-wrapper">
+
+                <span class="contactanos__franja"
+                      aria-hidden="true"></span>
+
+                <h1 id="contactanos-titulo"
+                    class="contactanos__titulo">
+                    Encuéntranos en nuestros puntos físicos
+                </h1>
+
+                <span class="contactanos__franja"
+                      aria-hidden="true"></span>
+
+            </div>
+
+            <!-- Tarjetas informativas -->
+            <div class="contactanos__tarjetas">
+
+                <!-- Tarjeta de redes sociales -->
+                <article class="contactanos__tarjeta contactanos__tarjeta--azul">
+
+                    <h2>Nuestras redes sociales</h2>
+
+                    <div class="contactanos__iconos">
+
+                        <img
+                            src="assets/imagenes/Contac_wasap.png"
+                            alt="WhatsApp">
+
+                        <img
+                            src="assets/imagenes/Contac_insta.png"
+                            alt="Instagram">
+
+                        <img
+                            src="assets/imagenes/Contac_tiktok.png"
+                            alt="TikTok">
+
+                    </div>
+
+                </article>
+
+                <!-- Tarjeta de puntos físicos -->
+                <article class="contactanos__tarjeta contactanos__tarjeta--amarilla">
+
+                    <h2>Con más de 20 puntos físicos</h2>
+
+                    <div class="contactanos__iconos">
+
+                        <img
+                            src="assets/imagenes/Contac_home.png"
+                            alt=""
+                            aria-hidden="true">
+
+                    </div>
+
+                </article>
+
+                <!-- Tarjeta de eventos -->
+                <article class="contactanos__tarjeta contactanos__tarjeta--rosa">
+
+                    <h2>Eventos con paletas únicas</h2>
+
+                    <div class="contactanos__iconos">
+
+                        <img
+                            src="assets/imagenes/Contac_persons.png"
+                            alt=""
+                            aria-hidden="true">
+
+                        <img
+                            src="assets/imagenes/Contac_calendar.png"
+                            alt=""
+                            aria-hidden="true">
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer compartido -->
+    <div id="footer"></div>
+
+    <!-- Componentes compartidos del proyecto -->
+    <script src="js/components.js"></script>
+
+</body>
+</html>
