@@ -5999,3 +5999,434 @@ body {
 .navbar__icono[aria-current="page"] {
   border-bottom: 3px solid #1a6f82;
 }
+
+/* ========================================
+   CONTÁCTANOS - ISSUE #62
+   Paletas de Hielo
+======================================== */
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+.contactanos {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5% 75px;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.contactanos *,
+.contactanos *::before,
+.contactanos *::after {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   MAPA DE UBICACIÓN
+======================================== */
+
+.contactanos__mapa {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+.contactanos__mapa-contenedor {
+    width: min(100%, 1000px);
+    height: 500px;
+    padding: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.contactanos__mapa-contenedor iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 4px;
+}
+
+/* ========================================
+   SECCIÓN DE PUNTOS FÍSICOS
+======================================== */
+
+.contactanos__puntos {
+    width: 100%;
+}
+
+/* ========================================
+   TÍTULO Y FRANJAS DECORATIVAS
+======================================== */
+
+.contactanos__titulo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+
+    /* Permite que las franjas lleguen a los bordes */
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-bottom: 42px;
+}
+
+.contactanos__titulo {
+    flex: 0 1 500px;
+    min-width: 0;
+    margin: 0;
+    padding: 0 24px;
+
+    color: #2ba7c0;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(40px, 2.5vw, 32px);
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Franjas amarillas con degradado */
+
+.contactanos__franja {
+    display: block;
+    flex: 1 0 0;
+    min-width: 0;
+    height: 50px;
+}
+
+.contactanos__franja:first-child {
+    background: linear-gradient(
+        to right,
+        #ffe58a 0%,
+        rgba(255, 229, 138, 0) 100%
+    );
+}
+
+.contactanos__franja:last-child {
+    background: linear-gradient(
+        to left,
+        #ffe58a 0%,
+        rgba(255, 229, 138, 0) 100%
+    );
+}
+
+/* ========================================
+   TARJETAS INFORMATIVAS
+======================================== */
+
+.contactanos__tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
+
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.contactanos__tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 100%;
+    min-width: 0;
+
+    /* Sustituye la altura fija por una proporción cuadrada */
+    height: auto;
+    aspect-ratio: 1 / 0.8;
+
+    padding: 24px 18px;
+
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+    transition: none;
+}
+
+/* ========================================
+   TEXTOS DE LAS TARJETAS
+======================================== */
+
+.contactanos__tarjeta h2 {
+    width: 100%;
+    max-width: 240px;
+    margin: 0;
+
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+
+    /* Antes: 15px */
+    font-size: clamp(22px, 2.2vw, 28px);
+    font-weight: 700;
+    line-height: 1.2;
+
+    text-align: center;
+    text-decoration: none;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+}
+
+/* ========================================
+   COLORES DE LAS TARJETAS
+======================================== */
+
+.contactanos__tarjeta--azul {
+    background-color: #299fb4;
+}
+
+.contactanos__tarjeta--amarilla {
+    background-color: #ffd64d;
+}
+
+.contactanos__tarjeta--rosa {
+    background-color: #f77dbb;
+}
+
+/* ========================================
+   ICONOS PNG
+======================================== */
+
+.contactanos__iconos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 14px;
+    min-height: 36px;
+}
+
+.contactanos__iconos img {
+    display: block;
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+    max-height: 36px;
+    object-fit: contain;
+    flex: 0 0 36px;
+}
+
+/* ========================================
+   EVITAR INTERACCIÓN DE BOTONES
+======================================== */
+
+.contactanos__tarjeta:hover,
+.contactanos__tarjeta:focus,
+.contactanos__tarjeta:active {
+    color: #ffffff;
+    text-decoration: none;
+    box-shadow: none;
+    transform: none;
+    filter: none;
+    cursor: default;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .contactanos {
+        padding: 32px 5% 55px;
+    }
+
+    .contactanos__mapa {
+        margin-bottom: 36px;
+    }
+
+    .contactanos__mapa-contenedor {
+        height: 280px;
+    }
+
+    .contactanos__titulo-wrapper {
+        margin-bottom: 32px;
+    }
+
+    .contactanos__titulo {
+        flex: 0 1 420px;
+        max-width: calc(100% - 64px);
+        padding: 0 14px;
+        font-size: 25px;
+    }
+
+    .contactanos__franja {
+        height: 40px;
+    }
+
+    .contactanos__tarjetas {
+        gap: 10px;
+    }
+
+    .contactanos__tarjeta {
+        height: auto;
+        aspect-ratio: 1 / 1;
+        padding: 16px 10px;
+        gap: 14px;
+    }
+
+    .contactanos__tarjeta h2 {
+        max-width: 190px;
+        font-size: clamp(17px, 2.8vw, 22px);
+        line-height: 1.2;
+    }
+
+    .contactanos__iconos {
+        gap: 8px;
+        min-height: 28px;
+    }
+
+    .contactanos__iconos img {
+        width: 28px;
+        height: 28px;
+        max-width: 28px;
+        max-height: 28px;
+        flex-basis: 28px;
+    }
+}
+
+/* ========================================
+   MÓVIL
+   Las tres tarjetas siguen en una fila
+======================================== */
+
+@media (max-width: 480px) {
+    .contactanos {
+        padding: 26px 10px 45px;
+    }
+
+    .contactanos__mapa {
+        margin-bottom: 32px;
+    }
+
+    .contactanos__mapa-contenedor {
+        height: 220px;
+        padding: 8px;
+    }
+
+    .contactanos__titulo-wrapper {
+        margin-bottom: 26px;
+    }
+
+    .contactanos__titulo {
+        flex: 0 1 330px;
+        max-width: calc(100% - 48px);
+        padding: 0 8px;
+        font-size: 21px;
+        line-height: 1.3;
+    }
+
+    .contactanos__franja {
+        height: 30px;
+    }
+
+    .contactanos__tarjetas {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .contactanos__tarjeta {
+        height: auto;
+        aspect-ratio: 1 / 1;
+
+        /*
+         * En móviles estrechos se permite crecer
+         * lo necesario para no cortar el contenido.
+         */
+        min-height: 135px;
+        padding: 12px 6px;
+        gap: 12px;
+        border-radius: 8px;
+    }
+
+    .contactanos__tarjeta h2 {
+        max-width: 145px;
+        font-size: clamp(15px, 3.8vw, 18px);
+        line-height: 1.15;
+    }
+
+    .contactanos__iconos {
+        gap: 6px;
+        min-height: 24px;
+    }
+
+    .contactanos__iconos img {
+        width: 24px;
+        height: 24px;
+        max-width: 24px;
+        max-height: 24px;
+        flex-basis: 24px;
+    }
+}
+
+/* ========================================
+   PANTALLAS MUY PEQUEÑAS
+======================================== */
+
+@media (max-width: 360px) {
+    .contactanos__tarjetas {
+        gap: 6px;
+    }
+
+    .contactanos__tarjeta {
+        min-height: 135px;
+        padding: 10px 4px;
+        gap: 10px;
+    }
+
+    .contactanos__tarjeta h2 {
+        font-size: 15px;
+        line-height: 1.15;
+    }
+
+    .contactanos__iconos {
+        gap: 4px;
+        min-height: 22px;
+    }
+
+    .contactanos__iconos img {
+        width: 22px;
+        height: 22px;
+        max-width: 22px;
+        max-height: 22px;
+        flex-basis: 22px;
+    }
+
+    .contactanos__titulo {
+        font-size: 19px;
+    }
+}
+
+/* ========================================
+   ACCESIBILIDAD
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .contactanos__tarjeta {
+        transition: none;
+    }
+}
+
+/* ========================================
+   EVITAR DESBORDAMIENTO HORIZONTAL
+======================================== */
+
+html {
+    overflow-x: clip;
+}
