@@ -7164,3 +7164,334 @@ html {
         transition: none;
     }
 }
+
+/* ==========================================================================
+   PÁGINA DETALLES DE PAGO
+   ========================================================================== */
+
+.resumen__accion {
+    align-self: flex-start;
+}
+
+.resumen__aviso {
+    max-width: 34ch;
+    margin: 0.75rem 0 0;
+    color: #a1201a;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.resumen__aviso[hidden] {
+    display: none;
+}
+
+.pago {
+    --pago-azul: #1a6f82;
+    --pago-borde: #2a8ea6;
+    --pago-rosa: #c23a85;
+    --pago-celeste: #dbeff2;
+    --pago-error: #a1201a;
+
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+    font-family: "Inter", sans-serif;
+}
+
+.pago__aviso {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background-color: #fff6cc;
+}
+
+.pago__titulo {
+    margin: 0 0 1.5rem;
+    color: var(--pago-rosa);
+    font-size: clamp(2rem, 6vw, 3.75rem);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.pago__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.pago__datos,
+.pago__lateral {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.pago-grupo {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.pago__subtitulo {
+    margin: 0 0 1rem;
+    padding: 0;
+    color: var(--pago-azul);
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.pago-grupo__campos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pago-grupo__fila {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.campo-pago {
+    min-width: 0;
+}
+
+.campo-pago__caja {
+    padding: 0.5rem 1rem 0.6rem;
+    border: 1px solid var(--pago-borde);
+    border-radius: 15px;
+    background-color: #ffffff;
+}
+
+.campo-pago__caja:focus-within {
+    outline: 3px solid var(--pago-azul);
+    outline-offset: 2px;
+}
+
+.campo-pago__caja:has([aria-invalid="true"]) {
+    border-color: var(--pago-error);
+    border-width: 2px;
+}
+
+.campo-pago__caja label {
+    display: block;
+    color: rgba(0, 0, 0, 0.75);
+    font-size: 0.95rem;
+}
+
+.campo-pago__caja input {
+    width: 100%;
+    min-height: 36px;
+    padding: 0.2rem 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #000000;
+    font: inherit;
+    font-size: 1.15rem;
+}
+
+.campo-pago__error {
+    margin: 0.4rem 0 0 0.25rem;
+    color: var(--pago-error);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.campo-pago__error[hidden] {
+    display: none;
+}
+
+.pago-metodo {
+    min-width: 0;
+    margin: 0;
+    padding: 0.75rem 1.25rem 1.25rem;
+    border: 1px solid var(--pago-borde);
+    background-color: #ffffff;
+}
+
+.pago-metodo__leyenda {
+    padding: 0 0.5rem;
+    color: var(--pago-azul);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+.pago-metodo__opcion {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    cursor: pointer;
+}
+
+.pago-metodo__opcion input {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    accent-color: var(--pago-azul);
+}
+
+.pago-metodo__opcion:has(input:focus-visible) {
+    outline: 3px solid var(--pago-azul);
+    outline-offset: 2px;
+}
+
+.pago-info {
+    padding: 1.5rem;
+    border: 1px solid var(--pago-borde);
+    background-color: #ffffff;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.pago-info p {
+    margin: 0 0 1rem;
+}
+
+.pago-info p:last-child {
+    margin-bottom: 0;
+}
+
+.pago-resumen {
+    padding: 1.25rem 1rem;
+    border: 1px solid var(--pago-borde);
+    background-color: #ffffff;
+}
+
+.pago-resumen__titulo {
+    margin: 0 0 1.25rem;
+    color: var(--pago-azul);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.pago-resumen__items {
+    margin: 0 0 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+}
+
+.pago-resumen__items li,
+.pago-resumen__fila {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1.1rem;
+}
+
+.pago-resumen__precio,
+.pago-resumen__fila dd {
+    margin: 0;
+    flex-shrink: 0;
+    color: var(--pago-azul);
+    font-weight: 500;
+    text-align: right;
+}
+
+.pago-resumen__totales {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.pago-resumen__fila dt {
+    margin: 0;
+}
+
+.pago-resumen__fila--linea {
+    padding-top: 1rem;
+    border-top: 1px solid #000000;
+}
+
+.pago-resumen__fila--total dt {
+    font-weight: 700;
+}
+
+.pago-resumen__gratis {
+    margin: 1.25rem 0 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.pago__error-general {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.pago-pagar {
+    width: 100%;
+    min-height: 72px;
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: var(--pago-celeste);
+    color: #1a1a1a;
+    font: inherit;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.pago-pagar:hover:not(:disabled) {
+    background-color: #c3e3e8;
+}
+
+.pago-pagar:focus-visible {
+    outline: 3px solid var(--pago-azul);
+    outline-offset: 3px;
+}
+
+.pago-pagar:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.pago-confirmacion {
+    max-width: 640px;
+}
+
+.pago-confirmacion__texto {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.pago-pagar--enlace {
+    width: auto;
+    margin-top: 1rem;
+    padding-inline: 2rem;
+}
+
+@media (min-width: 600px) {
+    .pago-grupo__fila {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .pago__layout {
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+        gap: 3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pago-pagar {
+        transition: none;
+    }
+}
