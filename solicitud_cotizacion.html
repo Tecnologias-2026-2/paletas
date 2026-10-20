@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Solicitar cotización | Paletas de Hielo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header compartido -->
+    <div id="header"></div>
+
+    <main class="cotizacion">
+        <form
+            class="cotizacion__formulario"
+            id="formulario-cotizacion"
+            novalidate
+        >
+            <header class="cotizacion__encabezado">
+                <p class="cotizacion__eyebrow">
+                    Eventos personalizados
+                </p>
+
+                <h1 class="cotizacion__titulo">
+                    Solicita tu cotización
+                </h1>
+
+                <p class="cotizacion__introduccion">
+                    Cuéntanos cómo imaginas tu evento y prepararemos
+                    una propuesta especial para ti.
+                </p>
+            </header>
+
+            <!-- Tipo de evento -->
+            <fieldset class="cotizacion__seccion">
+
+                <p class="cotizacion__ayuda">
+                    Elige una de las siguientes opciones.
+                </p>
+
+                <div class="tipos-evento">
+                    <!-- Cumpleaños -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Cumpleaños"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="rosa"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_pastel.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Cumpleaños</strong>
+
+                            <span>
+                                Celebra una fecha especial con paletas
+                                personalizadas.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Bodas -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Boda"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="rosa"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_corazon.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Bodas</strong>
+
+                            <span>
+                                Un detalle único y refrescante para
+                                compartir con tus invitados.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Eventos empresariales -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Evento empresarial"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="azul"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_trabajo.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Eventos empresariales</strong>
+
+                            <span>
+                                Personaliza sabores y presentación con
+                                la identidad de tu empresa.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Graduaciones -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Graduación"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="azul"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_grado.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Graduaciones</strong>
+
+                            <span>
+                                Celebra una meta importante con una
+                                experiencia diferente.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Fiestas infantiles -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Fiesta infantil"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="amarillo"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_celebracion.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Fiestas infantiles</strong>
+
+                            <span>
+                                Alegría y color para celebrar con
+                                los más pequeños.
+                            </span>
+                        </span>
+                    </label>
+
+                    <!-- Eventos sociales -->
+                    <label class="tipo-evento">
+                        <input
+                            class="tipo-evento__control"
+                            type="radio"
+                            name="tipoEvento"
+                            value="Evento social"
+                            required
+                        >
+
+                        <span
+                            class="tipo-evento__contenido"
+                            data-color="verde"
+                        >
+                            <span class="tipo-evento__icono">
+                                <img
+                                    src="assets/imagenes/icono_personitas.png"
+                                    alt=""
+                                    aria-hidden="true"
+                                >
+                            </span>
+
+                            <strong>Eventos sociales</strong>
+
+                            <span>
+                                Una opción especial para reuniones,
+                                celebraciones y encuentros.
+                            </span>
+                        </span>
+                    </label>
+                </div>
+
+                <p
+                    class="campo__error"
+                    id="error-tipo-evento"
+                    aria-live="polite"
+                ></p>
+            </fieldset>
+
+            <!-- Detalles del evento -->
+            <fieldset class="cotizacion__seccion">
+                <legend class="cotizacion__leyenda">
+                    Detalles del evento
+                </legend>
+
+                <div class="formulario-grid">
+                    <div class="campo">
+                        <label for="numero-invitados">
+                            Número de invitados
+                        </label>
+
+                        <input
+                            id="numero-invitados"
+                            name="numeroInvitados"
+                            type="number"
+                            min="1"
+                            max="10000"
+                            inputmode="numeric"
+                            placeholder="Ejemplo: 80"
+                            required
+                        >
+
+                        <p class="campo__error"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fecha-evento">
+                            Fecha del evento
+                        </label>
+
+                        <input
+                            id="fecha-evento"
+                            name="fechaEvento"
+                            type="date"
+                            required
+                        >
+
+                        <p class="campo__error"></p>
+                    </div>
+
+                    <div class="campo campo--completo">
+                        <label for="ubicacion-evento">
+                            Ubicación del evento
+                        </label>
+
+                        <input
+                            id="ubicacion-evento"
+                            name="ubicacionEvento"
+                            type="text"
+                            minlength="5"
+                            maxlength="120"
+                            placeholder="Dirección o lugar del evento"
+                            autocomplete="street-address"
+                            required
+                        >
+
+                        <p class="campo__error"></p>
+                    </div>
+
+                    <div class="campo campo--completo">
+                        <label for="requerimientos">
+                            Sabores o requerimientos especiales
+                        </label>
+
+                        <textarea
+                            id="requerimientos"
+                            name="requerimientos"
+                            rows="5"
+                            maxlength="600"
+                            placeholder="Cuéntanos qué sabores, cantidades, colores o personalización necesitas."
+                        ></textarea>
+
+                        <p class="campo__contador">
+                            <span id="contador-requerimientos">0</span>/600
+                        </p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Información de contacto corregida -->
+            <fieldset class="cotizacion__seccion">
+                <legend class="cotizacion__leyenda">
+                    Información de contacto
+                </legend>
+
+                <div class="formulario-grid">
+                    <div class="campo campo--completo">
+                        <label for="nombre-contacto">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            id="nombre-contacto"
+                            name="nombreContacto"
+                            type="text"
+                            minlength="3"
+                            maxlength="80"
+                            autocomplete="name"
+                            placeholder="Escribe tu nombre completo"
+                            required
+                        >
+
+                        <p class="campo__error"></p>
+                    </div>
+
+                    <div class="contacto-direccion">
+                        <div class="campo">
+                            <label for="direccion-residencia">
+                                Dirección de residencia
+                            </label>
+
+                            <input
+                                id="direccion-residencia"
+                                name="direccionResidencia"
+                                type="text"
+                                minlength="5"
+                                maxlength="120"
+                                autocomplete="street-address"
+                                placeholder="Calle, carrera y número"
+                                required
+                            >
+
+                            <p class="campo__error"></p>
+                        </div>
+
+                        <div class="campo">
+                            <label for="codigo-postal">
+                                Código postal
+                            </label>
+
+                            <input
+                                id="codigo-postal"
+                                name="codigoPostal"
+                                type="text"
+                                inputmode="numeric"
+                                autocomplete="postal-code"
+                                pattern="[0-9]{6}"
+                                maxlength="6"
+                                placeholder="000000"
+                                required
+                            >
+
+                            <p class="campo__error"></p>
+                        </div>
+                    </div>
+
+                    <div class="campo campo--completo">
+                        <label for="correo-contacto">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            id="correo-contacto"
+                            name="correoContacto"
+                            type="email"
+                            maxlength="120"
+                            autocomplete="email"
+                            placeholder="nombre@correo.com"
+                            required
+                        >
+
+                        <p class="campo__error"></p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="cotizacion__acciones">
+                <button
+                    class="cotizacion__boton"
+                    type="submit"
+                >
+                    Enviar solicitud
+                </button>
+
+                <p
+                    class="cotizacion__estado"
+                    id="estado-formulario"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer compartido -->
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/cotizacion.js"></script>
+</body>
+</html>
