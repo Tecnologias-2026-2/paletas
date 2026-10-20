@@ -6430,3 +6430,119 @@ body {
 html {
     overflow-x: clip;
 }
+/* ===== PÁGINA PALETAS: FILTROS Y ORDEN ===== */
+.filtros {
+  grid-area: filtros;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.75rem;
+  border-radius: 16px;
+  background: #f1f7f9;
+}
+
+.filtros[hidden] { display: none; }
+
+.filtros__grupo {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filtros__chip {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: #ffffff;
+  font-family: "Inclusive Sans", "Inter", sans-serif;
+  font-size: 0.9375rem;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filtros__chip:hover { border-color: #1a6f82; }
+
+.filtros__chip[aria-pressed="true"] {
+  background: #1a6f82;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.filtros__chip:focus-visible,
+.filtros__orden-select:focus-visible {
+  outline: 3px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+.filtros__conteo { font-size: 0.875em; opacity: 0.85; }
+
+.filtros__orden {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filtros__orden-etiqueta {
+  white-space: nowrap;
+  font-family: "Inclusive Sans", "Inter", sans-serif;
+  font-size: 1.0625rem;
+  color: #1a1a1a;
+}
+
+.filtros__orden-select {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #1a6f82;
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: "Inclusive Sans", "Inter", sans-serif;
+  font-size: 1.0625rem;
+  color: #1a1a1a;
+}
+
+.filtros__estado {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #3d4a4d;
+}
+
+.filtros__estado:empty { display: none; }
+
+.catalogo-paletas__grid > li[hidden],
+.catalogo-paletas__vacio[hidden] { display: none; }
+
+.catalogo-paletas__vacio {
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-family: "Inclusive Sans", "Inter", sans-serif;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+@media (min-width: 600px) {
+  .filtros__chip { padding: 0.5rem 1rem; font-size: 1.0625rem; }
+}
+
+@media (min-width: 1000px) {
+  .filtros__grupo { flex: 0 1 auto; }
+}
+
+@media (min-width: 600px) {
+  .catalogo-paletas__layout {
+    grid-template-areas:
+      "filtros filtros"
+      "publicidad productos";
+    grid-template-rows: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filtros__chip { transition: none; }
+}
