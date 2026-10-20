@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Detalles de envío y pago | Paletas de Hielo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <div id="header"></div>
+
+    <main id="contenido-principal" class="pago">
+        <noscript>
+            <p class="pago__aviso">Esta página necesita JavaScript para completar tu pedido.</p>
+        </noscript>
+
+        <div id="pago-contenido">
+            <h1 class="pago__titulo">Detalles de envío y pago</h1>
+
+            <form id="formulario-pago" class="pago__layout" novalidate>
+                <div class="pago__datos">
+                    <fieldset class="pago-grupo">
+                        <legend class="pago__subtitulo">Dirección del envío</legend>
+
+                        <div class="pago-grupo__campos">
+                            <div class="campo-pago">
+                                <div class="campo-pago__caja">
+                                    <label for="pago-nombre">Nombre completo</label>
+                                    <input id="pago-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="error-pago-nombre">
+                                </div>
+                                <p class="campo-pago__error" id="error-pago-nombre" hidden></p>
+                            </div>
+
+                            <div class="campo-pago">
+                                <div class="campo-pago__caja">
+                                    <label for="pago-direccion">Dirección completa</label>
+                                    <input id="pago-direccion" name="direccion" type="text" autocomplete="street-address" maxlength="120" required aria-describedby="error-pago-direccion">
+                                </div>
+                                <p class="campo-pago__error" id="error-pago-direccion" hidden></p>
+                            </div>
+
+                            <div class="campo-pago">
+                                <div class="campo-pago__caja">
+                                    <label for="pago-correo">Correo donde llegará la información</label>
+                                    <input id="pago-correo" name="correo" type="email" autocomplete="email" maxlength="120" required aria-describedby="error-pago-correo">
+                                </div>
+                                <p class="campo-pago__error" id="error-pago-correo" hidden></p>
+                            </div>
+
+                            <div class="pago-grupo__fila">
+                                <div class="campo-pago">
+                                    <div class="campo-pago__caja">
+                                        <label for="pago-telefono">Teléfono</label>
+                                        <input id="pago-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-describedby="error-pago-telefono">
+                                    </div>
+                                    <p class="campo-pago__error" id="error-pago-telefono" hidden></p>
+                                </div>
+
+                                <div class="campo-pago">
+                                    <div class="campo-pago__caja">
+                                        <label for="pago-municipio">Municipio</label>
+                                        <input id="pago-municipio" name="municipio" type="text" autocomplete="address-level2" maxlength="60" required aria-describedby="error-pago-municipio">
+                                    </div>
+                                    <p class="campo-pago__error" id="error-pago-municipio" hidden></p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="pago-metodo" aria-describedby="error-pago-metodo">
+                        <legend class="pago-metodo__leyenda">Método de pago - WOMPI</legend>
+
+                        <label class="pago-metodo__opcion">
+                            <input type="radio" name="metodo" value="tarjeta" required>
+                            <span>Tarjeta de Crédito/Débito</span>
+                        </label>
+                        <label class="pago-metodo__opcion">
+                            <input type="radio" name="metodo" value="cuenta">
+                            <span>Transfiere con tu cuenta</span>
+                        </label>
+                        <label class="pago-metodo__opcion">
+                            <input type="radio" name="metodo" value="pse">
+                            <span>Transfiere PSE</span>
+                        </label>
+                        <label class="pago-metodo__opcion">
+                            <input type="radio" name="metodo" value="qr">
+                            <span>Paga con código QR</span>
+                        </label>
+
+                        <p class="campo-pago__error" id="error-pago-metodo" hidden></p>
+                    </fieldset>
+
+                    <div class="pago-info">
+                        <p>Al llenar los detalles e información de tu pedido para evento, recibirás un correo por parte de nosotros para aprobar tu pedido y enviar el recibo en un máximo de 5 días.</p>
+                        <p>Después de pago, se empieza a realizar el pedido. El costo está sujeto a cantidad, diseño y tiempo de realización.</p>
+                    </div>
+                </div>
+
+                <div class="pago__lateral">
+                    <section class="pago-resumen" aria-labelledby="titulo-resumen-pago">
+                        <h2 id="titulo-resumen-pago" class="pago-resumen__titulo">Resumen del pedido</h2>
+
+                        <ul id="pago-items" class="pago-resumen__items"></ul>
+
+                        <dl class="pago-resumen__totales">
+                            <div class="pago-resumen__fila">
+                                <dt>Costo de empaque</dt>
+                                <dd id="pago-empaque">0 COP</dd>
+                            </div>
+                            <div class="pago-resumen__fila pago-resumen__fila--linea">
+                                <dt>Subtotal</dt>
+                                <dd id="pago-subtotal">0 COP</dd>
+                            </div>
+                            <div class="pago-resumen__fila">
+                                <dt>Envío</dt>
+                                <dd id="pago-envio">0 COP</dd>
+                            </div>
+                            <div class="pago-resumen__fila pago-resumen__fila--total">
+                                <dt>Total a pagar</dt>
+                                <dd id="pago-total">0 COP</dd>
+                            </div>
+                        </dl>
+
+                        <p id="pago-gratis" class="pago-resumen__gratis"></p>
+                    </section>
+
+                    <p id="pago-error-general" class="campo-pago__error pago__error-general" role="alert" hidden></p>
+
+                    <button class="pago-pagar" type="submit" id="pago-boton">Pagar</button>
+                </div>
+            </form>
+        </div>
+
+        <section id="pago-confirmacion" class="pago-confirmacion" aria-labelledby="titulo-confirmacion" hidden>
+            <h1 id="titulo-confirmacion" class="pago__titulo" tabindex="-1">¡Pedido recibido!</h1>
+            <p id="confirmacion-texto" class="pago-confirmacion__texto"></p>
+            <p class="pago-confirmacion__texto">Número de pedido: <strong id="confirmacion-numero"></strong></p>
+            <a class="pago-pagar pago-pagar--enlace" href="paletas.html">Volver a las paletas</a>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/pedidos-datos.js"></script>
+    <script src="js/detalles-pago.js"></script>
+</body>
+</html>

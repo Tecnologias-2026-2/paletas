@@ -1,4 +1,5 @@
 const CLAVE = "carrito-paletas";
+const CLAVE_EMPAQUE = "empaque-paletas";
 const UMBRAL_ENVIO_GRATIS = 11500;
 
 // "de-DE" agrupa miles también en 4 cifras (8.500); "es-CO" no lo hace
@@ -9,6 +10,8 @@ const plantilla = document.getElementById("plantilla-item");
 const vacio = document.getElementById("carrito-vacio");
 const total = document.getElementById("resumen-total");
 const envio = document.getElementById("resumen-envio");
+const aviso = document.getElementById("resumen-aviso");
+const continuar = document.getElementById("resumen-continuar");
 
 let carrito;
 try {
@@ -81,8 +84,51 @@ lista.addEventListener("click", (evento) => {
   document.getElementById("titulo-carrito").focus();
 });
 
+function mostrarAviso(mensaje) {
+  aviso.hidden = true;
+  aviso.textContent = "";
+  setTimeout(() => {
+    aviso.textContent = mensaje;
+    aviso.hidden = false;
+  }, 50);
+}
+
+function restaurarEmpaque() {
+  try {
+    const guardado = JSON.parse(localStorage.getItem(CLAVE_EMPAQUE));
+    const radio = guardado && document.querySelector(`input[name="empaque"][value="${CSS.escape(guardado.valor)}"]`);
+    if (radio) radio.checked = true;
+  } catch {}
+}
+
 document.querySelectorAll('input[name="empaque"]').forEach((radio) => {
-  radio.addEventListener("change", actualizarResumen);
+  radio.addEventListener("change", () => {
+    localStorage.setItem(
+      CLAVE_EMPAQUE,
+      JSON.stringify({
+        valor: radio.value,
+        nombre: radio.closest(".empaque__opcion").querySelector(".empaque__nombre").textContent.trim(),
+        costo: Number(radio.dataset.costo),
+      })
+    );
+    aviso.hidden = true;
+    actualizarResumen();
+  });
 });
 
+continuar.addEventListener("click", (evento) => {
+  if (!Object.keys(carrito).length) {
+    evento.preventDefault();
+    mostrarAviso("Agrega al menos una paleta a tu carrito para continuar.");
+    return;
+  }
+  const empaque = document.querySelector('input[name="empaque"]:checked');
+  if (!empaque) {
+    evento.preventDefault();
+    mostrarAviso("Elige cómo quieres que empaquemos tus productos para continuar.");
+    document.querySelector('input[name="empaque"]').focus();
+  }
+});
+
+restaurarEmpaque();
 pintar();
