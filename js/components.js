@@ -15,6 +15,7 @@ async function cargarComponente(id, archivo) {
         if (id === "header") {
             marcarPaginaActual();
             configurarMenuMovil();
+            configurarPuntoCarrito();
         }
     } catch (error) {
         console.error(error);
@@ -111,6 +112,41 @@ function configurarMenuMovil() {
             cerrarMenu();
         }
     });
+}
+
+function configurarPuntoCarrito() {
+    const enlace = document.querySelector('#header a[href="mi-carrito.html"].navbar__icono');
+    const punto = enlace?.querySelector(".navbar__punto");
+
+    if (!enlace || !punto) return;
+
+    function actualizar() {
+        let hay = false;
+
+        try {
+            const carrito = JSON.parse(localStorage.getItem("carrito-paletas")) || {};
+            hay = Object.values(carrito).some((p) => p.cantidad > 0);
+        } catch {
+            hay = false;
+        }
+
+        punto.hidden = !hay;
+        enlace.setAttribute(
+            "aria-label",
+            hay
+                ? "Ver carrito de compras, tienes productos en el carrito"
+                : "Ver carrito de compras"
+        );
+    }
+
+    const actualizarDespues = () => setTimeout(actualizar, 0);
+
+    actualizar();
+    document.addEventListener("carrito-actualizado", actualizar);
+    document.addEventListener("click", actualizarDespues);
+    document.addEventListener("change", actualizarDespues);
+    window.addEventListener("storage", actualizar);
+    window.addEventListener("pageshow", actualizar);
 }
 
 cargarComponente("header", "components/header.html");
