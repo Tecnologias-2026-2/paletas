@@ -61,3 +61,4 @@ document.addEventListener("change", (evento) => {
 });
 
 window.addEventListener("pageshow", restaurar);
+window.catalogoListo?.then(restaurar);

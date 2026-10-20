@@ -6758,3 +6758,409 @@ html {
 .navbar__punto[hidden] {
     display: none;
 }
+
+/* ==========================================================================
+   PÁGINA ADMIN: MIS PRODUCTOS
+   ========================================================================== */
+
+.productos-admin__cabecera {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+}
+
+.productos-admin__cabecera h1 {
+    margin: 0;
+    color: #b92f72;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 600;
+}
+
+.productos-admin__cabecera p {
+    max-width: 52ch;
+    margin: 7px 0 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.95rem;
+}
+
+.productos-admin__aviso {
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background-color: #fff6cc;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.875rem;
+}
+
+.productos-admin__estado {
+    min-height: 1.5em;
+    margin: 0 0 10px;
+    color: #0d6b82;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.productos-admin__vacio {
+    padding: 28px 16px;
+    border: 2px dashed #f3b7d4;
+    border-radius: 16px;
+    color: rgba(0, 0, 0, 0.75);
+    text-align: center;
+}
+
+.productos-admin__lista {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+    list-style: none;
+}
+
+.productos-admin__pie {
+    margin: 22px 0 0;
+}
+
+.producto-admin {
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 16px;
+    border: 1px solid #f3d3e3;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.producto-admin__imagen {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    background-color: #f6f6f6;
+    object-fit: contain;
+}
+
+.producto-admin__nombre {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.producto-admin__meta {
+    margin: 3px 0 8px;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.875rem;
+}
+
+.producto-admin__categorias {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+}
+
+.producto-admin__categorias li {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: #dff5f7;
+    color: #0d5f73;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.producto-admin__categorias .producto-admin__sin-categoria {
+    background-color: #f1f1f1;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.producto-admin__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+/* Botones */
+.boton-admin {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 18px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.boton-admin:focus-visible {
+    outline: 3px solid #b92f72;
+    outline-offset: 2px;
+}
+
+.boton-admin:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.boton-admin--primario {
+    background-color: #b92f72;
+    color: #ffffff;
+}
+
+.boton-admin--primario:hover {
+    background-color: #9c245f;
+}
+
+.boton-admin--secundario {
+    border-color: #117f98;
+    background-color: #ffffff;
+    color: #0d6b82;
+}
+
+.boton-admin--secundario:hover:not(:disabled) {
+    background-color: #dff5f7;
+}
+
+.boton-admin--icono {
+    padding: 8px 12px;
+    font-size: 1.1rem;
+}
+
+.boton-admin--quitar {
+    border-color: #b3261e;
+    color: #a1201a;
+}
+
+.boton-admin--quitar:hover:not(:disabled) {
+    background-color: #fdecea;
+}
+
+.boton-admin--peligro {
+    background-color: #b3261e;
+    color: #ffffff;
+}
+
+.boton-admin--peligro:hover {
+    background-color: #8f1d17;
+}
+
+.boton-admin--texto {
+    padding-inline: 4px;
+    border: 0;
+    background: none;
+    color: #0d6b82;
+    text-decoration: underline;
+}
+
+/* Ventanas (agregar / editar / confirmar) */
+.dialogo-admin {
+    width: min(92vw, 560px);
+    max-height: 92vh;
+    margin: auto;
+    padding: 28px 26px;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.dialogo-admin::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialogo-admin h2 {
+    margin: 0 0 18px;
+    color: #b92f72;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.dialogo-admin--confirmar {
+    width: min(92vw, 440px);
+}
+
+.dialogo-admin--confirmar p {
+    margin: 0 0 22px;
+    line-height: 1.5;
+}
+
+.dialogo-admin__acciones {
+    margin-top: 22px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dialogo-admin--confirmar .dialogo-admin__acciones {
+    margin-top: 0;
+}
+
+/* Campos del formulario */
+.campo-admin {
+    min-width: 0;
+    margin: 0 0 16px;
+    padding: 0;
+    border: 0;
+}
+
+.campo-admin label,
+.campo-admin legend {
+    display: block;
+    margin-bottom: 6px;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.campo-admin input[type="text"],
+.campo-admin input[type="number"],
+.campo-admin select {
+    width: 100%;
+    min-height: 44px;
+    padding: 9px 12px;
+    border: 2px solid #757575;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.9);
+    font: inherit;
+}
+
+.campo-admin input:focus-visible,
+.campo-admin select:focus-visible {
+    outline: 3px solid #b92f72;
+    outline-offset: 1px;
+}
+
+.campo-admin [aria-invalid="true"] {
+    border-color: #b3261e;
+}
+
+.campo-admin__fila {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
+}
+
+.campo-admin__imagen {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.campo-admin__imagen img {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-color: #f6f6f6;
+    object-fit: contain;
+}
+
+.campo-admin__ayuda {
+    margin: 4px 0 0;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.8rem;
+}
+
+.campo-admin__error {
+    margin: 5px 0 0;
+    color: #a1201a;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.campo-admin__error[hidden] {
+    display: none;
+}
+
+.campo-admin__casillas {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.campo-admin .casilla-admin {
+    min-height: 44px;
+    margin: 0;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid #757575;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.campo-admin .casilla-admin input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: #b92f72;
+}
+
+.campo-admin .casilla-admin:has(input:checked) {
+    border-color: #b92f72;
+    background-color: #fdeaf3;
+}
+
+.campo-admin .casilla-admin:has(input:focus-visible) {
+    outline: 3px solid #b92f72;
+    outline-offset: 2px;
+}
+
+@media (max-width: 1000px) {
+    .producto-admin {
+        grid-template-columns: 72px minmax(0, 1fr);
+    }
+
+    .producto-admin__acciones {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 650px) {
+    .productos-admin__cabecera .boton-admin {
+        width: 100%;
+    }
+
+    .producto-admin__acciones .boton-admin:not(.boton-admin--icono) {
+        flex: 1 1 40%;
+    }
+
+    .campo-admin__fila {
+        grid-template-columns: 1fr;
+    }
+
+    .dialogo-admin {
+        padding: 22px 18px;
+    }
+
+    .dialogo-admin__acciones .boton-admin {
+        flex: 1 1 40%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton-admin {
+        transition: none;
+    }
+}

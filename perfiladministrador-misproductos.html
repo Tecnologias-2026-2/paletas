@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Mis productos | Paletas de Hielo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <!-- HEADER GLOBAL -->
+    <div id="header"></div>
+
+    <main class="admin" id="contenido-principal">
+        <div class="admin__layout">
+            <!-- SIDEBAR GLOBAL -->
+            <div id="sidebar-admin"></div>
+
+            <section class="admin-contenido pedidos-admin productos-admin" aria-labelledby="titulo-productos">
+                <nav class="pedidos-admin__breadcrumb" aria-label="Migas de pan">
+                    <a href="perfiladministrador.html">Administrador</a>
+                    <span aria-hidden="true">/</span>
+                    <span aria-current="page">Mis productos</span>
+                </nav>
+
+                <header class="productos-admin__cabecera">
+                    <div>
+                        <h1 id="titulo-productos">Mis productos</h1>
+                        <p>Agrega, edita o quita paletas, cambia su precio y elige en qué categorías aparecen.</p>
+                    </div>
+                    <button class="boton-admin boton-admin--primario" type="button" id="boton-agregar">
+                        <span aria-hidden="true">+</span> Agregar paleta
+                    </button>
+                </header>
+
+                <p class="productos-admin__aviso">
+                    Por ahora los cambios se guardan solo en este navegador.
+                </p>
+
+                <p class="productos-admin__estado" id="productos-estado" role="status"></p>
+
+                <noscript>
+                    <p class="productos-admin__aviso">Esta página necesita JavaScript para administrar los productos.</p>
+                </noscript>
+
+                <p class="productos-admin__vacio" id="productos-vacio" hidden>
+                    No hay paletas en el catálogo. Agrega la primera con el botón "Agregar paleta".
+                </p>
+
+                <ul class="productos-admin__lista" id="productos-lista" aria-label="Paletas del catálogo"></ul>
+
+                <p class="productos-admin__pie">
+                    <button class="boton-admin boton-admin--texto" type="button" id="boton-restaurar">
+                        Restaurar catálogo original
+                    </button>
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- AGREGAR / EDITAR -->
+    <dialog class="dialogo-admin" id="dialogo-producto" aria-labelledby="dialogo-producto-titulo">
+        <form id="formulario-producto" method="dialog" novalidate>
+            <h2 id="dialogo-producto-titulo">Agregar paleta</h2>
+
+            <div class="campo-admin">
+                <label for="campo-nombre">Nombre</label>
+                <input id="campo-nombre" name="nombre" type="text" maxlength="60" autocomplete="off" required aria-describedby="error-nombre">
+                <p class="campo-admin__error" id="error-nombre" hidden></p>
+            </div>
+
+            <div class="campo-admin__fila">
+                <div class="campo-admin">
+                    <label for="campo-precio">Precio (COP)</label>
+                    <input id="campo-precio" name="precio" type="number" inputmode="numeric" min="1" max="999999" step="1" required aria-describedby="error-precio">
+                    <p class="campo-admin__error" id="error-precio" hidden></p>
+                </div>
+
+                <div class="campo-admin">
+                    <label for="campo-peso">Peso</label>
+                    <input id="campo-peso" name="peso" type="text" maxlength="20" placeholder="Ej. 90gr" autocomplete="off" required aria-describedby="error-peso">
+                    <p class="campo-admin__error" id="error-peso" hidden></p>
+                </div>
+            </div>
+
+            <div class="campo-admin">
+                <label for="campo-imagen">Imagen</label>
+                <div class="campo-admin__imagen">
+                    <img id="vista-imagen" src="" alt="" width="72" height="72">
+                    <select id="campo-imagen" name="imagen" required aria-describedby="error-imagen"></select>
+                </div>
+                <p class="campo-admin__error" id="error-imagen" hidden></p>
+            </div>
+
+            <div class="campo-admin">
+                <label for="campo-alt">Texto alternativo de la imagen</label>
+                <input id="campo-alt" name="alt" type="text" maxlength="140" autocomplete="off" required aria-describedby="ayuda-alt error-alt">
+                <p class="campo-admin__ayuda" id="ayuda-alt">Describe la paleta para quien no puede ver la imagen.</p>
+                <p class="campo-admin__error" id="error-alt" hidden></p>
+            </div>
+
+            <fieldset class="campo-admin campo-admin--categorias">
+                <legend>Categorías</legend>
+                <p class="campo-admin__ayuda" id="ayuda-categorias">Marca todas las que apliquen. Se usan en los filtros de la página Paletas.</p>
+                <div class="campo-admin__casillas" aria-describedby="ayuda-categorias">
+                    <label class="casilla-admin"><input type="checkbox" name="categorias" value="frutales"> Frutales</label>
+                    <label class="casilla-admin"><input type="checkbox" name="categorias" value="temporada"> Temporada</label>
+                    <label class="casilla-admin"><input type="checkbox" name="categorias" value="cremosas"> Cremosas</label>
+                    <label class="casilla-admin"><input type="checkbox" name="categorias" value="exclusivas"> Exclusivas</label>
+                </div>
+            </fieldset>
+
+            <div class="dialogo-admin__acciones">
+                <button class="boton-admin boton-admin--secundario" type="button" id="cancelar-producto">Cancelar</button>
+                <button class="boton-admin boton-admin--primario" type="submit">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- CONFIRMACIÓN -->
+    <dialog class="dialogo-admin dialogo-admin--confirmar" id="dialogo-confirmar" aria-labelledby="confirmar-titulo" aria-describedby="confirmar-texto">
+        <form method="dialog">
+            <h2 id="confirmar-titulo"></h2>
+            <p id="confirmar-texto"></p>
+            <div class="dialogo-admin__acciones">
+                <button class="boton-admin boton-admin--secundario" type="submit" value="cancelar" autofocus>Cancelar</button>
+                <button class="boton-admin boton-admin--peligro" type="submit" value="confirmar" id="confirmar-aceptar">Quitar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="footer"></div>
+
+    <script src="js/components.js"></script>
+    <script src="js/paletas-datos.js"></script>
+    <script src="js/admin-productos.js"></script>
+</body>
+</html>
