@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paletas | Paletas de Hielo</title>
+    <meta name="description" content="Catálogo de Paletas de Hielo: paletas frutales, cremosas, de temporada y exclusivas. Filtra por categoría, ordena por precio y arma tu pedido.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,27 +24,42 @@
 
             <div class="catalogo-paletas__layout">
 
-                <nav class="catalogo-paletas__filtros" aria-label="Categorías de paletas">
-                    <p class="catalogo-paletas__filtros-titulo">Filtros</p>
-                    <ul class="catalogo-paletas__filtros-lista">
-                        <li><a class="catalogo-paletas__filtro" href="paletas-frutales.html">Frutales</a></li>
-                        <li><a class="catalogo-paletas__filtro" href="paletas-tematicas.html">Temporada</a></li>
-                        <li><a class="catalogo-paletas__filtro" href="paletas-cremosas.html">Cremosas</a></li>
-                    </ul>
-                </nav>
+                <section class="filtros" id="filtros" aria-labelledby="filtros-titulo" hidden>
+                    <h2 id="filtros-titulo" class="visually-hidden">Filtrar y ordenar paletas</h2>
+
+                    <div class="filtros__grupo" role="group" aria-label="Categorías">
+                        <button class="filtros__chip" type="button" data-categoria="todas" aria-pressed="true">Más populares</button>
+                        <button class="filtros__chip" type="button" data-categoria="frutales" aria-pressed="false">Frutales <span class="filtros__conteo"></span></button>
+                        <button class="filtros__chip" type="button" data-categoria="temporada" aria-pressed="false">Temporada <span class="filtros__conteo"></span></button>
+                        <button class="filtros__chip" type="button" data-categoria="cremosas" aria-pressed="false">Cremosas <span class="filtros__conteo"></span></button>
+                        <button class="filtros__chip" type="button" data-categoria="exclusivas" aria-pressed="false">Exclusivas <span class="filtros__conteo"></span></button>
+                    </div>
+
+                    <div class="filtros__orden">
+                        <label class="filtros__orden-etiqueta" for="orden-paletas">Ordenar por</label>
+                        <select class="filtros__orden-select" id="orden-paletas">
+                            <option value="popularidad">Recomendadas</option>
+                            <option value="menor-precio">Menor precio</option>
+                            <option value="mayor-precio">Mayor precio</option>
+                        </select>
+                    </div>
+
+                    <p class="filtros__estado" id="filtros-estado" role="status"></p>
+                </section>
 
                 <aside class="catalogo-paletas__publicidad" aria-label="Promociones">
-                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad1.png" alt="Martes 2x1: en paletas de agua, lleva dos y paga una">
-                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad2.png" alt="Combo familiar 3x2: lleva 3 paletas y paga 2">
+                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad1.png" width="283" height="450" alt="Martes 2x1: en paletas de agua, lleva dos y paga una">
+                    <img class="catalogo-paletas__anuncio" src="assets/imagenes/publicidad2.png" width="283" height="440" alt="Combo familiar 3x2: lleva 3 paletas y paga 2">
                 </aside>
 
                 <div class="catalogo-paletas__productos">
                     <h2 class="visually-hidden">Productos</h2>
+                    <p class="catalogo-paletas__vacio" id="paletas-vacio" hidden>No hay paletas en esta categoría por ahora. Prueba con otra.</p>
                     <ul class="catalogo-paletas__grid">
 
-                        <li>
+                        <li data-categorias="frutales">
                             <article class="paleta">
-                                <img class="paleta__imagen" src="assets/imagenes/paletas/frutas-frescas.png" alt="Paleta con trozos de kiwi, fresa y mango" loading="lazy">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/frutas-frescas.png" alt="Paleta con trozos de kiwi, fresa y mango">
                                 <div class="paleta__texto">
                                     <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Frutas Frescas</a></h3>
                                     <p class="paleta__precio">8.500 COP</p>
@@ -58,9 +74,9 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="frutales cremosas">
                             <article class="paleta">
-                                <img class="paleta__imagen" src="assets/imagenes/paletas/fresa-cremosa.png" alt="Paleta cremosa de fresa con trozos de fruta" loading="lazy">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/fresa-cremosa.png" alt="Paleta cremosa de fresa con trozos de fruta">
                                 <div class="paleta__texto">
                                     <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Fresa Cremosa</a></h3>
                                     <p class="paleta__precio">9.500 COP</p>
@@ -75,7 +91,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="frutales">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/uva-dulce.png" alt="Paleta morada de uva junto a un racimo de uvas" loading="lazy">
                                 <div class="paleta__texto">
@@ -92,7 +108,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="exclusivas">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/chamoy.png" alt="Paleta de chamoy en capas rojas y naranjas" loading="lazy">
                                 <div class="paleta__texto">
@@ -109,7 +125,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="frutales">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/limon.png" alt="Paleta verde de limón" loading="lazy">
                                 <div class="paleta__texto">
@@ -126,7 +142,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="frutales temporada exclusivas">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/sandia-festiva.png" alt="Paleta con forma de rodaja de sandía" loading="lazy">
                                 <div class="paleta__texto">
@@ -143,7 +159,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="cremosas">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/coco.png" alt="Paleta de coco cubierta de coco rallado" loading="lazy">
                                 <div class="paleta__texto">
@@ -160,7 +176,7 @@
                             </article>
                         </li>
 
-                        <li>
+                        <li data-categorias="frutales temporada">
                             <article class="paleta">
                                 <img class="paleta__imagen" src="assets/imagenes/paletas/mango-dulce.png" alt="Paleta amarilla de mango con trozos de fruta" loading="lazy">
                                 <div class="paleta__texto">
@@ -177,6 +193,210 @@
                             </article>
                         </li>
 
+                        <li data-categorias="cremosas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/chispas.png" alt="Paleta cremosa rosada y blanca cubierta de chispitas de colores" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Chispas</a></h3>
+                                    <p class="paleta__precio">10.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-chispas" aria-label="Aumentar cantidad de Paleta de Chispas">+</button>
+                                    <label class="visually-hidden" for="cantidad-chispas">Cantidad de Paleta de Chispas</label>
+                                    <input class="cantidad__campo" id="cantidad-chispas" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-chispas" aria-label="Disminuir cantidad de Paleta de Chispas">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="frutales">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/ciruela.png" alt="Paleta rosada intensa de ciruela" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Ciruela</a></h3>
+                                    <p class="paleta__precio">7.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-ciruela" aria-label="Aumentar cantidad de Paleta de Ciruela">+</button>
+                                    <label class="visually-hidden" for="cantidad-ciruela">Cantidad de Paleta de Ciruela</label>
+                                    <input class="cantidad__campo" id="cantidad-ciruela" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-ciruela" aria-label="Disminuir cantidad de Paleta de Ciruela">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="cremosas exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/coco-chocolate.png" alt="Paleta cubierta de chocolate con coco rallado" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Coco Chocolate</a></h3>
+                                    <p class="paleta__precio">12.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-coco-chocolate" aria-label="Aumentar cantidad de Paleta Coco Chocolate">+</button>
+                                    <label class="visually-hidden" for="cantidad-coco-chocolate">Cantidad de Paleta Coco Chocolate</label>
+                                    <input class="cantidad__campo" id="cantidad-coco-chocolate" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-coco-chocolate" aria-label="Disminuir cantidad de Paleta Coco Chocolate">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="temporada exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/de-pais.png" alt="Tres paletas con los colores de la bandera, azul, blanco y rojo" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta De País</a></h3>
+                                    <p class="paleta__precio">9.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-de-pais" aria-label="Aumentar cantidad de Paleta De País">+</button>
+                                    <label class="visually-hidden" for="cantidad-de-pais">Cantidad de Paleta De País</label>
+                                    <input class="cantidad__campo" id="cantidad-de-pais" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-de-pais" aria-label="Disminuir cantidad de Paleta De País">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="frutales">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/durazno.png" alt="Paleta anaranjada de durazno" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Durazno</a></h3>
+                                    <p class="paleta__precio">7.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-durazno" aria-label="Aumentar cantidad de Paleta de Durazno">+</button>
+                                    <label class="visually-hidden" for="cantidad-durazno">Cantidad de Paleta de Durazno</label>
+                                    <input class="cantidad__campo" id="cantidad-durazno" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-durazno" aria-label="Disminuir cantidad de Paleta de Durazno">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="temporada exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/halloween.png" alt="Paletas bañadas en chocolate naranja y negro decoradas para Halloween" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Halloween</a></h3>
+                                    <p class="paleta__precio">13.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-halloween" aria-label="Aumentar cantidad de Paleta Halloween">+</button>
+                                    <label class="visually-hidden" for="cantidad-halloween">Cantidad de Paleta Halloween</label>
+                                    <input class="cantidad__campo" id="cantidad-halloween" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-halloween" aria-label="Disminuir cantidad de Paleta Halloween">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="cremosas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/napolitana.png" alt="Paleta en capas de fresa, vainilla y mango" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Napolitana</a></h3>
+                                    <p class="paleta__precio">9.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-napolitana" aria-label="Aumentar cantidad de Paleta Napolitana">+</button>
+                                    <label class="visually-hidden" for="cantidad-napolitana">Cantidad de Paleta Napolitana</label>
+                                    <input class="cantidad__campo" id="cantidad-napolitana" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-napolitana" aria-label="Disminuir cantidad de Paleta Napolitana">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="temporada exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/navidad.png" alt="Paleta con forma de árbol de Navidad verde con una estrella roja" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Navidad</a></h3>
+                                    <p class="paleta__precio">13.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-navidad" aria-label="Aumentar cantidad de Paleta Navidad">+</button>
+                                    <label class="visually-hidden" for="cantidad-navidad">Cantidad de Paleta Navidad</label>
+                                    <input class="cantidad__campo" id="cantidad-navidad" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-navidad" aria-label="Disminuir cantidad de Paleta Navidad">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/ninos-dulce.png" alt="Paleta de caramelo en espiral multicolor" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Niños Dulce</a></h3>
+                                    <p class="paleta__precio">8.000 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-ninos-dulce" aria-label="Aumentar cantidad de Paleta Niños Dulce">+</button>
+                                    <label class="visually-hidden" for="cantidad-ninos-dulce">Cantidad de Paleta Niños Dulce</label>
+                                    <input class="cantidad__campo" id="cantidad-ninos-dulce" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-ninos-dulce" aria-label="Disminuir cantidad de Paleta Niños Dulce">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="cremosas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/nuez.png" alt="Paleta de helado cubierta de chocolate con trozos de nuez" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta de Nuez</a></h3>
+                                    <p class="paleta__precio">12.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-nuez" aria-label="Aumentar cantidad de Paleta de Nuez">+</button>
+                                    <label class="visually-hidden" for="cantidad-nuez">Cantidad de Paleta de Nuez</label>
+                                    <input class="cantidad__campo" id="cantidad-nuez" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-nuez" aria-label="Disminuir cantidad de Paleta de Nuez">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="exclusivas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/patita.png" alt="Paleta de chocolate con forma de huella de patita" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Patita</a></h3>
+                                    <p class="paleta__precio">12.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-patita" aria-label="Aumentar cantidad de Paleta Patita">+</button>
+                                    <label class="visually-hidden" for="cantidad-patita">Cantidad de Paleta Patita</label>
+                                    <input class="cantidad__campo" id="cantidad-patita" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-patita" aria-label="Disminuir cantidad de Paleta Patita">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
+                        <li data-categorias="cremosas">
+                            <article class="paleta">
+                                <img class="paleta__imagen" src="assets/imagenes/paletas/tres-leches.png" alt="Dos paletas cremosas de tres leches con chispitas de colores" loading="lazy">
+                                <div class="paleta__texto">
+                                    <h3 class="paleta__titulo"><a class="paleta__nombre" href="mi-carrito.html">Paleta Tres Leches</a></h3>
+                                    <p class="paleta__precio">10.500 COP</p>
+                                    <p class="paleta__peso">90gr</p>
+                                </div>
+                                <div class="cantidad">
+                                    <button class="cantidad__boton" type="button" data-accion="aumentar" aria-controls="cantidad-tres-leches" aria-label="Aumentar cantidad de Paleta Tres Leches">+</button>
+                                    <label class="visually-hidden" for="cantidad-tres-leches">Cantidad de Paleta Tres Leches</label>
+                                    <input class="cantidad__campo" id="cantidad-tres-leches" type="number" inputmode="numeric" min="0" max="99" value="0">
+                                    <button class="cantidad__boton" type="button" data-accion="disminuir" aria-controls="cantidad-tres-leches" aria-label="Disminuir cantidad de Paleta Tres Leches">&minus;</button>
+                                </div>
+                            </article>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -187,5 +407,6 @@
 
     <script src="js/components.js"></script>
     <script src="js/cantidad.js"></script>
+    <script src="js/filtros.js"></script>
 </body>
 </html>
