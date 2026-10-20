@@ -2,56 +2,100 @@ const carrusel = document.querySelector(".galeria-contenedor");
 
 if (carrusel) {
     let arrastrando = false;
+    let seDesplazo = false;
     let inicioX = 0;
     let scrollInicial = 0;
-    let seDesplazo = false;
+    let punteroActivo = null;
 
-    // Detectar posición X para mouse y pantallas táctiles
-    const obtenerX = (e) => e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    carrusel.addEventListener("pointerdown", (evento) => {
+        // En celular usamos el desplazamiento nativo del navegador.
+        if (evento.pointerType === "touch") return;
 
-    const iniciarArrastre = (e) => {
-        if (e.type === 'mousedown' && e.button !== 0) return;
+        // Solo permitir el botón izquierdo del mouse.
+        if (evento.pointerType === "mouse" && evento.button !== 0) {
+            return;
+        }
 
         arrastrando = true;
         seDesplazo = false;
-        inicioX = obtenerX(e);
+        punteroActivo = evento.pointerId;
+        inicioX = evento.clientX;
         scrollInicial = carrusel.scrollLeft;
-    };
 
-    const moverArrastre = (e) => {
-        if (!arrastrando) return;
+        carrusel.setPointerCapture(evento.pointerId);
+        carrusel.classList.add("galeria-contenedor--arrastrando");
+    });
 
-        const distancia = obtenerX(e) - inicioX;
+    carrusel.addEventListener("pointermove", (evento) => {
+        if (
+            !arrastrando ||
+            evento.pointerId !== punteroActivo
+        ) {
+            return;
+        }
 
-        if (Math.abs(distancia) > 5) {
+        const distancia = evento.clientX - inicioX;
+
+        if (Math.abs(distancia) > 6) {
             seDesplazo = true;
         }
 
         if (seDesplazo) {
+            evento.preventDefault();
             carrusel.scrollLeft = scrollInicial - distancia;
         }
-    };
+    });
 
-    const detenerArrastre = () => {
-        arrastrando = false;
-    };
-
-    // Eventos de Escritorio (Mouse)
-    carrusel.addEventListener("mousedown", iniciarArrastre);
-    window.addEventListener("mousemove", moverArrastre);
-    window.addEventListener("mouseup", detenerArrastre);
-
-    // Eventos Táctiles (Celulares y Tablets)
-    carrusel.addEventListener("touchstart", iniciarArrastre, { passive: true });
-    window.addEventListener("touchmove", moverArrastre, { passive: true });
-    window.addEventListener("touchend", detenerArrastre);
-
-    // Evitar clics accidentales al arrastrar el carrusel
-    carrusel.addEventListener("click", (e) => {
-        if (seDesplazo) {
-            e.preventDefault();
-            e.stopPropagation();
-            seDesplazo = false;
+    function detenerArrastre(evento) {
+        if (
+            !arrastrando ||
+            evento.pointerId !== punteroActivo
+        ) {
+            return;
         }
-    }, true);
+
+        arrastrando = false;
+        punteroActivo = null;
+
+        carrusel.classList.remove(
+            "galeria-contenedor--arrastrando"
+        );
+
+        if (carrusel.hasPointerCapture(evento.pointerId)) {
+            carrusel.releasePointerCapture(evento.pointerId);
+        }
+    }
+
+    carrusel.addEventListener("pointerup", detenerArrastre);
+    carrusel.addEventListener("pointercancel", detenerArrastre);
+    carrusel.addEventListener(
+        "lostpointercapture",
+        () => {
+            arrastrando = false;
+            punteroActivo = null;
+
+            carrusel.classList.remove(
+                "galeria-contenedor--arrastrando"
+            );
+        }
+    );
+
+    // Evita que las imágenes se arrastren separadamente.
+    carrusel.addEventListener("dragstart", (evento) => {
+        evento.preventDefault();
+    });
+
+    // Evita activar un enlace o girar una imagen después
+    // de haber arrastrado el carrusel.
+    carrusel.addEventListener(
+        "click",
+        (evento) => {
+            if (!seDesplazo) return;
+
+            evento.preventDefault();
+            evento.stopPropagation();
+            seDesplazo = false;
+        },
+        true
+    );
 }

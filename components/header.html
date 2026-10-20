@@ -1,10 +1,13 @@
 <header class="header">
     <nav class="navbar" aria-label="Navegación principal">
         <a href="index.html" class="navbar__logo" aria-label="Ir al inicio">
-            <img src="assets/imagenes/logo.svg" alt="Paletas de Hielo">
+            <img
+                src="assets/imagenes/logo.svg"
+                alt="Paletas de Hielo"
+            >
         </a>
 
-        <ul class="navbar__menu">
+        <ul class="navbar__menu" id="menu-principal">
             <li>
                 <a href="index.html" class="navbar__link">Inicio</a>
             </li>
@@ -15,18 +18,38 @@
                 <a href="eventos.html" class="navbar__link">Eventos</a>
             </li>
             <li>
-                <a href="contactanos.html" class="navbar__link"> Contáctanos</a>
+                <a href="contactanos.html" class="navbar__link">Contáctanos</a>
             </li>
         </ul>
 
         <div class="navbar__acciones">
-            <a href="mi-carrito.html" class="navbar__icono" aria-label="Ver carrito de compras">
+            <a
+                href="mi-carrito.html"
+                class="navbar__icono"
+                aria-label="Ver carrito de compras"
+            >
                 <img src="assets/iconos/carrito.svg" alt="">
             </a>
-            <a href="entradaadministrador.html" class="navbar__icono" aria-label="Acceder al administrador">
+
+            <a
+                href="entradaadministrador.html"
+                class="navbar__icono"
+                aria-label="Acceder al administrador"
+            >
                 <img src="assets/iconos/admin.svg" alt="">
             </a>
         </div>
+
+        <button
+            class="navbar__hamburguesa"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu-principal"
+            aria-label="Abrir menú de navegación"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 </header>
-
