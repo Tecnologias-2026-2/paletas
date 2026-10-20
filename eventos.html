@@ -2,180 +2,350 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventos - Paletas de Hielo</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Eventos | Paletas de Hielo</title>
+
     <link rel="stylesheet" href="css/style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
+
 <body>
     <div id="header"></div>
 
     <main id="main-content">
-        <section class="eventos-hero" aria-labelledby="titulo-eventos-principal">
+        <section
+            class="eventos-hero"
+            aria-labelledby="titulo-eventos-principal"
+        >
             <div class="eventos-hero__container">
                 <div class="eventos-titulo-wrapper">
-                    <div class="franja-decorativa franja-izq" aria-hidden="true"></div>
-                    <h1 id="titulo-eventos-principal">Eventos especiales con<br>Paletas de Bogotá</h1>
-                    <div class="franja-decorativa franja-der" aria-hidden="true"></div>
+                    <div
+                        class="franja-decorativa franja-izq"
+                        aria-hidden="true"
+                    ></div>
+
+                    <h1 id="titulo-eventos-principal">
+                        Eventos especiales con
+                        <br>
+                        Paletas de Bogotá
+                    </h1>
+
+                    <div
+                        class="franja-decorativa franja-der"
+                        aria-hidden="true"
+                    ></div>
                 </div>
-                
+
                 <p class="eventos-hero__descripcion">
-                    Haz de tu celebración un momento inolvidable con nuestras deliciosas paletas de hielo 100% naturales. Personalizamos cada pedido para adaptarlo perfectamente a tu evento.
+                    Haz de tu celebración un momento inolvidable
+                    con nuestras deliciosas paletas de hielo 100%
+                    naturales. Personalizamos cada pedido para
+                    adaptarlo perfectamente a tu evento.
                 </p>
-                
+
                 <div class="eventos-hero__botones">
-                    <!-- Botón Reservar Ahora (Turquesa oscuro como en Figma) -->
-                    <a href="#cotizacion" class="btn btn--turquesa" aria-label="Ir a reservar evento">Reservar Ahora</a>
-                    <!-- Botón Ver Galería (Rosado como en Figma) -->
-                    <a href="#galeria-eventos" class="btn btn--rosado" aria-label="Ver galería de eventos">Ver Galería</a>
+                    <a
+                        href="#galeria-eventos"
+                        class="btn btn--rosado"
+                    >
+                        Ver galería
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Tipos de Eventos -->
-        <section class="tipos-eventos" aria-labelledby="titulo-tipos-eventos">
+        <section
+            class="tipos-eventos"
+            aria-labelledby="titulo-tipos-eventos"
+        >
             <div class="tipos-eventos__header">
-                <h2 id="titulo-tipos-eventos">Tipos de Eventos</h2>
-                <p>Ofrecemos paletas para todo tipo de celebraciones, personaliza tu pedido según el estilo de tu evento.</p>
+                <h2 id="titulo-tipos-eventos">
+                    Tipos de eventos
+                </h2>
+
+                <p>
+                    Ofrecemos paletas para todo tipo de
+                    celebraciones. Personaliza tu pedido según
+                    el estilo de tu evento.
+                </p>
             </div>
 
             <div class="tipos-eventos__grid">
-                <!-- Tarjeta 1: Cumpleaños -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/Icono_pastel.png" alt="Icono Cumpleaños">
+                        <img
+                            src="assets/imagenes/Icono_pastel.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
+
                     <h3>Cumpleaños</h3>
-                    <p>Hacemos que los cumpleaños sean memorables con nuestras deliciosas paletas artesanales.</p>
+
+                    <p>
+                        Hacemos que los cumpleaños sean memorables
+                        con nuestras deliciosas paletas artesanales.
+                    </p>
                 </article>
 
-                <!-- Tarjeta 2: Bodas -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/icono_corazon.png" alt="Icono Bodas">
+                        <img
+                            src="assets/imagenes/icono_corazon.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
+
                     <h3>Bodas</h3>
-                    <p>Disfruta un toque único y refrescante en tu boda con nuestra selección de paletas gourmet.</p>
+
+                    <p>
+                        Disfruta un toque único y refrescante en
+                        tu boda con nuestra selección de paletas
+                        gourmet.
+                    </p>
                 </article>
 
-                <!-- Tarjeta 3: Eventos Corporativos -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/icono_trabajo.png" alt="Icono Corporativo">
+                        <img
+                            src="assets/imagenes/icono_trabajo.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
-                    <h3>Eventos Corporativos</h3>
-                    <p>Sorprende a tus clientes y empleados con un detalle original y delicioso.</p>
+
+                    <h3>Eventos corporativos</h3>
+
+                    <p>
+                        Sorprende a tus clientes y empleados con
+                        un detalle original y delicioso.
+                    </p>
                 </article>
 
-                <!-- Tarjeta 4: Graduaciones -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/icono_grado.png" alt="Icono Graduaciones">
+                        <img
+                            src="assets/imagenes/icono_grado.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
+
                     <h3>Graduaciones</h3>
-                    <p>Celebra este logro importante con nuestras paletas personalizadas.</p>
+
+                    <p>
+                        Celebra este logro importante con
+                        nuestras paletas personalizadas.
+                    </p>
                 </article>
 
-                <!-- Tarjeta 5: Fiestas Infantiles -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/icono_celebracion.png" alt="Icono Fiestas Infantiles">
+                        <img
+                            src="assets/imagenes/icono_celebracion.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
-                    <h3>Fiestas Infantiles</h3>
-                    <p>Alegra a los pequeños con paletas coloridas y divertidas en sabores que les encanten.</p>
+
+                    <h3>Fiestas infantiles</h3>
+
+                    <p>
+                        Alegra a los pequeños con paletas
+                        coloridas y sabores que les encanten.
+                    </p>
                 </article>
 
-                <!-- Tarjeta 6: Eventos Sociales -->
                 <article class="evento-card">
                     <div class="evento-card__icono-container">
-                        <img src="assets/imagenes/icono_personitas.png" alt="Icono Eventos Sociales">
+                        <img
+                            src="assets/imagenes/icono_personitas.png"
+                            alt=""
+                            aria-hidden="true"
+                        >
                     </div>
-                    <h3>Eventos Sociales</h3>
-                    <p>Para cualquier ocasión especial, tenemos la paleta perfecta.</p>
+
+                    <h3>Eventos sociales</h3>
+
+                    <p>
+                        Para cualquier ocasión especial, tenemos
+                        la paleta perfecta.
+                    </p>
                 </article>
             </div>
         </section>
-        <!-- Galeria -->
-        <section id="galeria-eventos" class="galeria-eventos" aria-labelledby="titulo-galeria">
+
+        <section
+            id="galeria-eventos"
+            class="galeria-eventos"
+            aria-labelledby="titulo-galeria"
+        >
             <div class="galeria-eventos__header">
-                <h2 id="titulo-galeria">Galería de Eventos</h2>
-                <p>Mira algunos de los eventos que hemos decorado con nuestras deliciosas paletas. ¡Haz clic en las imágenes para girarlas!</p>
+                <h2 id="titulo-galeria">
+                    Galería de eventos
+                </h2>
+
+                <p>
+                    Mira algunos de los eventos que hemos decorado
+                    con nuestras deliciosas paletas. Haz clic en
+                    las imágenes para girarlas.
+                </p>
             </div>
 
             <div class="galeria-contenedor">
-                <!-- Tarjeta 1 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_1.png" alt="Evento paletas 1">
+                            <img
+                                src="assets/imagenes/Galeria_1.png"
+                                alt="Evento decorado con paletas"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 2 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_2.png" alt="Evento paletas 2">
+                            <img
+                                src="assets/imagenes/Galeria_2.png"
+                                alt="Paletas para celebración"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 3 (Nota: si tienes Galeria_3.png la incluyes, si no, puedes pasar a la 4) -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_4.png" alt="Evento paletas 4">
+                            <img
+                                src="assets/imagenes/Galeria_4.png"
+                                alt="Carrito de paletas para evento"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 4 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_5.png" alt="Evento paletas 5">
+                            <img
+                                src="assets/imagenes/Galeria_5.png"
+                                alt="Paletas personalizadas"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 5 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_6.png" alt="Evento paletas 6">
+                            <img
+                                src="assets/imagenes/Galeria_6.png"
+                                alt="Paletas para evento corporativo"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 6 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_7.png" alt="Evento paletas 7">
+                            <img
+                                src="assets/imagenes/Galeria_7.png"
+                                alt="Evento social con paletas"
+                            >
                         </div>
                     </div>
                 </div>
 
-                <!-- Tarjeta 7 -->
-                <div class="galeria-card" onclick="this.classList.toggle('girada')">
+                <div
+                    class="galeria-card"
+                    onclick="this.classList.toggle('girada')"
+                >
                     <div class="card-inner">
                         <div class="card-front">
-                            <img src="assets/imagenes/Galeria_8.png" alt="Evento paletas 8">
+                            <img
+                                src="assets/imagenes/Galeria_8.png"
+                                alt="Paletas artesanales para eventos"
+                            >
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Botón final de reserva -->
+        <section
+            class="reserva-cta"
+            aria-labelledby="eventos-reserva-titulo"
+        >
+            <div class="reserva-cta__contenido">
+                <p class="reserva-cta__etiqueta">
+                    Celebremos juntos
+                </p>
+
+                <h2
+                    id="eventos-reserva-titulo"
+                    class="reserva-cta__titulo"
+                >
+                    Lleva nuestras paletas a tu próximo evento
+                </h2>
+
+                <p class="reserva-cta__descripcion">
+                    Cuéntanos los detalles de tu celebración y
+                    prepararemos una cotización personalizada.
+                </p>
+
+                <a
+                    href="solicitud_cotizacion.html"
+                    class="boton-reserva"
+                >
+                    Reserva ahora
+                </a>
             </div>
         </section>
     </main>
 
-    <!-- Footer dinámico inyectado por components.js -->
     <div id="footer"></div>
 
     <script src="js/components.js"></script>
     <script src="js/galeria.js"></script>
-
 </body>
 </html>
