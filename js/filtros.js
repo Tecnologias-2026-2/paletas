@@ -1,4 +1,4 @@
-(() => {
+function iniciarFiltros() {
   const panel = document.getElementById("filtros");
   const lista = document.querySelector(".catalogo-paletas__grid");
   if (!panel || !lista) return;
@@ -81,4 +81,6 @@
 
   panel.hidden = false;
   aplicar({ anunciar: false });
-})();
+}
+
+(window.catalogoListo || Promise.resolve()).then(iniciarFiltros);
