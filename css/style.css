@@ -1158,9 +1158,6 @@ body {
 .logout-modal__boton--cancelar:hover {
     background-color: #e2e2e2;
 }
-
-.logout-modal__boton--cerrar {
-}
 .admin-login {
     width: 100%;
     min-height: 610px;
@@ -1229,6 +1226,9 @@ body {
 .admin-login__campo {
     width: 100%;
 }
+.admin-login__campo + .admin-login__campo {
+    margin-top: 16px;
+}
 .admin-login__campo input {
     width: 100%;
     height: 45px;
@@ -1242,6 +1242,32 @@ body {
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
+}
+/* Ojito para mostrar contraseña */
+.admin-login__password {
+    position: relative;
+}
+
+.admin-login__password input {
+    padding-right: 48px;
+}
+
+.admin-login__ojo {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #219db9;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-login__ojo:hover {
+    color: #ff78b9;
 }
 .admin-login__campo input::placeholder {
     color: #777777;
