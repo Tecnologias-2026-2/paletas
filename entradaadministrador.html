@@ -33,68 +33,113 @@
                                     src="assets/iconos/admin.svg"
                                     alt=""
                                     class="admin-login__avatar">
-                                <h2>Fernanda</h2>
-                                <p>fergld@gmail.com</p>
+                                <h2>Administrador</h2>
                             </div>
-                            <!-- Formulario -->
-                            <form class="admin-login__formulario"
-                                action="perfiladministrador.html"
-                                    method="get">
-                                <div class="admin-login__campo">
-                                    <label for="password"
-                                        class="visually-hidden">
-                                        Contraseña
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        placeholder="Contraseña:"
-                                        autocomplete="current-password">
+                            
+<!-- Formulario -->
+<form class="admin-login__formulario" id="admin-login-form">
 
+    <!-- Correo -->
+    <div class="admin-login__campo">
+        <label for="admin-correo" class="visually-hidden">
+            Correo electrónico
+        </label>
+        <input
+            type="email"
+            id="admin-correo"
+            placeholder="Correo electrónico"
+            autocomplete="email"
+            required
+        >
+    </div>
 
-                                </div>
-                                <input
-                                    type="checkbox"
-                                    id="modal-recuperacion"
-                class="modal__control"
-            >
+    <div class="admin-login__campo admin-login__password">
+    <label for="admin-password" class="visually-hidden">
+        Contraseña
+    </label>
+
+    <input
+        type="password"
+        id="admin-password"
+        placeholder="Contraseña"
+        autocomplete="current-password"
+        required
+    >
+
+    <button
+        type="button"
+        id="mostrar-password"
+        class="admin-login__ojo"
+        aria-label="Mostrar contraseña"
+        aria-pressed="false">
+        <svg viewBox="0 0 24 24" width="22" height="22"
+             fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+            <circle cx="12" cy="12" r="3"/>
+        </svg>
+        </button>
+    </div>
+
+    <!-- Recuperar contraseña -->
+    <input
+        type="checkbox"
+        id="modal-recuperacion"
+        class="modal__control"
+    >
+
+    <label
+        for="modal-recuperacion"
+        class="admin-login__recuperar">
+        Olvidé mi contraseña
+    </label>
+    <div class="modal-recuperacion">
+        <label
+            for="modal-recuperacion"
+            class="modal-recuperacion__fondo"
+            aria-label="Cerrar mensaje">
+        </label>
+
+        <div class="modal-recuperacion__contenido">
+            <h2 id="recuperacion-titulo">Recuperar contraseña</h2>
+
+            <p id="recuperacion-mensaje">
+                Ingresa tu correo electrónico arriba y
+                solicita el enlace para restablecer tu contraseña.
+            </p>
+
+            <button
+                type="button"
+                id="enviar-recuperacion"
+                class="modal-recuperacion__boton">
+                Enviar correo
+            </button>
+
             <label
                 for="modal-recuperacion"
-                class="admin-login__recuperar">
-                Olvidé mi contraseña
+                class="modal-recuperacion__boton">
+                Cerrar
             </label>
-            <div class="modal-recuperacion">
-                <label
-                    for="modal-recuperacion"
-                    class="modal-recuperacion__fondo"
-                    aria-label="Cerrar mensaje">
-                </label>
-                <div class="modal-recuperacion__contenido">
-                <h2>Correo enviado</h2>
-                    <p>
-                        Se ha enviado un correo de recuperación
-                        a tu dirección registrada.
-                    </p>
-                    <label
-                        for="modal-recuperacion"
-                        class="modal-recuperacion__boton">
-                        Aceptar
-                    </label>
+        </div>
+    </div>
 
-                </div>
+    <p id="admin-login-error" role="alert"></p>
+    <button
+        type="submit"
+        id="admin-entrar"
+        class="admin-login__boton">
+        Entrar ahora
+    </button>
 
-            </div>                            
-                    <button
-                        type="submit"
-                        class="admin-login__boton">
-                        Entrar ahora
-                    </button>
-                </form>
+</form>
+
             </div>
         </section>
     </main>
     <div id="footer"></div>
     <!-- los componentes globales -->
     <script src="js/components.js"></script>
+    <script type="module" src="js/firebase-login.js"></script>
 </body>
 </html>
