@@ -1,3 +1,24 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBrAVOQr7TQ-YMZidGw15__afkNMK5DJMc",
+    authDomain: "paleteria-60039.firebaseapp.com",
+    projectId: "paleteria-60039",
+    storageBucket: "paleteria-60039.firebasestorage.app",
+    messagingSenderId: "344009417792",
+    appId: "1:344009417792:web:f5ff100da14b35e5e1eba5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const formulario = document.getElementById(
     "formulario-cotizacion"
 );
@@ -50,7 +71,7 @@ if (formulario) {
         contador.textContent = requerimientos.value.length;
     });
 
-    formulario.addEventListener("submit", (evento) => {
+   formulario.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
         estadoFormulario.textContent = "";
@@ -106,11 +127,32 @@ if (formulario) {
             datos.entries()
         );
 
-        console.log("Solicitud de cotización:", solicitud);
+      const botonEnviar = formulario.querySelector('button[type="submit"]');
 
-        estadoFormulario.textContent =
-            "Tu solicitud fue validada correctamente.";
+botonEnviar.disabled = true;
+estadoFormulario.textContent = "Enviando solicitud...";
 
+try {
+    await addDoc(collection(db, "reservas"), {
+        ...solicitud,
+        numeroInvitados: Number(solicitud.numeroInvitados),
+        estado: "pendiente",
+        prioridad: "media",
+        fechaSolicitud: serverTimestamp()
+    });
+
+    estadoFormulario.textContent =
+        "¡Tu solicitud fue enviada correctamente!";
+
+} catch (error) {
+    console.error("Error al guardar reserva:", error);
+    estadoFormulario.textContent =
+        "No se pudo enviar tu solicitud. Inténtalo nuevamente.";
+    botonEnviar.disabled = false;
+    return;
+}
+
+botonEnviar.disabled = false;
         formulario.reset();
         contador.textContent = "0";
 
