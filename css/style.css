@@ -406,7 +406,7 @@ body {
 }
 .colaboracion__texto h2 {
     margin: 0 0 10px;
-    color: #ff73b7;
+    color: #dc5c9a;
     font-size: clamp(2rem, 3vw, 3.3rem);
     font-weight: 700;
     line-height: 1.05;
@@ -440,7 +440,7 @@ body {
     transform: translateY(-2px);
 }
 .colaboracion__boton:focus-visible {
-    outline: 3px solid #ff73b7;
+    outline: 3px solid #dc5c9a;
     outline-offset: 4px;
 }
 /* aca subo la imagen */
@@ -505,7 +505,7 @@ body {
     width: 100%;
     padding: 45px 20px 30px;
     background-color: #ffffff;
-    border-bottom: 12px solid #ffdb4d;
+    border-bottom: 12px solid #cf7c1b;
 }
 .destacados__header {
     margin-bottom: 25px;
@@ -6952,7 +6952,7 @@ html {
 
 .tipo-evento__control:focus-visible
     + .tipo-evento__contenido {
-    outline: 3px solid #ff73b7;
+    outline: 3px solid #dc5c9a;
     outline-offset: 4px;
 }
 
@@ -7034,7 +7034,7 @@ html {
 
 .campo input:focus,
 .campo textarea:focus {
-    border-color: #ff73b7;
+    border-color: #dc5c9a;
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 115, 183, 0.16);
 }
@@ -7109,7 +7109,7 @@ html {
 }
 
 .cotizacion__boton:focus-visible {
-    outline: 3px solid #ff73b7;
+    outline: 3px solid #dc5c9a;
     outline-offset: 4px;
 }
 
