@@ -467,7 +467,7 @@ body {
     height: 55px;
     background: linear-gradient(
         90deg,
-        #ffdc4a 0%,
+        #cba922c4 0%,
         #ffe87c 55%,
         #fff3aa 100%
     );
@@ -586,7 +586,7 @@ body {
 }
 
 .tarjeta--amarilla .tarjeta__contenido {
-    background-color: #f3d76b;
+    background-color: #cfa21b;
 }
 /* el texto de la tarjeta */
 .tarjeta__titulo {
@@ -927,7 +927,7 @@ body {
 
     margin: 13px auto 25px;
 
-    background-color: #ffe86e;
+    background-color: #cfa21b;
 }
 .admin-sidebar__avatar {
     width: 82px;
@@ -996,17 +996,17 @@ body {
     object-fit: contain;
 }
 .admin-sidebar__opcion:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
     transform: translateX(4px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 .admin-sidebar__opcion--activa {
-    color: #ff70b4;
+    color: #dc5c9a;
     font-weight: 700;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 .admin-sidebar__opcion:focus-visible {
-    outline: 3px solid #ffe86e;
+    outline: 3px solid #cfa21b;
     outline-offset: 3px;
 }
 .admin-sidebar__logout {
@@ -1018,7 +1018,7 @@ body {
     color: rgba(0, 0, 0, 0.70);
 }
 .admin-sidebar__opcion--logout:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .admin-contenido {
     min-width: 0;
@@ -1185,7 +1185,7 @@ body {
 .logout-modal__contenido h2 {
     margin: 0 0 12px;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: 1.65rem;
     font-weight: 600;
@@ -1251,7 +1251,7 @@ body {
 }
 .admin-login__encabezado h1 {
     margin: 0;
-    color: #ff78b9;
+    color: #dc5c9a;
     font-size: 2rem;
     font-weight: 400;
     line-height: 1.2;
@@ -1261,7 +1261,7 @@ body {
     width: 205px;
     height: 3px;
     margin: 16px auto 0;
-    background-color: #ffe76d;
+    background-color: #cfa21b;
 }
 .admin-login__perfil {
     display: flex;
@@ -1338,13 +1338,13 @@ body {
 }
 
 .admin-login__ojo:hover {
-    color: #ff78b9;
+    color: #dc5c9a;
 }
 .admin-login__campo input::placeholder {
     color: #777777;
 }
 .admin-login__campo input:focus {
-    border-color: #ff78b9;
+    border-color: #dc5c9a;
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 120, 185, 0.18);
 }
@@ -1360,7 +1360,7 @@ body {
     text-decoration: underline;
 }
 .admin-login__recuperar:focus-visible {
-    outline: 3px solid #ff78b9;
+    outline: 3px solid #dc5c9a;
     outline-offset: 4px;
     border-radius: 3px;
 }
@@ -1372,7 +1372,7 @@ body {
     padding: 10px 22px;
     border: none;
     border-radius: 10px;
-    background-color: #ff78b9;
+    background-color: #dc5c9a;
     color: #ffffff;
     font: inherit;
     font-size: 1rem;
@@ -1459,7 +1459,7 @@ body {
     transition: color 0.2s ease;
 }
 .admin-login__recuperar:hover {
-    color: #ff78b9;
+    color: #dc5c9a;
     text-decoration: underline;
 }
 .modal-recuperacion {
@@ -1511,7 +1511,7 @@ body {
 .logout-modal__contenido h2 {
     margin: 0 0 12px;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: 1.65rem;
     font-weight: 600;
@@ -1559,13 +1559,13 @@ body {
 /* CERRAR SESIÓN */
 
 .logout-modal__boton--cerrar {
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 
     color: #ffffff;
 }
 
 .logout-modal__boton--cerrar:hover {
-    background-color: #ee5da4;
+    background-color: #dc5c9a;
 
     transform: translateY(-2px);
 }
@@ -1628,7 +1628,7 @@ body {
     transition: color 0.2s ease;
 }
 .pedidos-admin__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .pedidos-admin__breadcrumb span[aria-current="page"] {
     color: #229db9;
@@ -1639,7 +1639,7 @@ body {
 
 .pedidos-admin__header h1 {
     margin: 0;
-    color: #ff70b4;
+    color: #dc5c9a;
     font-size: clamp(1.7rem, 3vw, 2.2rem);
     font-weight: 500;
 }
@@ -1680,7 +1680,7 @@ body {
 .pedidos-admin__filtro select:focus-visible {
     outline: 3px solid rgba(255, 112, 180, 0.25);
     outline-offset: 2px;
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 
 .pedidos-admin__lista {
@@ -1754,7 +1754,7 @@ body {
 /* Prioridad alta */
 .pedido-card__prioridad--alta {
     background-color: rgba(255, 112, 180, 0.15);
-    color: #e95099;
+    color: #dc5c9a;
 }
 /* Prioridad media */
 .pedido-card__prioridad--media {
@@ -1796,7 +1796,7 @@ body {
     border: 1px solid rgba(255, 112, 180, 0.35);
     border-radius: 9px;
     background-color: #ffffff;
-    color: #e95099;
+    color: #dc5c9a;
     font: inherit;
     font-size: 0.8rem;
     font-weight: 600;
@@ -1806,12 +1806,12 @@ body {
         box-shadow 0.2s ease;
 }
 .pedido-card__select:hover {
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 .pedido-card__select:focus-visible {
     outline: 3px solid rgba(255, 112, 180, 0.20);
     outline-offset: 2px;
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 /* responsive*/
 @media (max-width: 750px) {
@@ -1916,7 +1916,7 @@ body {
     transition: color 0.2s ease;
 }
 .detalle-pedido__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .detalle-pedido__breadcrumb span {
     color: rgba(0, 0, 0, 0.3);
@@ -1959,7 +1959,7 @@ body {
 .pedido-resumen__estado {
     padding: 7px 12px;
     color: #ffffff;
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
     border-radius: 999px;
     font-size: 0.72rem;
     font-weight: 600;
@@ -1995,7 +1995,7 @@ body {
     min-height: 38px;
     padding: 0 16px;
     color: #ffffff;
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
     border: none;
     border-radius: 8px;
     font-family: inherit;
@@ -2008,7 +2008,7 @@ body {
         box-shadow 0.2s ease;
 }
 .pedido-resumen__correos:hover {
-    background-color: #ee5da4;
+    background-color: #dc5c9a;
     transform: translateY(-1px);
     box-shadow:
         0 4px 10px rgba(255, 112, 180, 0.25);
@@ -2022,7 +2022,7 @@ body {
 }
 .pedido-seccion__encabezado h2 {
     margin: 0;
-    color: #ff70b4;
+    color: #dc5c9a;
     font-size: clamp(1.35rem, 2.5vw, 1.75rem);
     font-weight: 500;
 }
@@ -2030,7 +2030,7 @@ body {
     width: 100%;
     height: 2px;
     margin-top: 10px;
-    background-color: #ffe86e;
+    background-color: #cfa21b;
     border-radius: 10px;
 }
 /* datos de envio */
@@ -2118,7 +2118,7 @@ body {
     justify-content: center;
     width: 30px;
     height: 30px;
-    color: #ff70b4;
+    color: #dc5c9a;
     background-color: #fff0f7;
     border-radius: 50%;
 }
@@ -2165,7 +2165,7 @@ body {
     height: 12px;
     box-sizing: border-box;
     background-color: #ffffff;
-    border: 3px solid #ff70b4;
+    border: 3px solid #dc5c9a;
     border-radius: 50%;
     z-index: 1;
 }
@@ -2339,7 +2339,7 @@ body {
 .pedidos-admin__breadcrumb a:hover,
 .notificaciones__breadcrumb a:hover,
 .info-personal__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 
 
@@ -2363,7 +2363,7 @@ body {
 .notificaciones__header h1 {
     margin: 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: clamp(1.7rem, 3vw, 2.2rem);
     font-weight: 500;
@@ -2404,7 +2404,7 @@ body {
     transition: color 0.2s ease;
 }
 .seguridad__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .seguridad__breadcrumb span {
     color: rgba(0, 0, 0, 0.35);
@@ -2419,14 +2419,14 @@ body {
 .seguridad__header h1 {
     margin: 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: clamp(1.7rem, 3vw, 2.2rem);
     font-weight: 500;
     line-height: 1.2;
 }
 .configuracion__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .configuracion__breadcrumb span {
     color: rgba(0, 0, 0, 0.35);
@@ -2445,7 +2445,7 @@ body {
 .info-personal__header h1 {
     margin: 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: clamp(1.7rem, 3vw, 2.2rem);
     font-weight: 500;
@@ -2512,7 +2512,7 @@ body {
     outline: 3px solid rgba(255, 112, 180, 0.25);
     outline-offset: 2px;
 
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 
 .pedidos-admin__lista {
@@ -2654,7 +2654,7 @@ body {
 .detalle-reserva__breadcrumb a:hover,
 .notificaciones__breadcrumb a:hover,
 .info-personal__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 
 
@@ -2801,7 +2801,7 @@ body {
     border: none;
     border-radius: 8px;
 
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 
     color: #ffffff;
 
@@ -2819,7 +2819,7 @@ body {
 
 
 .reserva-resumen__correos:hover {
-    background-color: #ee5da4;
+    background-color: #dc5c9a;
 
     transform: translateY(-1px);
 
@@ -2840,7 +2840,7 @@ body {
 .reserva-seccion__encabezado h2 {
     margin: 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: clamp(1.3rem, 2.5vw, 1.7rem);
     font-weight: 500;
@@ -2853,7 +2853,7 @@ body {
 
     margin-top: 9px;
 
-    background-color: #ffe86e;
+    background-color: #cfa21b;
     border-radius: 10px;
 }
 .reserva-datos {
@@ -2965,7 +2965,7 @@ body {
     height: 12px;
     box-sizing: border-box;
     background-color: #ffffff;
-    border: 3px solid #ff70b4;
+    border: 3px solid #dc5c9a;
     border-radius: 50%;
     z-index: 1;
 }
@@ -3117,7 +3117,7 @@ body {
 }
 .pedido-card__prioridad--alta {
     background-color: rgba(255, 112, 180, 0.15);
-    color: #e95099;
+    color: #dc5c9a;
 }
 
 
@@ -3137,7 +3137,7 @@ body {
 .correos-admin__breadcrumb a:hover,
 .notificaciones__breadcrumb a:hover,
 .info-personal__breadcrumb a:hover {
-    color: #ff70b4;
+    color: #dc5c9a;
 }
 .correos-admin__breadcrumb span {
     color: rgba(0, 0, 0, 0.30);
@@ -3155,11 +3155,11 @@ body {
     gap: 20px;
     padding-bottom: 16px;
     margin-bottom: 22px;
-    border-bottom: 2px solid #ffe86e;
+    border-bottom: 2px solid #cfa21b;
 }
 .correos-admin__header h1 {
     margin: 0;
-    color: #ff70b4;
+    color: #dc5c9a;
     font-size: clamp(1.7rem, 3vw, 2.1rem);
     font-weight: 500;
 }
@@ -3200,7 +3200,7 @@ body {
     border: 1px solid rgba(255, 112, 180, 0.35);
     border-radius: 9px;
     background-color: #ffffff;
-    color: #e95099;
+    color: #dc5c9a;
     font: inherit;
     font-size: 0.8rem;
     font-weight: 600;
@@ -3228,7 +3228,7 @@ body {
 
     margin-top: 13px;
 
-    background-color: #ffe86e;
+    background-color: #cfa21b;
 
     border-radius: 10px;
 }
@@ -3254,7 +3254,7 @@ body {
 
     flex-shrink: 0;
 
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 
     color: #ffffff;
 
@@ -3515,7 +3515,7 @@ body {
 
     background-color: #fff0f7;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     border-radius: 9px;
 
@@ -3763,7 +3763,7 @@ body {
 .correo-preview__body h3 {
     margin: 14px 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: 1.2rem;
 
@@ -3882,7 +3882,7 @@ body {
 
 .notificacion-switch input:checked
 + .notificacion-switch__control {
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 }
 
 .notificacion-switch input:checked
@@ -4001,7 +4001,7 @@ body {
     padding-bottom: 14px;
     margin-bottom: 20px;
 
-    border-bottom: 2px solid #ffe86e;
+    border-bottom: 2px solid #cfa21b;
 }
 
 
@@ -4022,7 +4022,7 @@ body {
 .plantilla-correo__header h2 {
     margin: 0;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: 1.45rem;
     font-weight: 500;
@@ -4120,7 +4120,7 @@ body {
     border: none;
     border-radius: 8px;
 
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 
     color: #ffffff;
 
@@ -4248,7 +4248,7 @@ body {
 }
 .configuracion__header h1 {
     margin: 0;
-    color: #ff70b4;
+    color: #dc5c9a;
     font-size: clamp(1.7rem, 3vw, 2.15rem);
     font-weight: 500;
     line-height: 1.2;
@@ -4257,7 +4257,7 @@ body {
     width: 100%;
     height: 3px;
     margin-top: 13px;
-    background-color: #ffe86e;
+    background-color: #cfa21b;
     border-radius: 10px;
 }
 .seguridad__descripcion {
@@ -4327,7 +4327,7 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
     border: none;
     border-radius: 9px;
     cursor: pointer;
@@ -4337,7 +4337,7 @@ body {
         box-shadow 0.2s ease;
 }
 .seguridad-form__guardar:hover {
-    background-color: #ee5da4;
+    background-color: #dc5c9a;
     transform: translateY(-1px);
     box-shadow:
         0 4px 10px rgba(255, 112, 180, 0.25);
@@ -4371,7 +4371,7 @@ body {
     min-height: 42px;
     padding: 0 20px;
     color: #ffffff;
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
     border: none;
     border-radius: 9px;
     font-family: inherit;
@@ -4397,7 +4397,7 @@ body {
 
     color: #ffffff;
 
-    background-color: #ff70b4;
+    background-color: #dc5c9a;
 
     border: none;
     border-radius: 9px;
@@ -4415,7 +4415,7 @@ body {
 
 
 .pedido-card__select:hover {
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 
 
@@ -4423,7 +4423,7 @@ body {
     outline: 3px solid rgba(255, 112, 180, 0.20);
     outline-offset: 2px;
 
-    border-color: #ff70b4;
+    border-color: #dc5c9a;
 }
 @media (max-width: 750px) {
 
@@ -4499,7 +4499,7 @@ body {
 }
 .notificaciones-form__guardar:hover,
 .info-personal-form__guardar:hover {
-    background-color: #ee5da4;
+    background-color: #dc5c9a;
 
     transform: translateY(-1px);
 
@@ -4677,7 +4677,7 @@ body {
     height: 3px;
     margin-top: 13px;
     border-radius: 5px;
-    background-color: #ffe86e;
+    background-color: #cfa21b;
 }
 .configuracion__opciones {
     width: 100%;
@@ -4747,7 +4747,7 @@ body {
 .configuracion-card__flecha {
     justify-self: end;
 
-    color: #ff70b4;
+    color: #dc5c9a;
 
     font-size: 1.65rem;
     font-weight: 600;
@@ -4854,7 +4854,7 @@ body {
 }
 .modal-recuperacion__contenido h2 {
     margin: 0 0 15px;
-    color: #ff78b9;
+    color: #dc5c9a;
     font-size: 1.7rem;
 }
 .modal-recuperacion__contenido p {
@@ -4868,7 +4868,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px 25px;
-    background-color: #ff78b9;
+    background-color: #dc5c9a;
     color: #ffffff;
     border-radius: 9px;
     font-weight: 700;
@@ -4947,7 +4947,7 @@ body {
 .franja-izq {
     background: linear-gradient(
         to right,
-        #ff70b4 0%,
+        #dc5c9a 0%,
         rgba(232, 94, 157, 0) 100%
     );
 }
@@ -4956,7 +4956,7 @@ body {
 .franja-der {
     background: linear-gradient(
         to left,
-        #ff70b4 0%,
+        #dc5c9a 0%,
         rgba(232, 94, 157, 0) 100%
     );
 }
@@ -5278,7 +5278,7 @@ body {
     margin: 0 0 25px;
     margin-left: calc(50% - 50vw);
 
-    color: #ff70b4;
+    color: #dc5c9a;
     font-family: inherit;
     font-size: clamp(2.2rem, 4vw, 3rem);
     font-weight: 400;
