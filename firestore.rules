@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'P4AYQuUQEoVmveHWvyfWKLcUTT53';
+    }
+    function validState(state) {
+      return state in ['pendiente', 'confirmada', 'finalizada', 'cancelada'];
+    }
+    match /reservas/{reservaId} {
+      allow read: if isAdmin();
+      // El formulario público únicamente puede crear solicitudes pendientes.
+      allow create: if request.resource.data.keys().hasOnly([
+          'tipoEvento', 'numeroInvitados', 'fechaEvento', 'ubicacionEvento',
+          'requerimientos', 'nombreContacto', 'direccionResidencia',
+          'codigoPostal', 'correoContacto', 'estado', 'prioridad', 'fechaSolicitud'
+        ])
+        && request.resource.data.keys().hasAll([
+          'tipoEvento', 'numeroInvitados', 'fechaEvento', 'ubicacionEvento',
+          'requerimientos', 'nombreContacto', 'direccionResidencia',
+          'codigoPostal', 'correoContacto', 'estado', 'prioridad', 'fechaSolicitud'
+        ])
+        && request.resource.data.estado == 'pendiente'
+        && request.resource.data.prioridad == 'media'
+        && request.resource.data.fechaSolicitud == request.time
+        && request.resource.data.numeroInvitados is int
+        && request.resource.data.numeroInvitados >= 1
+        && request.resource.data.numeroInvitados <= 10000
+        && request.resource.data.tipoEvento is string
+        && request.resource.data.tipoEvento.size() <= 80
+        && request.resource.data.fechaEvento is string
+        && request.resource.data.fechaEvento.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.ubicacionEvento is string
+        && request.resource.data.ubicacionEvento.size() <= 120
+        && request.resource.data.requerimientos is string
+        && request.resource.data.requerimientos.size() <= 600
+        && request.resource.data.nombreContacto is string
+        && request.resource.data.nombreContacto.size() > 0
+        && request.resource.data.nombreContacto.size() <= 80
+        && request.resource.data.direccionResidencia is string
+        && request.resource.data.direccionResidencia.size() <= 120
+        && request.resource.data.codigoPostal is string
+        && request.resource.data.codigoPostal.matches('^[0-9]{6}$')
+        && request.resource.data.correoContacto is string
+        && request.resource.data.correoContacto.size() <= 120;
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'estado', 'fechaActualizacion', 'actualizadoPor'
+        ])
+        && validState(request.resource.data.estado)
+        && request.resource.data.fechaActualizacion == request.time
+        && request.resource.data.actualizadoPor == request.auth.uid;
+      allow delete: if false;
+    }
+    // Las colecciones sin reglas explícitas quedan denegadas.
+  }
+}

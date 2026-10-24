@@ -68,11 +68,13 @@
                     <span aria-hidden="true">/</span>
 
                     <span aria-current="page">
-                        Catalina Nieto
+                        Detalle
                     </span>
 
                 </nav>
 
+                <p id="mensaje-detalle" role="status">Cargando reserva...</p>
+                <div id="contenido-reserva" hidden>
                 <article class="reserva-resumen">
 
                     <div class="reserva-resumen__encabezado">
@@ -84,14 +86,12 @@
                             </p>
 
                             <h1 id="titulo-reserva">
-                                Reserva de Catalina Nieto
+                                Detalle de reserva
                             </h1>
 
                         </div>
 
-                        <span class="reserva-resumen__estado">
-                            Confirmada
-                        </span>
+                        <span class="reserva-resumen__estado" id="estado-actual">—</span>
 
                     </div>
 
@@ -103,9 +103,7 @@
                                 Tipo de evento
                             </span>
 
-                            <strong>
-                                Boda
-                            </strong>
+                            <strong data-campo="tipoEvento">—</strong>
 
                         </div>
 
@@ -116,9 +114,7 @@
                                 Fecha
                             </span>
 
-                            <strong>
-                                15 de octubre de 2026
-                            </strong>
+                            <strong data-campo="fechaEvento">—</strong>
 
                         </div>
 
@@ -129,9 +125,7 @@
                                 Invitados
                             </span>
 
-                            <strong>
-                                50 personas
-                            </strong>
+                            <strong data-campo="numeroInvitados">—</strong>
 
                         </div>
 
@@ -142,18 +136,24 @@
                                 Producto solicitado
                             </span>
 
-                            <strong>
-                                50 paletas de frutas frescas
-                            </strong>
+                            <strong data-campo="productoSolicitado">—</strong>
 
                         </div>
 
                     </div>
 
 
-                    <a href="perfiladministrador-correos.html" class="reserva-resumen__correos" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
-                        Ver correos enviados
-                    </a>
+                    <form id="form-estado" class="reserva-campo">
+                        <label for="reserva-estado">Estado de la reserva</label>
+                        <select id="reserva-estado" class="pedido-card__select" disabled>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="confirmada">Confirmada</option>
+                            <option value="finalizada">Finalizada</option>
+                            <option value="cancelada">Cancelada</option>
+                        </select>
+                        <button type="submit" class="reserva-resumen__correos" id="guardar-estado" disabled>Guardar estado</button>
+                        <p id="mensaje-estado" role="status" aria-live="polite"></p>
+                    </form>
 
                 </article>
 
@@ -189,7 +189,7 @@
                             <input
                                 id="reserva-nombre"
                                 type="text"
-                                value="Catalina Nieto Osorio"
+                                value=""
                                 readonly
                             >
 
@@ -204,7 +204,7 @@
                             <input
                                 id="reserva-direccion"
                                 type="text"
-                                value="Cra 19a #63c-37"
+                                value=""
                                 readonly
                             >
 
@@ -219,7 +219,7 @@
                             <input
                                 id="reserva-correo"
                                 type="email"
-                                value="carollli@gmail.com"
+                                value=""
                                 readonly
                             >
 
@@ -234,7 +234,7 @@
                             <input
                                 id="reserva-telefono"
                                 type="tel"
-                                value="+57 3115550548"
+                                value=""
                                 readonly
                             >
 
@@ -242,13 +242,13 @@
                         <div class="reserva-campo">
 
                             <label for="reserva-ciudad">
-                                Ciudad / País
+                                Código postal
                             </label>
 
                             <input
                                 id="reserva-ciudad"
                                 type="text"
-                                value="Bogotá / Colombia"
+                                value=""
                                 readonly
                             >
 
@@ -285,9 +285,7 @@
                                 Evento
                             </span>
 
-                            <strong>
-                                Boda
-                            </strong>
+                            <strong data-campo="tipoEvento">—</strong>
 
                         </article>
 
@@ -298,9 +296,7 @@
                                 Fecha reservada
                             </span>
 
-                            <strong>
-                                15 de octubre de 2026
-                            </strong>
+                            <strong data-campo="fechaEvento">—</strong>
 
                         </article>
 
@@ -311,9 +307,7 @@
                                 Cantidad estimada
                             </span>
 
-                            <strong>
-                                50 invitados
-                            </strong>
+                            <strong data-campo="numeroInvitados">—</strong>
 
                         </article>
 
@@ -329,7 +323,7 @@
                     <header class="reserva-seccion__encabezado">
 
                         <h2 id="titulo-proceso-reserva">
-                            Notificaciones del proceso
+                            Datos adicionales de la solicitud
                         </h2>
 
                         <div
@@ -340,88 +334,13 @@
                     </header>
 
 
-                    <div class="reserva-timeline">
-                        <article class="reserva-timeline__evento">
+                    <div class="reserva-timeline" id="datos-adicionales"></div>
 
-                            <span
-                                class="reserva-timeline__marcador"
-                                aria-hidden="true"
-                            ></span>
-
-                            <div class="reserva-timeline__contenido">
-
-                                <div class="reserva-timeline__cabecera">
-
-                                    <h3>
-                                        Información adicional recibida
-                                    </h3>
-
-                                    <time datetime="2026-09-20">
-                                        20/09/2026
-                                    </time>
-
-                                </div>
-
-                                <p class="reserva-timeline__tipo">
-                                    Mensaje del cliente
-                                </p>
-
-                                <blockquote>
-                                    “Hola, buenas tardes. Estoy atenta a
-                                    cualquier novedad por correo como me
-                                    comentan.”
-                                </blockquote>
-
-                                <span class="reserva-timeline__tiempo">
-                                    Recibido anteriormente
-                                </span>
-
-                            </div>
-
-                        </article>
-
-                        <article class="reserva-timeline__evento">
-
-                            <span
-                                class="reserva-timeline__marcador"
-                                aria-hidden="true"
-                            ></span>
-
-                            <div class="reserva-timeline__contenido">
-
-                                <div class="reserva-timeline__cabecera">
-
-                                    <h3>
-                                        Reserva confirmada
-                                    </h3>
-
-                                    <span class="reserva-timeline__actual">
-                                        Justo ahora
-                                    </span>
-
-                                </div>
-
-                                <p class="reserva-timeline__tipo">
-                                    Actualización de estado
-                                </p>
-
-                                <p>
-                                    La reserva para el evento fue confirmada
-                                    correctamente.
-                                </p>
-
-                            </div>
-
-                        </article>
-
-                    </div>
 
                 </section>
-
+                </div>
             </section>
-
         </div>
-
     </main>
     <div id="footer"></div>
 
@@ -430,6 +349,7 @@
 
     <script src="js/components.js"></script>
 
+<script type="module" src="js/reserva-detalle.js"></script>
 </body>
 
 </html>

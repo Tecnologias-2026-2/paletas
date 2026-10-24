@@ -1,22 +1,5 @@
-
-import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-import {
-    getFirestore, collection, onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
-import {
-    getAuth, onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBrAVOQr7TQ-YMZidGw15__afkNMK5DJMc",
-    authDomain: "paleteria-60039.firebaseapp.com",
-    projectId: "paleteria-60039",
-    appId: "1:344009417792:web:f5ff100da14b35e5e1eba5"
-};
-
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+import { db, observarAdministrador, guardarEstado } from "./reservas-firebase.js";
+import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 const lista = document.getElementById("lista-reservas");
 const filtroPrioridad = document.getElementById("filtro-prioridad-reserva");
@@ -55,7 +38,10 @@ function mostrarReservas() {
 
         const informacion = crearElemento("div", "pedido-card__informacion");
         const cabecera = crearElemento("div", "pedido-card__cabecera");
-        const titulo = crearElemento("h2", "", r.nombreContacto || "Sin nombre");
+        const titulo = crearElemento("h2");
+        const enlace = crearElemento("a", "", r.nombreContacto || "Sin nombre");
+        enlace.href = "perfiladministrador-misreservas-info.html?id=" + encodeURIComponent(r.id);
+        titulo.append(enlace);
         const prioridad = crearElemento(
             "span",
             `pedido-card__prioridad pedido-card__prioridad--${r.prioridad || "media"}`,
@@ -89,8 +75,26 @@ function mostrarReservas() {
         });
 
         estado.value = r.estado || "pendiente";
-        estado.disabled = true;
-        estado.title = "Próximamente: cambiar estado y guardar en Firebase";
+        estado.setAttribute("aria-label", "Estado de la reserva de " + (r.nombreContacto || r.id));
+        const mensaje = crearElemento("p");
+        mensaje.setAttribute("role", "status");
+        estado.addEventListener("change", async () => {
+            const anterior = r.estado || "pendiente";
+            const siguiente = estado.value;
+            estado.disabled = true;
+            mensaje.textContent = "Guardando...";
+            try {
+                await guardarEstado(r.id, siguiente);
+                r.estado = siguiente;
+                mostrarReservas();
+            } catch (error) {
+                estado.value = anterior;
+                mensaje.textContent = "No se pudo guardar el estado. Revisa tu sesión y los permisos de Firestore.";
+            } finally {
+                estado.disabled = false;
+            }
+        });
+        estadoContenedor.append(mensaje);
         estadoContenedor.append(estado);
 
         tarjeta.append(principal, estadoContenedor);
@@ -101,24 +105,11 @@ function mostrarReservas() {
 filtroPrioridad.addEventListener("change", mostrarReservas);
 filtroEstado.addEventListener("change", mostrarReservas);
 
-onAuthStateChanged(auth, usuario => {
-    if (!usuario) {
-        lista.textContent = "Debes iniciar sesión como administrador.";
-        return;
-    }
-
-    onSnapshot(
-        collection(db, "reservas"),
-        resultado => {
-            reservas = resultado.docs.map(documento => ({
-                id: documento.id,
-                ...documento.data()
-            }));
-            mostrarReservas();
-        },
-        error => {
-            console.error("Error al cargar reservas:", error);
-            lista.textContent = "No se pudieron cargar las reservas. Revisa los permisos de Firestore.";
-        }
-    );
-});
+observarAdministrador(() => onSnapshot(
+    collection(db, "reservas"),
+    resultado => {
+        reservas = resultado.docs.map(documento => ({ ...documento.data(), id: documento.id }));
+        mostrarReservas();
+    },
+    () => { reservas = []; lista.textContent = "No se pudieron cargar las reservas. Revisa los permisos de Firestore."; }
+), mensaje => { reservas = []; lista.textContent = mensaje; });
