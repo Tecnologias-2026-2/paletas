@@ -130,15 +130,7 @@
                         </div>
 
 
-                        <div class="reserva-resumen__dato">
 
-                            <span>
-                                Producto solicitado
-                            </span>
-
-                            <strong data-campo="productoSolicitado">—</strong>
-
-                        </div>
 
                     </div>
 
@@ -154,6 +146,10 @@
                         <button type="submit" class="reserva-resumen__correos" id="guardar-estado" disabled>Guardar estado</button>
                         <p id="mensaje-estado" role="status" aria-live="polite"></p>
                     </form>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
+                        <a id="enviar-correo" href="perfiladministrador-correos.html#plantilla-correo" class="reserva-resumen__correos" style="text-decoration: none;">Enviar correo</a>
+                        <a id="ver-correos" href="perfiladministrador-correos.html" class="reserva-resumen__correos" style="text-decoration: none;">Ver correos enviados</a>
+                    </div>
 
                 </article>
 
@@ -225,20 +221,7 @@
 
                         </div>
 
-                        <div class="reserva-campo">
 
-                            <label for="reserva-telefono">
-                                Teléfono
-                            </label>
-
-                            <input
-                                id="reserva-telefono"
-                                type="tel"
-                                value=""
-                                readonly
-                            >
-
-                        </div>
                         <div class="reserva-campo">
 
                             <label for="reserva-ciudad">
@@ -258,85 +241,14 @@
 
                 </section>
 
-                <section
-                    class="reserva-evento"
-                    aria-labelledby="titulo-evento"
-                >
 
+
+                <section class="reserva-proceso" aria-labelledby="titulo-requerimientos">
                     <header class="reserva-seccion__encabezado">
-
-                        <h2 id="titulo-evento">
-                            Información del evento
-                        </h2>
-
-                        <div
-                            class="reserva-seccion__linea"
-                            aria-hidden="true"
-                        ></div>
-
+                        <h2 id="titulo-requerimientos">Requerimientos del cliente</h2>
+                        <div class="reserva-seccion__linea" aria-hidden="true"></div>
                     </header>
-
-
-                    <div class="reserva-evento__grid">
-
-                        <article class="reserva-evento__item">
-
-                            <span>
-                                Evento
-                            </span>
-
-                            <strong data-campo="tipoEvento">—</strong>
-
-                        </article>
-
-
-                        <article class="reserva-evento__item">
-
-                            <span>
-                                Fecha reservada
-                            </span>
-
-                            <strong data-campo="fechaEvento">—</strong>
-
-                        </article>
-
-
-                        <article class="reserva-evento__item">
-
-                            <span>
-                                Cantidad estimada
-                            </span>
-
-                            <strong data-campo="numeroInvitados">—</strong>
-
-                        </article>
-
-                    </div>
-
-                </section>
-
-                <section
-                    class="reserva-proceso"
-                    aria-labelledby="titulo-proceso-reserva"
-                >
-
-                    <header class="reserva-seccion__encabezado">
-
-                        <h2 id="titulo-proceso-reserva">
-                            Datos adicionales de la solicitud
-                        </h2>
-
-                        <div
-                            class="reserva-seccion__linea"
-                            aria-hidden="true"
-                        ></div>
-
-                    </header>
-
-
-                    <div class="reserva-timeline" id="datos-adicionales"></div>
-
-
+                    <p data-campo="requerimientos" style="white-space: pre-wrap; overflow-wrap: anywhere;">—</p>
                 </section>
                 </div>
             </section>

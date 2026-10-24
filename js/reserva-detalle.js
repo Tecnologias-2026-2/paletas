@@ -33,37 +33,15 @@ function mostrar(datos) {
     });
     const campos = {
         "reserva-nombre": "nombreContacto", "reserva-direccion": "ubicacionEvento",
-        "reserva-correo": "correoContacto", "reserva-telefono": "telefonoContacto",
+        "reserva-correo": "correoContacto",
         "reserva-ciudad": "codigoPostal"
     };
     Object.entries(campos).forEach(([elemento, campo]) => {
         document.getElementById(elemento).value = texto(datos[campo]);
     });
-    // Muestra todos los campos guardados, incluidos campos adicionales y fechas reales.
-    const adicionales = document.getElementById("datos-adicionales");
-    adicionales.replaceChildren();
-    const etiquetas = {
-        id: "Identificador de reserva", tipoEvento: "Tipo de evento",
-        fechaEvento: "Fecha del evento", numeroInvitados: "Invitados",
-        ubicacionEvento: "Ubicación del evento", requerimientos: "Requerimientos",
-        nombreContacto: "Nombre del contacto", direccionResidencia: "Dirección de residencia",
-        codigoPostal: "Código postal", correoContacto: "Correo electrónico",
-        telefonoContacto: "Teléfono", estado: "Estado", prioridad: "Prioridad",
-        fechaSolicitud: "Fecha de solicitud", fechaActualizacion: "Última actualización",
-        actualizadoPor: "Administrador que actualizó el estado"
-    };
-    Object.entries({ ...datos, id }).forEach(([campo, valor]) => {
-        const fila = document.createElement("div");
-        fila.className = "reserva-evento__item";
-        const etiqueta = document.createElement("span");
-        etiqueta.textContent = etiquetas[campo] || campo;
-        const dato = document.createElement("strong");
-        dato.textContent = texto(valor);
-        dato.style.whiteSpace = "pre-wrap";
-        dato.style.overflowWrap = "anywhere";
-        fila.append(etiqueta, dato);
-        adicionales.append(fila);
-    });
+    const paginaCorreos = "perfiladministrador-correos.html?reserva=" + encodeURIComponent(id);
+    document.getElementById("enviar-correo").href = paginaCorreos + "#plantilla-correo";
+    document.getElementById("ver-correos").href = paginaCorreos;
     selector.value = estados.includes(datos.estado) ? datos.estado : "pendiente";
     contenido.hidden = false;
     mensaje.textContent = "";

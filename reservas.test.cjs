@@ -49,8 +49,13 @@ async function main() {
     detalle.emitir({exists:()=>true,data:()=>({...real,requerimientos:'Sin azúcar',direccionResidencia:'Dirección real'})});
     assert.equal(detalle.obtener('contenido-reserva').hidden,false);
     assert.equal(detalle.obtener('reserva-nombre').value,real.nombreContacto);
-    assert.equal(detalle.obtener('reserva-telefono').value,'No registrado');
-    assert(detalle.obtener('datos-adicionales').children.some(e=>e.children[1].textContent==='Sin azúcar'));
+    assert.equal(detalle.obtener('enviar-correo').href,'perfiladministrador-correos.html?reserva=reserva-real#plantilla-correo');
+    assert.equal(detalle.obtener('ver-correos').href,'perfiladministrador-correos.html?reserva=reserva-real');
+    const html=fs.readFileSync(path.join(__dirname,'perfiladministrador-misreservas-info.html'),'utf8');
+    for (const campo of ['tipoEvento','fechaEvento','numeroInvitados','requerimientos']) {
+        assert.equal(html.split('data-campo="'+campo+'"').length-1,1);
+    }
+    assert(!html.includes('datos-adicionales'));
     for (const siguiente of ['confirmada','finalizada','cancelada','pendiente']) {
         detalle.obtener('reserva-estado').value=siguiente;
         await detalle.obtener('form-estado').listeners.submit({preventDefault(){}});
