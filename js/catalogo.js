@@ -1,6 +1,6 @@
 /*
- * Si el administrador modificó el catálogo, reemplaza las paletas escritas en
- * paletas.html por las guardadas. Si no, deja el HTML original intacto.
+ * Dibuja las paletas del catálogo (data/paletas.json, o las que haya guardado
+ * el administrador). Si no se puede cargar, deja el HTML original intacto.
  */
 window.catalogoListo = (async () => {
   const lista = document.querySelector(".catalogo-paletas__grid");
@@ -8,7 +8,7 @@ window.catalogoListo = (async () => {
 
   let paletas;
   try {
-    paletas = await window.PaletasDatos.listarPersonalizado();
+    paletas = await window.PaletasDatos.listar();
   } catch {
     return;
   }
