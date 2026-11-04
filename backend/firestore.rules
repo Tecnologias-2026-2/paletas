@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /reservas/{reservaId} {
+      allow read, write: if false;
+      match /correos/{correoId} {
+        allow read, write: if false;
+      }
+    }
+    // La aplicación accede a Firestore exclusivamente por la API con Admin SDK.
+  }
+}

@@ -1,0 +1,22 @@
+# Dependencies and generated output
+**/node_modules/
+**/coverage/
+**/.firebase/
+
+# Local environment and credentials
+**/.env
+**/.env.*
+!**/.env.example
+**/*service-account*.json
+**/*serviceAccount*.json
+**/*credential*.json
+**/firebase-adminsdk-*.json
+**/*.pem
+**/*.p12
+**/*.key
+
+# Local operating-system files and logs
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*

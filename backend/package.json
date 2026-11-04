@@ -1,0 +1,27 @@
+{
+  "name": "paletas-backend",
+  "version": "1.0.0",
+  "description": "API de Paletas de Hielo con Firebase Firestore",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "seed:products": "node database/seed-products.js"
+  },
+  "keywords": [
+    "backend",
+    "api",
+    "rest"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase-admin": "^14.5.0",
+    "nodemailer": "^10.3.1"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

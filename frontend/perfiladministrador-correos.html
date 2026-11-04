@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Correos enviados | Paletas de Hielo</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="admin">
+
+        <div class="admin__layout">
+            <div id="sidebar-admin"></div>
+            <section
+                class="admin-contenido correos-admin"
+                aria-labelledby="titulo-correos"
+            >
+                <nav
+                    class="correos-admin__breadcrumb"
+                    aria-label="Migas de pan"
+                >
+
+                    <a href="perfiladministrador.html">
+                        Administrador
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <a href="perfiladministrador-mispedidos.html">
+                        Mis pedidos
+                    </a>
+
+                    <span aria-hidden="true">/</span>
+
+                    <span aria-current="page">
+                        Correos enviados
+                    </span>
+
+                </nav>
+
+                <header class="correos-admin__header">
+
+                    <div>
+
+                        <h1 id="titulo-correos">
+                            Correos enviados
+                        </h1>
+
+                        <p>
+                            Consulta las comunicaciones enviadas
+                            al cliente.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="#plantilla-correo"
+                        class="correos-admin__editar"
+                    >
+                        Editar plantilla
+                    </a>
+
+                </header>
+
+                <section
+                    class="correos-cliente"
+                    aria-label="Información del cliente"
+                >
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Cliente
+                        </span>
+
+                        <strong id="correo-cliente-nombre">Cargando...</strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Correo
+                        </span>
+
+                        <span id="correo-cliente-email">Cargando...</span>
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="correos-cliente__etiqueta">
+                            Referencia
+                        </span>
+
+                        <span id="correo-cliente-referencia">—</span>
+
+                    </div>
+
+                </section>
+                <section
+                    class="historial-correos"
+                    aria-labelledby="titulo-historial"
+                >
+
+                    <div class="correos-seccion__titulo">
+
+                        <h2 id="titulo-historial">
+                            Historial
+                        </h2>
+
+                        <span id="contador-correos">0 correos</span>
+
+                    </div>
+
+
+                <div class="historial-correos__lista" id="lista-correos">
+                    <p>Cargando historial de correos...</p>
+                </div>
+
+                </section>
+                <section
+                    id="plantilla-correo"
+                    class="plantilla-correo"
+                    aria-labelledby="titulo-plantilla"
+                >
+
+                    <header class="plantilla-correo__header">
+
+                        <div>
+
+                            <span class="plantilla-correo__etiqueta">
+                                Plantilla
+                            </span>
+
+                            <h2 id="titulo-plantilla">
+                                Editar correo
+                            </h2>
+
+                            <p>
+                                Personaliza el contenido que recibirá
+                                el cliente.
+                            </p>
+
+                        </div>
+
+                    </header>
+
+
+                    <form id="formulario-correo" class="plantilla-correo__formulario">
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-asunto">
+                                Asunto
+                            </label>
+
+                            <input
+                                id="plantilla-asunto"
+                                type="text"
+                                value="Tu pedido ha sido confirmado"
+                                maxlength="160"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-titulo">
+                                Título del correo
+                            </label>
+
+                            <input
+                                id="plantilla-titulo"
+                                type="text"
+                                value="¡Tu pedido fue confirmado!"
+                                maxlength="160"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="plantilla-correo__campo">
+
+                            <label for="plantilla-mensaje">
+                                Mensaje
+                            </label>
+
+                            <textarea
+                                id="plantilla-mensaje"
+                                rows="6"
+                                maxlength="5000"
+                                required
+                            >Hemos recibido correctamente tu pedido. Nuestro equipo comenzará a prepararlo y te mantendremos informada sobre su estado.</textarea>
+
+                        </div>
+
+
+                        <p class="plantilla-correo__ayuda">
+                            El correo se enviará a la dirección registrada en
+                            esta reserva. Configura una contraseña de aplicación
+                            de Gmail en el archivo backend/.env.
+                        </p>
+
+
+                        <button
+                            type="submit"
+                            id="enviar-correo-cliente"
+                            class="plantilla-correo__guardar"
+                        >
+                            Enviar correo
+                        </button>
+
+                        <p id="mensaje-correo" role="status" aria-live="polite"></p>
+
+                    </form>
+
+                </section>
+
+            </section>
+
+        </div>
+
+    </main>
+    <div id="footer"></div>
+
+
+    <script src="js/components.js"></script>
+    <script type="module" src="js/correos-firebase.js"></script>
+</body>
+
+</html>
