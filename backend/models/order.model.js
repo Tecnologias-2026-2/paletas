@@ -66,6 +66,28 @@ async function updateState(id, estado) {
   return { id, estado };
 }
 
+async function getEmails(id) {
+  const snapshot = await orders.doc(id).collection('correos')
+    .orderBy('fechaEnvio', 'desc').get();
+  return snapshot.docs.map(doc => ({ id: doc.id, ...serialize(doc.data()) }));
+}
+
+async function createEmail(id, data) {
+  const ref = await orders.doc(id).collection('correos').add({
+    ...data,
+    estado: 'enviando',
+    fechaEnvio: FieldValue.serverTimestamp()
+  });
+  return ref.id;
+}
+
+async function updateEmail(id, emailId, data) {
+  await orders.doc(id).collection('correos').doc(emailId).update({
+    ...data,
+    ...(data.estado === 'enviado' ? { fechaEnvio: FieldValue.serverTimestamp() } : {})
+  });
+}
+
 async function importLegacy(legacyOrders) {
   const ordersById = new Map();
   legacyOrders.forEach(order => {
@@ -93,4 +115,13 @@ async function importLegacy(legacyOrders) {
   return { imported, skipped: legacyOrders.length - imported };
 }
 
-module.exports = { getAll, getById, create, updateState, importLegacy };
+module.exports = {
+  getAll,
+  getById,
+  create,
+  createEmail,
+  getEmails,
+  importLegacy,
+  updateEmail,
+  updateState
+};

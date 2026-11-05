@@ -26,6 +26,8 @@ try {
   escribir("pedido-correo", cliente.correo);
   escribir("pedido-telefono", cliente.telefono);
   escribir("pedido-ciudad", cliente.municipio);
+  const enlaceCorreos = document.querySelector(".pedido-resumen__correos");
+  enlaceCorreos.href = `perfiladministrador-correos.html?pedido=${encodeURIComponent(pedido.id)}`;
 } catch (error) {
   titulo.textContent = error.message;
 }

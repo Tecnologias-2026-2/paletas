@@ -37,6 +37,21 @@ export async function enviarCorreo(id, contenido) {
   }, true);
 }
 
+export async function obtenerPedido(id) {
+  return apiRequest(`/api/orders/${encodeURIComponent(id)}`, {}, true);
+}
+
+export async function obtenerCorreosPedido(id) {
+  return apiRequest(`/api/orders/${encodeURIComponent(id)}/emails`, {}, true);
+}
+
+export async function enviarCorreoPedido(id, contenido) {
+  return apiRequest(`/api/orders/${encodeURIComponent(id)}/emails`, {
+    method: "POST",
+    body: JSON.stringify(contenido),
+  }, true);
+}
+
 export async function guardarEstado(id, estado) {
   if (!estados.includes(estado)) throw new Error("Estado inválido.");
   return apiRequest(`/api/reservation/${encodeURIComponent(id)}`, {

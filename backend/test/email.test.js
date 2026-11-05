@@ -21,21 +21,33 @@ test('validates editable email content and rejects header injection', () => {
 
 test('creates safe HTML and plain-text reservation email bodies', () => {
   const bodies = createEmailBodies(
-    { nombreContacto: '<Ana>' },
+    '<Ana>',
     'id&123',
     {
       asunto: 'Reserva',
       titulo: '<Confirmada>',
       mensaje: 'Primera línea\n<script>alert(1)</script>'
-    }
+    },
+    'Referencia del pedido'
   );
 
   assert.match(bodies.html, /&lt;Confirmada&gt;/);
   assert.match(bodies.html, /Hola &lt;Ana&gt;/);
   assert.match(bodies.html, /id&amp;123/);
+  assert.match(bodies.html, /Referencia del pedido/);
   assert.doesNotMatch(bodies.html, /<script>/);
   assert.match(bodies.html, /Primera línea<br>&lt;script&gt;/);
-  assert.match(bodies.text, /Referencia de reserva: id&123/);
+  assert.match(bodies.text, /Referencia del pedido: id&123/);
+});
+
+test('preserves the reservation reference format', () => {
+  const bodies = createEmailBodies(
+    'Ana',
+    'reserva-1',
+    { asunto: 'Asunto', titulo: 'Título', mensaje: 'Mensaje' },
+    'Referencia de reserva'
+  );
+  assert.match(bodies.text, /Referencia de reserva: reserva-1/);
 });
 
 test('requires Gmail SMTP credentials before attempting delivery', async () => {

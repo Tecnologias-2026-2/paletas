@@ -28,14 +28,15 @@ function escapeHtml(value) {
   })[character]);
 }
 
-function createEmailBodies(reservation, reservationId, content) {
-  const name = escapeHtml(reservation.nombreContacto);
+function createEmailBodies(customerName, reference, content, referenceLabel = 'Referencia') {
+  const name = escapeHtml(customerName);
   const title = escapeHtml(content.titulo.trim());
   const message = escapeHtml(content.mensaje.trim()).replace(/\r?\n/g, '<br>');
-  const reference = escapeHtml(reservationId);
+  const label = escapeHtml(referenceLabel);
+  const escapedReference = escapeHtml(reference);
 
   return {
-    text: `${content.titulo.trim()}\n\nHola ${reservation.nombreContacto},\n\n${content.mensaje.trim()}\n\nReferencia de reserva: ${reservationId}`,
+    text: `${content.titulo.trim()}\n\nHola ${customerName},\n\n${content.mensaje.trim()}\n\n${referenceLabel}: ${reference}`,
     html: `<!doctype html>
 <html lang="es">
   <body style="margin:0;padding:24px;background:#f7f5f2;font-family:Arial,sans-serif;color:#302b29">
@@ -44,7 +45,7 @@ function createEmailBodies(reservation, reservationId, content) {
       <h1 style="font-size:24px">${title}</h1>
       <p>Hola ${name},</p>
       <p style="line-height:1.6">${message}</p>
-      <p style="margin-top:24px;color:#665d58">Referencia de reserva: ${reference}</p>
+      <p style="margin-top:24px;color:#665d58">${label}: ${escapedReference}</p>
     </main>
   </body>
 </html>`
@@ -72,21 +73,29 @@ function createTransporter() {
   });
 }
 
-async function sendReservationEmail(reservation, reservationId, content) {
+async function sendCustomerEmail(customer, reference, content, referenceLabel = 'Referencia') {
   const transporter = createTransporter();
-  const bodies = createEmailBodies(reservation, reservationId, content);
+  const bodies = createEmailBodies(customer.name, reference, content, referenceLabel);
   const fromName = process.env.SMTP_FROM_NAME || 'Paletas de Hielo';
   const info = await transporter.sendMail({
     from: { name: fromName, address: process.env.SMTP_USER },
-    to: reservation.correoContacto,
+    to: customer.email,
     subject: content.asunto.trim(),
     ...bodies
   });
   return { messageId: info.messageId || null };
 }
 
+function sendReservationEmail(reservation, reservationId, content) {
+  return sendCustomerEmail({
+    email: reservation.correoContacto,
+    name: reservation.nombreContacto
+  }, reservationId, content, 'Referencia de reserva');
+}
+
 module.exports = {
   createEmailBodies,
+  sendCustomerEmail,
   sendReservationEmail,
   validateEmailContent
 };

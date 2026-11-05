@@ -15,6 +15,14 @@ async function orderRoutes(req, res, pathname) {
     await requireAdmin(req);
     return orderController.importLegacy(req, res);
   }
+  if (id && segments[3] === 'emails' && segments.length === 4 && req.method === 'GET') {
+    await requireAdmin(req);
+    return orderController.getEmails(req, res, id);
+  }
+  if (id && segments[3] === 'emails' && segments.length === 4 && req.method === 'POST') {
+    await requireAdmin(req);
+    return orderController.sendEmail(req, res, id);
+  }
   if (id && req.method === 'GET') {
     await requireAdmin(req);
     return orderController.getById(req, res, id);

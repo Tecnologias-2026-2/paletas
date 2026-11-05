@@ -61,12 +61,13 @@ Guarda contraseñas y valores privados desde el panel de Render, no en `render.y
 | POST | `/api/orders` | Público |
 | GET/PATCH | `/api/orders` y `/api/orders/:id` | Administrador |
 | POST | `/api/orders/import` | Administrador |
+| GET/POST | `/api/orders/:id/emails` | Administrador |
 | POST | `/api/reservation`, `/api/reservas` o `/api/reservations` | Público |
 | GET/PATCH | `/api/reservation`, `/api/reservas` o `/api/reservations` y sus IDs | Administrador |
 | GET | `/api/reservation/:id/emails`, `/api/reservas/:id/emails` o `/api/reservations/:id/emails` | Administrador |
 | POST | `/api/reservation/:id/emails` | Administrador |
 | GET | `/api/admin` | Administrador |
 
-El envío toma como destinatario el correo guardado en la reserva. El backend guarda los intentos y el estado del envío en `reservas/{id}/correos`; la plantilla permite editar asunto, título y mensaje.
+El envío toma como destinatario el correo guardado en cada pedido o reserva. El backend guarda los intentos y su estado en `pedidos/{id}/correos` o `reservas/{id}/correos`; la plantilla permite editar asunto, título y mensaje.
 
 Las rutas de administrador requieren `Authorization: Bearer <Firebase ID token>`. Por eso, abrir `GET /api/reservation` directamente en la barra del navegador no mostrará la lista: hay que consultarla desde la sección de reservas con la sesión de administrador activa. Al iniciar sesión, la pantalla de entrada llama automáticamente a `GET /api/admin` con el token; solo abre el panel si el backend confirma la cuenta. Para comprobar peticiones posteriores, abre las herramientas de desarrollador del navegador, pestaña Network/Red, y revisa `GET /api/reservation`: debe responder `200`; la solicitud lleva `Authorization: Bearer ...`. No compartas ese valor. `GET /api/admin` devuelve solo el perfil Firebase del UID configurado. Los controladores y modelos de pedidos están creados aunque la administración de pedidos siga en construcción. `CORS_ORIGINS` admite una lista separada por comas. Para ejecutar pruebas unitarias: `npm test`.
