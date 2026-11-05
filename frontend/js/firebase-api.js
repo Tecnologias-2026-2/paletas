@@ -12,7 +12,7 @@ const app = getApps().length ? getApp() : initializeApp({
 
 export const auth = getAuth(app);
 const API_BASE = window.PALETAS_API_BASE ??
-  (location.port === "5500" ? "http://localhost:3000" : "");
+  (location.port === "5500" ? "http://localhost:3000" : "https://paletas-4vu7.onrender.com");
 
 let authReady;
 function waitForAuth() {

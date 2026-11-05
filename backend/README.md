@@ -29,6 +29,8 @@ El backend expone una API HTTP y sirve las páginas y los recursos desde `../fro
 
 Al iniciar, el servidor comprueba Firestore y muestra `Base de datos Firestore conectada.` o un error de conexión en la consola. El servidor usa Admin SDK, por lo que las reglas Firestore no autorizan las solicitudes del backend. La API verifica tokens Firebase y comprueba el UID administrador antes de leer o cambiar pedidos, productos, reservas y el historial de correos. Las reglas del cliente deniegan el acceso directo a Firestore.
 
+La API acepta solicitudes desde `https://tecnologias-2026-2.github.io` y desde los orígenes locales indicados en `CORS_ORIGINS`.
+
 ## Datos y migración
 
 - Colecciones: `productos`, `pedidos` y `reservas`; el historial de correo permanece en `reservas/{id}/correos`.
