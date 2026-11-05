@@ -50,6 +50,10 @@ Este proyecto necesita un **Web Service**: además de la API Node.js, `server.js
 
 Guarda contraseñas y valores privados desde el panel de Render, no en `render.yaml` ni en GitHub. Si el envío SMTP de Gmail no logra conectar desde el servicio, habrá que usar un proveedor de correo con API HTTP o revisar las restricciones de red del plan.
 
+## Publicar el frontend en GitHub Pages
+
+El workflow `.github/workflows/pages.yml` publica el contenido de `frontend/` como raíz del sitio, por lo que `frontend/index.html` permanece en su carpeta y sirve como página principal. En GitHub, configura **Settings > Pages > Build and deployment > Source: GitHub Actions**. Los cambios futuros en `frontend/` de `main` ejecutan el despliegue. Pages solo sirve contenido estático; las funciones que llaman `/api` requieren que el backend esté desplegado y que `PALETAS_API_BASE` apunte a su URL pública.
+
 ## Rutas principales
 
 | Método | Ruta | Acceso |
