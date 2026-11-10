@@ -14,6 +14,10 @@ const PACKAGING = {
   'bolsa-plastica': { nombre: 'Bolsa Plástica', costo: 1500 }
 };
 
+const MAX_UPLOADED_IMAGE_BYTES = 700 * 1024;
+const BUNDLED_IMAGE = /^assets\/imagenes\/paletas\/[a-z0-9-]+\.(png|webp|jpe?g)$/;
+const UPLOADED_IMAGE = /^\/api\/products\/images\/([A-Za-z0-9]{10,40})$/;
+
 const isText = (value, maxLength, minLength = 1) =>
   typeof value === 'string' && value.trim().length >= minLength && value.trim().length <= maxLength;
 
@@ -23,9 +27,28 @@ function validateProduct(product) {
     Number.isInteger(product.precio) && product.precio > 0 && product.precio <= 999999 &&
     isText(product.peso, 30) &&
     isText(product.imagen, 300) &&
+    (BUNDLED_IMAGE.test(product.imagen) || UPLOADED_IMAGE.test(product.imagen)) &&
     isText(product.alt, 200) &&
     Array.isArray(product.categorias) &&
     product.categorias.every(category => CATEGORIES.has(category));
+}
+
+// Detecta el formato real por los primeros bytes, sin confiar en el Content-Type enviado.
+function detectImageType(buffer) {
+  if (!Buffer.isBuffer(buffer) || buffer.length < 12) return null;
+  if (buffer.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) {
+    return 'image/png';
+  }
+  if (buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff) return 'image/jpeg';
+  if (buffer.toString('ascii', 0, 4) === 'RIFF' && buffer.toString('ascii', 8, 12) === 'WEBP') {
+    return 'image/webp';
+  }
+  return null;
+}
+
+function uploadedImageId(imagen) {
+  const match = typeof imagen === 'string' ? UPLOADED_IMAGE.exec(imagen) : null;
+  return match ? match[1] : null;
 }
 
 function validateReservation(data) {
@@ -100,10 +123,13 @@ function slugify(value) {
 }
 
 module.exports = {
+  MAX_UPLOADED_IMAGE_BYTES,
+  detectImageType,
   ORDER_STATES,
   PACKAGING,
   RESERVATION_STATES,
   slugify,
+  uploadedImageId,
   validateLegacyOrder,
   validateOrder,
   validateProduct,

@@ -1,3 +1,4 @@
+import { apiRequest, waitForAuth } from "./firebase-api.js";
 import { PaletasDatos as datos } from "./paletas-datos.js";
 
 (() => {
@@ -36,12 +37,25 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
     alt: $("campo-alt"),
   };
   const vistaImagen = $("vista-imagen");
+  const campoArchivo = $("campo-archivo");
+  const errorFormulario = $("error-formulario");
+  const contenido = $("productos-contenido");
+  const sesion = $("productos-sesion");
+
+  // Imagen subida: se redimensiona en el navegador y se sube al guardar la paleta.
+  const TIPOS_IMAGEN = ["image/png", "image/jpeg", "image/webp"];
+  const MAX_ARCHIVO = 15 * 1024 * 1024;
+  const MAX_LADO = 800;
+  const MAX_BYTES = 600 * 1024;
+  const VALOR_NUEVA = "__subida__";
+  let archivoPreparado = null;
+  let urlVistaPrevia = null;
+  const opcionSubida = document.createElement("option");
 
   const confirmar = $("dialogo-confirmar");
 
   let paletas = [];
   let editandoId = null;
-  let migracionLocalIntentada = false;
 
   const cop = (n) => `${n.toLocaleString("de-DE")} COP`;
 
@@ -70,7 +84,7 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
     item.dataset.id = p.id;
 
     const imagen = crear("img", "producto-admin__imagen");
-    imagen.src = p.imagen;
+    imagen.src = datos.urlImagen(p.imagen);
     imagen.alt = "";
     imagen.width = 72;
     imagen.height = 72;
@@ -114,15 +128,6 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
   }
 
   async function cargar() {
-    if (!migracionLocalIntentada) {
-      migracionLocalIntentada = true;
-      try {
-        const importados = await datos.importarCatalogoLocal();
-        if (importados) anunciar(`Se migraron ${importados} productos guardados en este navegador.`);
-      } catch (error) {
-        anunciar(`El catálogo local no se pudo migrar: ${error.message}`);
-      }
-    }
     try {
       paletas = await datos.listar();
       pintar();
@@ -171,8 +176,101 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
     })
   );
 
-  const actualizarVista = () => { vistaImagen.src = campos.imagen.value; };
-  campos.imagen.addEventListener("change", actualizarVista);
+  const actualizarVista = () => {
+    vistaImagen.src = archivoPreparado && urlVistaPrevia
+      ? urlVistaPrevia
+      : datos.urlImagen(campos.imagen.value);
+  };
+
+  function soltarVistaPrevia() {
+    if (urlVistaPrevia) URL.revokeObjectURL(urlVistaPrevia);
+    urlVistaPrevia = null;
+  }
+
+  function mostrarOpcionSubida(valor, texto) {
+    opcionSubida.value = valor;
+    opcionSubida.textContent = texto;
+    campos.imagen.prepend(opcionSubida);
+    campos.imagen.value = valor;
+  }
+
+  function ocultarOpcionSubida() {
+    opcionSubida.remove();
+  }
+
+  function descartarArchivo() {
+    archivoPreparado = null;
+    campoArchivo.value = "";
+    soltarVistaPrevia();
+  }
+
+  // Reduce el lado mayor y recodifica en WebP hasta que pese poco; conserva la transparencia.
+  async function prepararImagen(archivo) {
+    if (!TIPOS_IMAGEN.includes(archivo.type)) {
+      throw new Error("El archivo debe ser una imagen PNG, JPG o WebP.");
+    }
+    if (archivo.size > MAX_ARCHIVO) {
+      throw new Error("La imagen pesa más de 15 MB. Elige una más pequeña.");
+    }
+    let mapa;
+    try {
+      mapa = await createImageBitmap(archivo);
+    } catch {
+      throw new Error("No se pudo leer la imagen. Prueba con otro archivo.");
+    }
+    let escala = Math.min(1, MAX_LADO / Math.max(mapa.width, mapa.height));
+    try {
+      for (let intento = 0; intento < 6; intento += 1) {
+        const lienzo = document.createElement("canvas");
+        lienzo.width = Math.max(1, Math.round(mapa.width * escala));
+        lienzo.height = Math.max(1, Math.round(mapa.height * escala));
+        lienzo.getContext("2d").drawImage(mapa, 0, 0, lienzo.width, lienzo.height);
+        const blob = await new Promise((resolver) => lienzo.toBlob(resolver, "image/webp", 0.85));
+        if (blob && blob.size <= MAX_BYTES) return blob;
+        escala *= 0.75;
+      }
+    } finally {
+      mapa.close?.();
+    }
+    throw new Error("No se pudo reducir la imagen al tamaño permitido.");
+  }
+
+  campoArchivo.addEventListener("change", async () => {
+    limpiarErrorImagen();
+    const archivo = campoArchivo.files[0];
+    if (!archivo) return;
+    try {
+      const blob = await prepararImagen(archivo);
+      soltarVistaPrevia();
+      archivoPreparado = blob;
+      urlVistaPrevia = URL.createObjectURL(blob);
+      mostrarOpcionSubida(VALOR_NUEVA, `Imagen nueva: ${archivo.name}`);
+      actualizarVista();
+    } catch (error) {
+      campoArchivo.value = "";
+      campoArchivo.setAttribute("aria-invalid", "true");
+      mostrarError(campos.imagen, error.message);
+      campoArchivo.focus();
+    }
+  });
+
+  campos.imagen.addEventListener("change", () => {
+    // Elegir una imagen del sitio descarta el archivo que se había seleccionado.
+    if (campos.imagen.value !== VALOR_NUEVA) {
+      if (archivoPreparado) ocultarOpcionSubida();
+      descartarArchivo();
+    }
+    limpiarErrorImagen();
+    actualizarVista();
+  });
+
+  function limpiarErrorImagen() {
+    const error = $("error-imagen");
+    error.hidden = true;
+    error.textContent = "";
+    campos.imagen.removeAttribute("aria-invalid");
+    campoArchivo.removeAttribute("aria-invalid");
+  }
 
   function mostrarError(campo, mensaje) {
     const error = $(`error-${campo.name}`);
@@ -187,6 +285,9 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
       e.textContent = "";
     });
     Object.values(campos).forEach((c) => c.removeAttribute("aria-invalid"));
+    campoArchivo.removeAttribute("aria-invalid");
+    errorFormulario.hidden = true;
+    errorFormulario.textContent = "";
   }
 
   Object.values(campos).forEach((campo) => {
@@ -207,7 +308,13 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
     campos.nombre.value = paleta ? paleta.nombre : "";
     campos.precio.value = paleta ? paleta.precio : "";
     campos.peso.value = paleta ? paleta.peso : "90gr";
-    campos.imagen.value = paleta ? paleta.imagen : IMAGENES[0].ruta;
+    descartarArchivo();
+    ocultarOpcionSubida();
+    if (paleta && paleta.imagen.startsWith("/api/")) {
+      mostrarOpcionSubida(paleta.imagen, "Imagen subida actual");
+    } else {
+      campos.imagen.value = paleta ? paleta.imagen : IMAGENES[0].ruta;
+    }
     campos.alt.value = paleta ? paleta.alt : "";
     formulario
       .querySelectorAll('input[name="categorias"]')
@@ -261,30 +368,55 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
     evento.preventDefault();
     if (!validar()) return;
 
-    const nuevos = {
-      nombre: campos.nombre.value.trim(),
-      precio: Number(campos.precio.value),
-      peso: campos.peso.value.trim(),
-      imagen: campos.imagen.value,
-      alt: campos.alt.value.trim(),
-      categorias: [...formulario.querySelectorAll('input[name="categorias"]:checked')].map((c) => c.value),
-    };
+    const botonGuardar = formulario.querySelector('button[type="submit"]');
+    const textoGuardar = botonGuardar.textContent;
+    botonGuardar.disabled = true;
+    botonGuardar.textContent = "Guardando...";
+    let imagenSubida = null;
 
-    let idFinal = editandoId;
-    if (editandoId) {
-      await datos.actualizar(editandoId, nuevos);
-      anunciar(`Se guardaron los cambios de ${nuevos.nombre}.`);
-    } else {
-      idFinal = (await datos.crear(nuevos)).id;
-      anunciar(`Se agregó ${nuevos.nombre} al final del catálogo.`);
+    try {
+      const nuevos = {
+        nombre: campos.nombre.value.trim(),
+        precio: Number(campos.precio.value),
+        peso: campos.peso.value.trim(),
+        imagen: campos.imagen.value,
+        alt: campos.alt.value.trim(),
+        categorias: [...formulario.querySelectorAll('input[name="categorias"]:checked')].map((c) => c.value),
+      };
+
+      if (archivoPreparado) {
+        imagenSubida = await datos.subirImagen(archivoPreparado);
+        nuevos.imagen = imagenSubida;
+      }
+
+      let idFinal = editandoId;
+      if (editandoId) {
+        await datos.actualizar(editandoId, nuevos);
+        anunciar(`Se guardaron los cambios de ${nuevos.nombre}.`);
+      } else {
+        idFinal = (await datos.crear(nuevos)).id;
+        anunciar(`Se agregó ${nuevos.nombre} al final del catálogo.`);
+      }
+
+      descartarArchivo();
+      dialogo.close();
+      await cargar();
+      enfocar(idFinal, "editar");
+    } catch (error) {
+      // Si la paleta no se guardó, no dejamos la imagen subida huérfana.
+      if (imagenSubida) await datos.eliminarImagenSubida(imagenSubida).catch(() => {});
+      errorFormulario.textContent = error.message;
+      errorFormulario.hidden = false;
+    } finally {
+      botonGuardar.disabled = false;
+      botonGuardar.textContent = textoGuardar;
     }
-
-    dialogo.close();
-    await cargar();
-    enfocar(idFinal, "editar");
   });
 
   $("cancelar-producto").addEventListener("click", () => dialogo.close());
+  dialogo.addEventListener("close", () => {
+    descartarArchivo();
+  });
 
   dialogo.addEventListener("click", (evento) => {
     if (evento.target === dialogo) dialogo.close();
@@ -308,51 +440,93 @@ import { PaletasDatos as datos } from "./paletas-datos.js";
       return;
     }
 
-    if (accion === "subir" || accion === "bajar") {
-      await datos.mover(id, accion === "subir" ? -1 : 1);
-      await cargar();
-      const nueva = paletas.findIndex((p) => p.id === id) + 1;
-      anunciar(`${paleta.nombre} quedó en la posición ${nueva} de ${paletas.length}.`);
-      enfocar(id, accion);
-      return;
-    }
-
-    if (accion === "quitar") {
-      const acepto = await pedirConfirmacion({
-        titulo: "¿Quitar esta paleta?",
-        texto: `Se quitará "${paleta.nombre}" del catálogo.`,
-        aceptar: "Quitar",
-      });
-
-      if (!acepto) {
-        boton.focus();
+    try {
+      if (accion === "subir" || accion === "bajar") {
+        await datos.mover(id, accion === "subir" ? -1 : 1);
+        await cargar();
+        const nueva = paletas.findIndex((p) => p.id === id) + 1;
+        anunciar(`${paleta.nombre} quedó en la posición ${nueva} de ${paletas.length}.`);
+        enfocar(id, accion);
         return;
       }
 
-      await datos.eliminar(id);
-      await cargar();
-      anunciar(`Se quitó ${paleta.nombre} del catálogo.`);
-      const vecino = paletas[Math.min(indice, paletas.length - 1)];
-      if (vecino) enfocar(vecino.id, "editar");
-      else botonAgregar.focus();
+      if (accion === "quitar") {
+        const acepto = await pedirConfirmacion({
+          titulo: "¿Quitar esta paleta?",
+          texto: `Se quitará "${paleta.nombre}" del catálogo.`,
+          aceptar: "Quitar",
+        });
+
+        if (!acepto) {
+          boton.focus();
+          return;
+        }
+
+        await datos.eliminar(id);
+        await cargar();
+        anunciar(`Se quitó ${paleta.nombre} del catálogo.`);
+        const vecino = paletas[Math.min(indice, paletas.length - 1)];
+        if (vecino) enfocar(vecino.id, "editar");
+        else botonAgregar.focus();
+      }
+    } catch (error) {
+      anunciar(error.message);
     }
   });
 
   botonRestaurar.addEventListener("click", async () => {
     const acepto = await pedirConfirmacion({
       titulo: "¿Restaurar el catálogo original?",
-      texto: "Se perderán los cambios hechos en las paletas.",
+      texto: "Se perderán los cambios hechos en las paletas, incluidas las imágenes subidas.",
       aceptar: "Restaurar",
     });
     if (!acepto) {
       botonRestaurar.focus();
       return;
     }
-    await datos.restaurar();
-    await cargar();
-    anunciar("Se restauró el catálogo original.");
-    botonAgregar.focus();
+    try {
+      await datos.restaurar();
+      await cargar();
+      anunciar("Se restauró el catálogo original.");
+      botonAgregar.focus();
+    } catch (error) {
+      anunciar(error.message);
+    }
   });
 
-  cargar();
+  /* ---------- Sesión ---------- */
+
+  function mostrarSesionRequerida(mensaje) {
+    contenido.hidden = true;
+    sesion.hidden = false;
+    estado.textContent = "";
+    if (mensaje) $("productos-sesion-mensaje").textContent = mensaje;
+  }
+
+  // Igual que pedidos y reservas: el panel solo se muestra con la sesión de administrador.
+  async function iniciar() {
+    try {
+      const usuario = await waitForAuth();
+      if (!usuario) {
+        mostrarSesionRequerida();
+        return;
+      }
+      await apiRequest("/api/admin", {}, true);
+    } catch (error) {
+      mostrarSesionRequerida(error.message);
+      return;
+    }
+
+    contenido.hidden = false;
+    estado.textContent = "";
+    try {
+      const importados = await datos.importarCatalogoLocal();
+      if (importados) anunciar(`Se migraron ${importados} productos guardados en este navegador.`);
+    } catch (error) {
+      anunciar(`El catálogo local no se pudo migrar: ${error.message}`);
+    }
+    cargar().catch(() => {});
+  }
+
+  iniciar();
 })();

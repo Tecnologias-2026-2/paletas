@@ -24,7 +24,7 @@ function tarjeta(producto, posicion) {
 
   const articulo = crear("article", "paleta");
   const imagen = crear("img", "paleta__imagen");
-  imagen.src = producto.imagen;
+  imagen.src = PaletasDatos.urlImagen(producto.imagen);
   imagen.alt = producto.alt;
   if (posicion > 1) imagen.loading = "lazy";
 
