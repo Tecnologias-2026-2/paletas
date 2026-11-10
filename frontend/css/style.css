@@ -8250,3 +8250,76 @@ html {
         align-items: stretch;
     }
 }
+
+/* ==========================================================================
+   Mis productos: sesión requerida y subida de imagen
+   ========================================================================== */
+.productos-admin__sesion {
+    padding: 28px 24px;
+    border: 2px solid #f3b7d4;
+    border-radius: 16px;
+    background-color: #fff;
+}
+
+.productos-admin__sesion h1 {
+    margin: 0 0 8px;
+    color: #b92f72;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.productos-admin__sesion p {
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
+
+.productos-admin__sesion .boton-admin {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.campo-admin__imagen input[type="file"] {
+    min-width: 0;
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #757575;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.9);
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.campo-admin__imagen input[type="file"]:focus-visible {
+    outline: 3px solid #b92f72;
+    outline-offset: 1px;
+}
+
+.campo-admin__imagen input[type="file"]::file-selector-button {
+    min-height: 36px;
+    margin-right: 10px;
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 8px;
+    background-color: #b92f72;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.campo-admin__etiqueta-secundaria {
+    margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+    .campo-admin__imagen {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .campo-admin__imagen input[type="file"] {
+        width: 100%;
+    }
+}

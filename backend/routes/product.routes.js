@@ -1,11 +1,73 @@
 const { db } = require('../database/connection');
-const { slugify, validateProduct } = require('../domain');
+const {
+  MAX_UPLOADED_IMAGE_BYTES,
+  detectImageType,
+  slugify,
+  uploadedImageId,
+  validateProduct
+} = require('../domain');
 const { requireAdmin } = require('../middleware/admin-auth');
-const { readBody, sendJson, serialize } = require('../utils/http');
+const { readBody, readRaw, sendJson, serialize } = require('../utils/http');
+
+const IMAGES = 'imagenesProductos';
+
+// Borra la imagen subida asociada a un producto; las imágenes del sitio (assets/...) no se tocan.
+async function deleteUploadedImage(imagen) {
+  const imageId = uploadedImageId(imagen);
+  if (imageId) await db.collection(IMAGES).doc(imageId).delete();
+}
+
+async function imageRoutes(req, res, segments) {
+  const imageId = segments[3];
+  if (segments.length > 4) return sendJson(res, 404, { error: 'Ruta de imágenes no encontrada.' });
+
+  if (req.method === 'POST' && !imageId) {
+    await requireAdmin(req);
+    const data = await readRaw(req, MAX_UPLOADED_IMAGE_BYTES);
+    const contentType = detectImageType(data);
+    if (!contentType) {
+      return sendJson(res, 400, { error: 'El archivo debe ser una imagen PNG, JPG o WebP.' });
+    }
+    const doc = db.collection(IMAGES).doc();
+    await doc.create({ contentType, data, size: data.length, creada: new Date() });
+    return sendJson(res, 201, { imagen: `/api/products/images/${doc.id}` });
+  }
+
+  if ((req.method === 'GET' || req.method === 'HEAD') && imageId) {
+    if (!uploadedImageId(`/api/products/images/${imageId}`)) {
+      return sendJson(res, 404, { error: 'Imagen no encontrada.' });
+    }
+    const snapshot = await db.collection(IMAGES).doc(imageId).get();
+    if (!snapshot.exists) return sendJson(res, 404, { error: 'Imagen no encontrada.' });
+    const { contentType, data } = snapshot.data();
+    const bytes = Buffer.from(data);
+    res.writeHead(200, {
+      'Content-Type': contentType,
+      'Content-Length': bytes.length,
+      // El ID cambia en cada subida, así que el contenido nunca se modifica.
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      'Content-Security-Policy': "default-src 'none'",
+      'Cross-Origin-Resource-Policy': 'cross-origin'
+    });
+    return res.end(req.method === 'HEAD' ? undefined : bytes);
+  }
+
+  if (req.method === 'DELETE' && imageId) {
+    await requireAdmin(req);
+    if (!uploadedImageId(`/api/products/images/${imageId}`)) {
+      return sendJson(res, 404, { error: 'Imagen no encontrada.' });
+    }
+    await db.collection(IMAGES).doc(imageId).delete();
+    return sendJson(res, 200, { deleted: true });
+  }
+  return sendJson(res, 404, { error: 'Ruta de imágenes no encontrada.' });
+}
 
 async function productRoutes(req, res, pathname) {
   const segments = pathname.split('/').filter(Boolean).map(decodeURIComponent);
   const id = segments[2];
+
+  if (id === 'images') return imageRoutes(req, res, segments);
 
   if (req.method === 'GET' && !id) {
     const snapshot = await db.collection('productos').orderBy('orden').get();
@@ -49,6 +111,8 @@ async function productRoutes(req, res, pathname) {
         batch.set(doc.ref, { ...data, orden: seed.findIndex(item => item.id === productId) });
       } else {
         batch.delete(doc.ref);
+        const imageId = uploadedImageId(doc.data().imagen);
+        if (imageId) batch.delete(db.collection(IMAGES).doc(imageId));
       }
     });
     seed.forEach(({ id: productId, ...product }, index) => {
@@ -85,6 +149,7 @@ async function productRoutes(req, res, pathname) {
     const updated = { ...current.data(), ...body };
     if (!validateProduct(updated)) return sendJson(res, 400, { error: 'Los datos del producto no son válidos.' });
     await product.set(updated);
+    if (updated.imagen !== current.data().imagen) await deleteUploadedImage(current.data().imagen);
     return sendJson(res, 200, { id, ...updated });
   }
   if (id && req.method === 'PATCH') {
@@ -111,6 +176,7 @@ async function productRoutes(req, res, pathname) {
     const snapshot = await product.get();
     if (!snapshot.exists) return sendJson(res, 404, { error: 'Producto no encontrado.' });
     await product.delete();
+    await deleteUploadedImage(snapshot.data().imagen);
     return sendJson(res, 200, { deleted: true });
   }
   return sendJson(res, 404, { error: 'Ruta de productos no encontrada.' });

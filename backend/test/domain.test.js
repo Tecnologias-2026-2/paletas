@@ -1,7 +1,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
+  detectImageType,
   slugify,
+  uploadedImageId,
   validateLegacyOrder,
   validateOrder,
   validateProduct,
@@ -21,6 +23,33 @@ test('validates catalog products and safe IDs', () => {
   assert.equal(validateProduct({ ...product, precio: -1 }), false);
   assert.equal(validateProduct({ ...product, categorias: ['otra'] }), false);
   assert.equal(slugify(product.nombre), 'paleta-de-limon');
+});
+
+test('accepts bundled and uploaded product images only', () => {
+  const product = {
+    nombre: 'Paleta Nueva',
+    precio: 7000,
+    peso: '90gr',
+    imagen: '/api/products/images/AbCdEf1234567890xyZ1',
+    alt: 'Paleta nueva',
+    categorias: []
+  };
+  assert.equal(validateProduct(product), true);
+  assert.equal(validateProduct({ ...product, imagen: 'https://example.com/a.png' }), false);
+  assert.equal(validateProduct({ ...product, imagen: '/api/products/images/../x' }), false);
+  assert.equal(uploadedImageId(product.imagen), 'AbCdEf1234567890xyZ1');
+  assert.equal(uploadedImageId('assets/imagenes/paletas/limon.png'), null);
+});
+
+test('detects image type from file signature', () => {
+  const png = Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), Buffer.alloc(8)]);
+  const jpeg = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff, 0xe0]), Buffer.alloc(12)]);
+  const webp = Buffer.concat([Buffer.from('RIFF'), Buffer.alloc(4), Buffer.from('WEBP'), Buffer.alloc(4)]);
+  assert.equal(detectImageType(png), 'image/png');
+  assert.equal(detectImageType(jpeg), 'image/jpeg');
+  assert.equal(detectImageType(webp), 'image/webp');
+  assert.equal(detectImageType(Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"></svg>')), null);
+  assert.equal(detectImageType(Buffer.alloc(4)), null);
 });
 
 test('validates a future reservation from the public form', () => {

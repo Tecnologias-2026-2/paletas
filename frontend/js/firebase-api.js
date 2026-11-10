@@ -15,7 +15,7 @@ const API_BASE = window.PALETAS_API_BASE ??
   (location.port === "5500" ? "http://localhost:3000" : "https://paletas-4vu7.onrender.com");
 
 let authReady;
-function waitForAuth() {
+export function waitForAuth() {
   if (!authReady) {
     authReady = new Promise(resolve => {
       const unsubscribe = onAuthStateChanged(auth, user => {
@@ -25,6 +25,12 @@ function waitForAuth() {
     });
   }
   return authReady;
+}
+
+// Las imágenes subidas se guardan como "/api/products/images/ID" y las sirve el backend;
+// las del sitio ("assets/...") se cargan desde el propio frontend.
+export function urlImagen(ruta) {
+  return typeof ruta === "string" && ruta.startsWith("/api/") ? `${API_BASE}${ruta}` : ruta;
 }
 
 export async function apiRequest(path, options = {}, admin = false) {

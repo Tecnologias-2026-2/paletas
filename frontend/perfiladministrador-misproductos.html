@@ -21,44 +21,48 @@
             <!-- SIDEBAR GLOBAL -->
             <div id="sidebar-admin"></div>
 
-            <section class="admin-contenido pedidos-admin productos-admin" aria-labelledby="titulo-productos">
+            <section class="admin-contenido pedidos-admin productos-admin" aria-label="Mis productos">
                 <nav class="pedidos-admin__breadcrumb" aria-label="Migas de pan">
                     <a href="perfiladministrador.html">Administrador</a>
                     <span aria-hidden="true">/</span>
                     <span aria-current="page">Mis productos</span>
                 </nav>
 
-                <header class="productos-admin__cabecera">
-                    <div>
-                        <h1 id="titulo-productos">Mis productos</h1>
-                        <p>Agrega, edita o quita paletas, cambia su precio y elige en qué categorías aparecen.</p>
-                    </div>
-                    <button class="boton-admin boton-admin--primario" type="button" id="boton-agregar">
-                        <span aria-hidden="true">+</span> Agregar paleta
-                    </button>
-                </header>
-
-                <p class="productos-admin__aviso">
-                    Por ahora los cambios se guardan solo en este navegador.
-                </p>
-
-                <p class="productos-admin__estado" id="productos-estado" role="status"></p>
-
                 <noscript>
                     <p class="productos-admin__aviso">Esta página necesita JavaScript para administrar los productos.</p>
                 </noscript>
 
-                <p class="productos-admin__vacio" id="productos-vacio" hidden>
-                    No hay paletas en el catálogo. Agrega la primera con el botón "Agregar paleta".
-                </p>
+                <p class="productos-admin__estado" id="productos-estado" role="status">Verificando sesión...</p>
 
-                <ul class="productos-admin__lista" id="productos-lista" aria-label="Paletas del catálogo"></ul>
+                <div class="productos-admin__sesion" id="productos-sesion" hidden>
+                    <h1>Inicia sesión para administrar tus productos</h1>
+                    <p id="productos-sesion-mensaje">Solo la cuenta administradora puede ver y cambiar el catálogo.</p>
+                    <a class="boton-admin boton-admin--primario" href="entradaadministrador.html">Iniciar sesión</a>
+                </div>
 
-                <p class="productos-admin__pie">
-                    <button class="boton-admin boton-admin--texto" type="button" id="boton-restaurar">
-                        Restaurar catálogo original
-                    </button>
-                </p>
+                <div id="productos-contenido" hidden>
+                    <header class="productos-admin__cabecera">
+                        <div>
+                            <h1 id="titulo-productos">Mis productos</h1>
+                            <p>Agrega, edita o quita paletas, cambia su precio y elige en qué categorías aparecen.</p>
+                        </div>
+                        <button class="boton-admin boton-admin--primario" type="button" id="boton-agregar">
+                            <span aria-hidden="true">+</span> Agregar paleta
+                        </button>
+                    </header>
+
+                    <p class="productos-admin__vacio" id="productos-vacio" hidden>
+                        No hay paletas en el catálogo. Agrega la primera con el botón "Agregar paleta".
+                    </p>
+
+                    <ul class="productos-admin__lista" id="productos-lista" aria-label="Paletas del catálogo"></ul>
+
+                    <p class="productos-admin__pie">
+                        <button class="boton-admin boton-admin--texto" type="button" id="boton-restaurar">
+                            Restaurar catálogo original
+                        </button>
+                    </p>
+                </div>
             </section>
         </div>
     </main>
@@ -89,11 +93,14 @@
             </div>
 
             <div class="campo-admin">
-                <label for="campo-imagen">Imagen</label>
+                <label for="campo-archivo">Imagen de la paleta</label>
                 <div class="campo-admin__imagen">
                     <img id="vista-imagen" src="" alt="" width="72" height="72">
-                    <select id="campo-imagen" name="imagen" required aria-describedby="error-imagen"></select>
+                    <input id="campo-archivo" name="archivo" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="ayuda-archivo error-imagen">
                 </div>
+                <p class="campo-admin__ayuda" id="ayuda-archivo">Sube una imagen PNG, JPG o WebP; se ajusta automáticamente a un tamaño web. O elige una de las imágenes del sitio:</p>
+                <label class="campo-admin__etiqueta-secundaria" for="campo-imagen">Imagen del sitio</label>
+                <select id="campo-imagen" name="imagen" required aria-describedby="error-imagen"></select>
                 <p class="campo-admin__error" id="error-imagen" hidden></p>
             </div>
 
@@ -114,6 +121,8 @@
                     <label class="casilla-admin"><input type="checkbox" name="categorias" value="exclusivas"> Exclusivas</label>
                 </div>
             </fieldset>
+
+            <p class="campo-admin__error" id="error-formulario" role="alert" hidden></p>
 
             <div class="dialogo-admin__acciones">
                 <button class="boton-admin boton-admin--secundario" type="button" id="cancelar-producto">Cancelar</button>
