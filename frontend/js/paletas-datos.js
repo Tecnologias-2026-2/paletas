@@ -1,4 +1,4 @@
-import { apiRequest } from "./firebase-api.js";
+import { apiRequest, urlImagen } from "./firebase-api.js";
 
 const api = "/api/products";
 
@@ -47,6 +47,20 @@ async function mover(id, delta) {
   }, true);
 }
 
+async function subirImagen(archivo) {
+  const resultado = await apiRequest(`${api}/images`, {
+    method: "POST",
+    headers: { "Content-Type": archivo.type },
+    body: archivo,
+  }, true);
+  return resultado.imagen;
+}
+
+async function eliminarImagenSubida(ruta) {
+  if (!ruta.startsWith("/api/products/images/")) return;
+  await apiRequest(ruta, { method: "DELETE" }, true);
+}
+
 async function restaurar() {
   await apiRequest(`${api}/restore`, { method: "POST", body: "{}" }, true);
 }
@@ -60,4 +74,7 @@ export const PaletasDatos = {
   eliminar,
   mover,
   restaurar,
+  subirImagen,
+  eliminarImagenSubida,
+  urlImagen,
 };
