@@ -69,21 +69,76 @@ function createTransporter() {
     host,
     port,
     secure: process.env.SMTP_SECURE !== 'false',
+    connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 20000,
     auth: { user, pass: password.replace(/\s/g, '') }
   });
 }
 
 async function sendCustomerEmail(customer, reference, content, referenceLabel = 'Referencia') {
-  const transporter = createTransporter();
   const bodies = createEmailBodies(customer.name, reference, content, referenceLabel);
   const fromName = process.env.SMTP_FROM_NAME || 'Paletas de Hielo';
+  const provider = process.env.EMAIL_PROVIDER || (process.env.BREVO_API_KEY || process.env.RENDER === 'true' ? 'brevo' : 'smtp');
+  if (provider === 'brevo') {
+    return sendWithBrevo(customer, content, bodies, fromName);
+  }
+  if (provider !== 'smtp') {
+    throw Object.assign(new Error('El proveedor de correo configurado no es válido.'), { status: 503 });
+  }
+  if (process.env.RENDER === 'true' && process.env.IS_RENDER_FREE === 'true') {
+    throw Object.assign(new Error('Configura EMAIL_PROVIDER=brevo para enviar correos por HTTPS desde Render gratuito.'), { status: 503 });
+  }
+  const transporter = createTransporter();
   const info = await transporter.sendMail({
     from: { name: fromName, address: process.env.SMTP_USER },
     to: customer.email,
     subject: content.asunto.trim(),
     ...bodies
   });
+  if (info.rejected?.length || (Array.isArray(info.accepted) && !info.accepted.length)) {
+    throw Object.assign(new Error('El servidor de correo rechazó al destinatario.'), { status: 502 });
+  }
   return { messageId: info.messageId || null };
+}
+
+async function sendWithBrevo(customer, content, bodies, fromName) {
+  const key = process.env.BREVO_API_KEY;
+  const sender = process.env.MAIL_FROM_EMAIL;
+  if (!key || !sender) {
+    throw Object.assign(new Error('Falta activar el servicio de correo del servidor: configura BREVO_API_KEY y MAIL_FROM_EMAIL en Render y verifica el remitente en Brevo.'), { status: 503 });
+  }
+  let response;
+  try {
+    response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: { 'api-key': key, 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        sender: { name: fromName, email: sender },
+        to: [{ email: customer.email, name: customer.name }],
+        replyTo: { email: process.env.MAIL_REPLY_TO || sender, name: fromName },
+        subject: content.asunto.trim(),
+        htmlContent: bodies.html,
+        textContent: bodies.text
+      }),
+      signal: AbortSignal.timeout(20000)
+    });
+  } catch {
+    throw Object.assign(new Error('No se pudo confirmar el envío con el servicio de correo. Revisa el historial del proveedor antes de reintentar.'), { status: 502 });
+  }
+  // No mostramos respuestas del proveedor: pueden incluir datos personales.
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const messages = {
+      401: 'La clave de correo del servidor no es válida. Revisa BREVO_API_KEY en Render.',
+      403: 'El proveedor no autorizó el envío. Revisa la activación de la cuenta y el remitente en Brevo.',
+      400: 'El proveedor rechazó los datos. Comprueba que MAIL_FROM_EMAIL sea un remitente verificado en Brevo.',
+      429: 'Se alcanzó el límite de envío del servicio de correo. Inténtalo más tarde.'
+    };
+    throw Object.assign(new Error(messages[response.status] || 'El servicio de correo no pudo aceptar el mensaje.'), { status: 502 });
+  }
+  if (typeof result.messageId !== 'string' || !result.messageId) {
+    throw Object.assign(new Error('El servicio no confirmó el identificador del correo. Revisa su historial antes de reintentar.'), { status: 502 });
+  }
+  return { messageId: result.messageId };
 }
 
 function sendReservationEmail(reservation, reservationId, content) {

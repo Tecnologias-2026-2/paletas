@@ -1,3 +1,4 @@
+import { opcionesEstado, confirmarAvance, mensajeEstado } from "./estado-flujo.js";
 import { listarReservas, observarAdministrador, guardarEstado } from "./reservas-firebase.js";
 
 const lista = document.getElementById("lista-reservas");
@@ -24,36 +25,23 @@ function mostrarReservas() {
   }
 
   filtradas.forEach(reserva => {
-    const tarjeta = crearElemento("article", "pedido-card reserva-card");
-    const principal = crearElemento("div", "pedido-card__principal");
-    const icono = crearElemento("div", "pedido-card__icono");
-    const imagen = document.createElement("img");
-    imagen.src = "assets/iconos/reservas.svg";
-    imagen.alt = "";
-    icono.append(imagen);
-
-    const informacion = crearElemento("div", "pedido-card__informacion");
-    const cabecera = crearElemento("div", "pedido-card__cabecera");
-    const titulo = crearElemento("h2");
-    const enlace = crearElemento("a", "", reserva.nombreContacto || "Sin nombre");
-    enlace.href = `perfiladministrador-misreservas-info.html?id=${encodeURIComponent(reserva.id)}`;
-    titulo.append(enlace);
-    cabecera.append(titulo, crearElemento(
-      "span",
-      `pedido-card__prioridad pedido-card__prioridad--${reserva.prioridad || "media"}`,
-      `Prioridad ${reserva.prioridad || "media"}`
-    ));
-
-    const correo = crearElemento("a", "pedido-card__correo", reserva.correoContacto || "");
-    correo.href = `mailto:${reserva.correoContacto || ""}`;
-    const detalles = crearElemento("div", "reserva-card__detalles");
-    detalles.append(
-      crearElemento("span", "", `${reserva.numeroInvitados || 0} personas`),
-      crearElemento("span", "", " • "),
-      crearElemento("span", "", reserva.fechaEvento || "Sin fecha")
-    );
-    informacion.append(cabecera, correo, detalles);
-    principal.append(icono, informacion);
+    const tarjeta = crearElemento('article','reserva-resumen');
+    const principal = crearElemento('a');
+    principal.href = 'perfiladministrador-misreservas-info.html?id=' + encodeURIComponent(reserva.id);
+    principal.style.cssText = 'display:block;color:inherit;text-decoration:none;';
+    const cabecera = crearElemento('div','reserva-resumen__encabezado');
+    const titulo = crearElemento('div');
+    titulo.append(crearElemento('p','reserva-resumen__etiqueta','Información de la reserva'),crearElemento('h2','',reserva.nombreContacto));
+    const badge = crearElemento('span','reserva-resumen__estado',reserva.estado);
+    cabecera.append(titulo,badge);
+    const datos = crearElemento('div','reserva-resumen__datos');
+    [['Evento',reserva.tipoEvento],['Fecha',reserva.fechaEvento],['Invitados',reserva.numeroInvitados],['Ubicación',reserva.ubicacionEvento]].forEach(([etiqueta,valor])=>{
+      const dato=crearElemento('div','reserva-resumen__dato'); dato.append(crearElemento('span','',etiqueta),crearElemento('strong','',valor));datos.append(dato);
+    });
+    principal.append(cabecera,datos);
+    const correos=crearElemento('a','reserva-resumen__correos','Ver correos enviados');
+    correos.href='perfiladministrador-correos.html?reserva='+encodeURIComponent(reserva.id);
+    correos.style.cssText='display:inline-flex;text-decoration:none;margin-top:16px;';
 
     const estadoContenedor = crearElemento("div", "pedido-card__estado");
     estadoContenedor.append(crearElemento("label", "", "Estado"));
@@ -66,26 +54,30 @@ function mostrarReservas() {
       selector.append(opcion);
     });
     selector.value = reserva.estado || "pendiente";
+    opcionesEstado(selector, reserva.estado || "pendiente", true);
     selector.setAttribute("aria-label", `Estado de la reserva de ${reserva.nombreContacto || reserva.id}`);
     const mensaje = crearElemento("p");
     mensaje.setAttribute("role", "status");
     selector.addEventListener("change", async () => {
       const anterior = reserva.estado || "pendiente";
+      if (!confirmarAvance(anterior, selector.value)) { selector.value = anterior; return; }
       selector.disabled = true;
       mensaje.textContent = "Guardando...";
       try {
-        await guardarEstado(reserva.id, selector.value);
+        const resultado = await guardarEstado(reserva.id, selector.value);
         reserva.estado = selector.value;
-        mensaje.textContent = "Estado actualizado.";
+        badge.textContent = reserva.estado;
+        mensaje.textContent = mensajeEstado(resultado);
+        if (filtroEstado.value !== "todos" && filtroEstado.value !== reserva.estado) tarjeta.remove();
       } catch (error) {
         selector.value = anterior;
         mensaje.textContent = error.message;
       } finally {
-        selector.disabled = false;
+        opcionesEstado(selector, reserva.estado, true);
       }
     });
     estadoContenedor.append(mensaje, selector);
-    tarjeta.append(principal, estadoContenedor);
+    tarjeta.append(principal, estadoContenedor, correos);
     lista.append(tarjeta);
   });
 }

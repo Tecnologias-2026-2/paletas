@@ -88,8 +88,7 @@
                         <input
                             type="checkbox"
                             id="notificacion-compras"
-                            name="compras"
-                            checked
+                            name="compras" disabled
                         >
 
                         <span class="notificacion-switch__control"></span>
@@ -120,8 +119,7 @@
                         <input
                             type="checkbox"
                             id="notificacion-contacto"
-                            name="contacto"
-                            checked
+                            name="contacto" disabled
                         >
 
                         <span class="notificacion-switch__control"></span>
@@ -143,7 +141,7 @@
                             Correos informativos
                         </label>
                         <p>
-                            Recibe noticias, novedades y actualizaciones.
+                            Recibe una confirmación cuando envíes un correo a un cliente.
                         </p>
                     </div>
                     <label
@@ -153,8 +151,7 @@
                         <input
                             type="checkbox"
                             id="notificacion-correos"
-                            name="correos"
-                            checked
+                            name="correos" disabled
                         >
                         <span class="notificacion-switch__control"></span>
                     </label>
@@ -173,7 +170,7 @@
                         </label>
 
                         <p>
-                            Recibe información sobre eventos especiales.
+                            Recibe alertas de nuevas solicitudes de eventos.
                         </p>
                     </div>
 
@@ -184,14 +181,14 @@
                         <input
                             type="checkbox"
                             id="notificacion-eventos"
-                            name="eventos"
-                            checked
+                            name="eventos" disabled
                         >
 
                         <span class="notificacion-switch__control"></span>
                     </label>
 
                 </div>
+                <p id="mensaje-notificaciones" role="status" aria-live="polite">Cargando preferencias...</p>
                 <div class="notificaciones-form__acciones">
 
                     <a
@@ -202,7 +199,7 @@
                     </a>
 
                     <button
-                        type="button"
+                        type="submit" disabled
                         class="notificaciones-form__guardar"
                     >
                         Guardar cambios
@@ -210,6 +207,7 @@
 
                 </div>
 
+            <button id="probar-notificaciones" type="button" class="notificaciones-form__guardar" disabled>Enviar correo de prueba</button>
             </form>
 
         </section>
@@ -224,6 +222,7 @@
     <!-- Componentes globales -->
     <script src="js/components.js"></script>
 
+<script type="module" src="js/notificaciones-admin.js"></script>
 </body>
 
 </html>

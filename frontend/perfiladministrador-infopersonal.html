@@ -96,7 +96,8 @@
                             type="text"
                             id="nombre-admin"
                             name="nombre"
-                            value="Fernanda Saldivar"
+                            value="Juliana Salazar"
+                            maxlength="80" required disabled
                             autocomplete="name"
                         >
                     </div>
@@ -124,32 +125,24 @@
                             type="email"
                             id="correo-admin"
                             name="correo"
-                            value="fergld@gmail.com"
+                            value="julianasalazarmendez@gmail.com"
+                            required disabled
                             autocomplete="email"
                         >
 
                     </div>
 
                 </div>
-                <div class="info-personal-form__foto">
-                    <div class="info-personal-form__foto-texto">
-                        <label for="foto-admin">
-                            Foto de perfil
-                        </label>
-
-                        <p>
-                            Selecciona una imagen para actualizar
-                            tu foto de perfil.
-                        </p>
-
+                <div class="info-personal-form__campo">
+                    <div class="info-personal-form__icono" aria-hidden="true"><img src="assets/iconos/nombre2.svg" alt=""></div>
+                    <div class="info-personal-form__contenido">
+                        <label for="password-actual">Contraseña actual</label>
+                        <input type="password" id="password-actual" autocomplete="current-password" aria-describedby="ayuda-password">
+                        <p id="ayuda-password">Solo se necesita para cambiar tu correo. Recibirás un enlace para confirmar el nuevo correo.</p>
                     </div>
-                    <input
-                        type="file"
-                        id="foto-admin"
-                        name="foto"
-                        accept="image/png, image/jpeg, image/webp"
-                    >
                 </div>
+                <p id="mensaje-perfil" role="status" aria-live="polite"></p>
+
                 <div class="info-personal-form__acciones">
 
                     <a
@@ -160,7 +153,7 @@
                     </a>
 
                     <button
-                        type="button"
+                        type="submit" disabled
                         class="info-personal-form__guardar"
                     >
                         Guardar cambios

@@ -108,7 +108,7 @@
                         id="contrasena-actual"
                         name="contrasena-actual"
                         placeholder="Ingresa tu contraseña actual"
-                        autocomplete="current-password"
+                        autocomplete="current-password" required disabled
                     >
 
                 </div>
@@ -127,7 +127,7 @@
                         id="nueva-contrasena"
                         name="nueva-contrasena"
                         placeholder="Ingresa una nueva contraseña"
-                        autocomplete="new-password"
+                        autocomplete="new-password" minlength="6" required disabled
                     >
 
                 </div>
@@ -146,10 +146,11 @@
                         id="confirmar-contrasena"
                         name="confirmar-contrasena"
                         placeholder="Confirma tu nueva contraseña"
-                        autocomplete="new-password"
+                        autocomplete="new-password" minlength="6" required disabled
                     >
 
                 </div>
+                <p id="mensaje-seguridad" role="status" aria-live="polite"></p>
                 <div class="seguridad-form__acciones">
 
                     <a
@@ -160,7 +161,7 @@
                     </a>
 
                     <button
-                        type="button"
+                        type="submit" disabled
                         class="seguridad-form__guardar"
                     >
                         Guardar cambios
@@ -176,9 +177,10 @@
 
 </main>
 
-   
+
     <!-- FOOTER GLOBAL -->
     <div id="footer"></div>
     <script src="js/components.js"></script>
+<script type="module" src="js/seguridad-admin.js"></script>
 </body>
 </html>

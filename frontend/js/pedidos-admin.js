@@ -1,3 +1,4 @@
+import { opcionesEstado, confirmarAvance, mensajeEstado } from "./estado-flujo.js";
 import { apiRequest } from "./firebase-api.js";
 
 const lista = document.getElementById("lista-pedidos");
@@ -36,30 +37,30 @@ function renderizar() {
   }
 
   filtrados.forEach(pedido => {
-    const tarjeta = nodo("article", "pedido-card");
-    const principal = nodo("div", "pedido-card__principal");
-    const icono = nodo("div", "pedido-card__icono");
-    const imagen = document.createElement("img");
-    imagen.src = "assets/iconos/pedidos.svg";
-    imagen.alt = "";
-    icono.append(imagen);
-
-    const informacion = nodo("div", "pedido-card__informacion");
-    const cabecera = nodo("div", "pedido-card__cabecera");
-    const titulo = nodo("h2");
-    const enlace = nodo("a", "", pedido.cliente.nombre);
-    enlace.href = `perfiladministrador-mispedidos-informacion.html?id=${encodeURIComponent(pedido.id)}`;
-    enlace.setAttribute("aria-label", `Ver pedido ${pedido.numero} de ${pedido.cliente.nombre}`);
-    titulo.append(enlace);
-    cabecera.append(titulo, nodo("span", "pedido-card__prioridad", pedido.numero));
-    const correo = nodo("a", "pedido-card__correo", pedido.cliente.correo);
-    correo.href = `mailto:${pedido.cliente.correo}`;
-    informacion.append(
-      cabecera,
-      correo,
-      nodo("p", "pedido-card__cantidad", `Total: ${pedido.total.toLocaleString("de-DE")} COP`)
-    );
-    principal.append(icono, informacion);
+    const tarjeta = nodo("article", "pedido-resumen");
+    const principal = nodo("a");
+    principal.href = 'perfiladministrador-mispedidos-informacion.html?id=' + encodeURIComponent(pedido.id);
+    principal.style.cssText = 'display:block;color:inherit;text-decoration:none;';
+    principal.setAttribute('aria-label', 'Ver detalles de envío y pago de ' + pedido.numero);
+    const cabecera = nodo("div", "pedido-resumen__encabezado");
+    const titulo = nodo("div");
+    titulo.append(nodo("p", "pedido-resumen__etiqueta", "Información pedido"), nodo("h2", "", pedido.cliente.nombre + ' · ' + pedido.numero));
+    const badge = nodo("span", "pedido-resumen__estado", pedido.estado);
+    cabecera.append(titulo, badge);
+    const datos = nodo("div", "pedido-resumen__datos");
+    const valores = [
+      ['Ubicación', pedido.cliente.municipio + ' · ' + pedido.cliente.direccion],
+      ['Pedido', pedido.items.map(item => item.cantidad + ' × ' + item.nombre).join(', ')],
+      ['Presentación', pedido.empaque.nombre + ' · ' + pedido.total.toLocaleString('de-DE') + ' COP']
+    ];
+    valores.forEach(([etiqueta,valor]) => {
+      const dato = nodo('div','pedido-resumen__dato');
+      dato.append(nodo('span','',etiqueta),nodo('strong','',valor)); datos.append(dato);
+    });
+    principal.append(cabecera, datos);
+    const correos = nodo('a','pedido-resumen__correos','Ver correos enviados');
+    correos.href = 'perfiladministrador-correos.html?pedido=' + encodeURIComponent(pedido.id);
+    correos.style.cssText = 'display:inline-flex;text-decoration:none;margin-top:16px;';
 
     const estadoContenedor = nodo("div", "pedido-card__estado");
     estadoContenedor.append(nodo("label", "", "Estado"));
@@ -73,28 +74,32 @@ function renderizar() {
       select.append(option);
     });
     select.value = pedido.estado;
+    opcionesEstado(select, pedido.estado);
     const mensaje = nodo("p");
     mensaje.setAttribute("role", "status");
     select.addEventListener("change", async () => {
       const anterior = pedido.estado;
+      if (!confirmarAvance(anterior, select.value)) { select.value = anterior; return; }
       select.disabled = true;
       mensaje.textContent = "Guardando...";
       try {
-        await apiRequest(`/api/orders/${encodeURIComponent(pedido.id)}`, {
+        const resultado = await apiRequest(`/api/orders/${encodeURIComponent(pedido.id)}`, {
           method: "PATCH",
           body: JSON.stringify({ estado: select.value }),
         }, true);
         pedido.estado = select.value;
-        mensaje.textContent = "Estado actualizado.";
+        badge.textContent = pedido.estado;
+        mensaje.textContent = mensajeEstado(resultado);
+        if (filtroEstado.value !== "todos" && filtroEstado.value !== pedido.estado) tarjeta.remove();
       } catch (error) {
         select.value = anterior;
         mensaje.textContent = error.message;
       } finally {
-        select.disabled = false;
+        opcionesEstado(select, pedido.estado);
       }
     });
     estadoContenedor.append(mensaje, select);
-    tarjeta.append(principal, estadoContenedor);
+    tarjeta.append(principal, estadoContenedor, correos);
     lista.append(tarjeta);
   });
 }

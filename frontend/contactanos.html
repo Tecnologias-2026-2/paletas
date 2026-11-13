@@ -158,8 +158,19 @@
                 </a>
             </div>
         </section>
+    <section style="max-width: 800px; margin: 40px auto; padding: 24px;" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">Escríbenos</h2>
+            <form id="formulario-contacto" class="info-personal-form">
+                <div class="info-personal-form__contenido"><label for="contacto-nombre">Nombre</label><input id="contacto-nombre" name="nombre" autocomplete="name" minlength="3" maxlength="80" required></div>
+                <div class="info-personal-form__contenido"><label for="contacto-correo">Correo electrónico</label><input id="contacto-correo" name="correo" type="email" autocomplete="email" maxlength="120" required></div>
+                <div class="info-personal-form__contenido"><label for="contacto-mensaje">Mensaje</label><textarea id="contacto-mensaje" name="mensaje" rows="5" maxlength="2000" required style="width: 100%; padding: 16px; border: 1px solid #a4e0ed; border-radius: 12px; font: inherit;"></textarea></div>
+                <p id="mensaje-contacto" role="status" aria-live="polite"></p>
+                <button class="info-personal-form__guardar" type="submit">Enviar mensaje</button>
+            </form>
+        </section>
     </main>
     <div id="footer"></div>
     <script src="js/components.js"></script>
+<script type="module" src="js/contacto.js"></script>
 </body>
 </html>

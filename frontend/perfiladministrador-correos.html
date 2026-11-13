@@ -229,7 +229,8 @@
                         </div>
 
 
-                        <p class="plantilla-correo__ayuda">
+                        <p class="plantilla-correo__ayuda">Usa {estado} para insertar automáticamente el estado. La plantilla automática se aplica a los próximos cambios de todos los registros de este tipo.</p>
+                        <p class="plantilla-correo__ayuda" hidden>
                             El mensaje se enviará al correo registrado en el
                             pedido o reserva seleccionados.
                         </p>
@@ -245,6 +246,7 @@
 
                         <p id="mensaje-correo" role="status" aria-live="polite"></p>
 
+                    <button type="button" id="guardar-plantilla-automatica" class="plantilla-correo__guardar" disabled>Guardar plantilla automática</button>
                     </form>
 
                 </section>

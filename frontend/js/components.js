@@ -11,6 +11,7 @@ async function cargarComponente(id, archivo) {
         }
 
         contenedor.innerHTML = await respuesta.text();
+        document.dispatchEvent(new CustomEvent("componente-cargado", { detail: { id } }));
 
         if (id === "header") {
             marcarPaginaActual();
@@ -155,3 +156,4 @@ cargarComponente(
     "sidebar-admin",
     "components/sidebar.html"
 );
+import("./admin-account.js").catch(error => console.error("No se pudo cargar la cuenta:", error));

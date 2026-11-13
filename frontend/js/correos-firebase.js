@@ -1,3 +1,4 @@
+import { apiRequest } from "./firebase-api.js";
 import {
   enviarCorreo,
   enviarCorreoPedido,
@@ -19,6 +20,19 @@ const reservaId = params.get("reserva");
 const pedidoId = params.get("pedido");
 const id = pedidoId || reservaId;
 const esPedido = Boolean(pedidoId);
+let estadoActual = '';
+const tipo = esPedido ? 'pedido' : 'reserva';
+const rutaPlantilla = '/api/admin/state-template/' + tipo;
+const guardarPlantilla = elemento('guardar-plantilla-automatica');
+guardarPlantilla.addEventListener('click', async () => {
+  if (guardarPlantilla.disabled) return;
+  guardarPlantilla.disabled = true;
+  try {
+    await apiRequest(rutaPlantilla,{method:'PUT',body:JSON.stringify({asunto:elemento('plantilla-asunto').value,titulo:elemento('plantilla-titulo').value,mensaje:elemento('plantilla-mensaje').value})},true);
+    mensaje.textContent = 'Plantilla automática guardada para los próximos cambios de estado.';
+  } catch(error) { mensaje.textContent = error.message; }
+  finally { guardarPlantilla.disabled = false; }
+});
 
 botonEnviar.disabled = true;
 formulario.addEventListener("submit", async evento => {
@@ -29,9 +43,9 @@ formulario.addEventListener("submit", async evento => {
   mensaje.textContent = "Enviando correo...";
   try {
     const contenido = {
-      asunto: elemento("plantilla-asunto").value,
-      titulo: elemento("plantilla-titulo").value,
-      mensaje: elemento("plantilla-mensaje").value
+      asunto: elemento("plantilla-asunto").value.replaceAll("{estado}", estadoActual),
+      titulo: elemento("plantilla-titulo").value.replaceAll("{estado}", estadoActual),
+      mensaje: elemento("plantilla-mensaje").value.replaceAll("{estado}", estadoActual)
     };
     if (esPedido) await enviarCorreoPedido(id, contenido);
     else await enviarCorreo(id, contenido);
@@ -65,6 +79,7 @@ function nodo(etiqueta, clase, contenido) {
 }
 
 function limpiar(motivo) {
+  guardarPlantilla.disabled=true;
   botonEnviar.disabled = true;
   for (const campo of ["nombre", "email", "referencia"]) {
     elemento(`correo-cliente-${campo}`).textContent = "—";
@@ -96,6 +111,20 @@ function tarjeta(datos) {
   const cuerpo = nodo("p", "correo-card__mensaje", texto(datos.mensaje));
   cuerpo.style.whiteSpace = "pre-wrap";
   contenido.append(nodo("p", "correo-card__asunto", `Asunto: ${texto(datos.asunto)}`), cuerpo);
+  if (datos.automatico) info.append(nodo('span','','Correo automático de cambio de estado'));
+  if (datos.automatico && ['fallido','pendiente'].includes(datos.estado)) {
+    const reintentar=nodo('button','plantilla-correo__guardar','Reintentar envío');
+    reintentar.type='button';
+    reintentar.addEventListener('click',async()=>{
+      reintentar.disabled=true;
+      try {
+        const resultado=await apiRequest(rutaPlantilla+'/'+encodeURIComponent(id)+'/'+encodeURIComponent(datos.id),{method:'POST'},true);
+        mensaje.textContent=resultado.estado==='enviado'?'Correo enviado.':'No se pudo enviar el correo. Revisa el servicio de correo e inténtalo nuevamente.';
+        await cargarHistorial();
+      } catch(error) { mensaje.textContent=error.message; reintentar.disabled=false; }
+    });
+    contenido.append(reintentar);
+  }
   card.append(resumen, contenido);
   return card;
 }
@@ -131,15 +160,10 @@ observarAdministrador(async () => {
       esPedido ? "Mis pedidos" : "Mis reservas";
     document.querySelector(".correos-admin__breadcrumb a[href='perfiladministrador-mispedidos.html']").href =
       esPedido ? "perfiladministrador-mispedidos.html" : "perfiladministrador-misreservas.html";
-    elemento("plantilla-asunto").value = esPedido
-      ? "Actualización sobre tu pedido"
-      : "Tu pedido ha sido confirmado";
-    elemento("plantilla-titulo").value = esPedido
-      ? "Tenemos una actualización para ti"
-      : "¡Tu pedido fue confirmado!";
-    elemento("plantilla-mensaje").value = esPedido
-      ? "Queremos contarte que hay una actualización sobre tu pedido. Si tienes alguna duda, responde a este correo."
-      : "Hemos recibido correctamente tu pedido. Nuestro equipo comenzará a prepararlo y te mantendremos informada sobre su estado.";
+    estadoActual = registro.estado === 'proceso' ? 'puesto en proceso' : registro.estado;
+    const plantilla = await apiRequest(rutaPlantilla,{},true);
+    for (const campo of ['asunto','titulo','mensaje']) elemento('plantilla-'+campo).value=plantilla[campo];
+    guardarPlantilla.disabled=false;
     lista.replaceChildren(nodo("p", "", "Cargando historial..."));
     botonEnviar.disabled = false;
     await cargarHistorial();

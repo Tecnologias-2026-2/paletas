@@ -12,7 +12,7 @@ const app = getApps().length ? getApp() : initializeApp({
 
 export const auth = getAuth(app);
 const API_BASE = window.PALETAS_API_BASE ??
-  (location.port === "5500" ? "http://localhost:3000" : "https://paletas-4vu7.onrender.com");
+  (["localhost", "127.0.0.1"].includes(location.hostname) ? (location.port === "3000" ? location.origin : "http://localhost:3000") : "https://paletas-4vu7.onrender.com");
 
 let authReady;
 function waitForAuth() {
@@ -33,7 +33,8 @@ export async function apiRequest(path, options = {}, admin = false) {
     headers.set("Content-Type", "application/json");
   }
   if (admin) {
-    const user = await waitForAuth();
+    await waitForAuth();
+    const user = auth.currentUser;
     if (!user) throw new Error("Debes iniciar sesión con la cuenta administradora.");
     headers.set("Authorization", `Bearer ${await user.getIdToken()}`);
   }

@@ -59,11 +59,7 @@ async function create(data) {
 }
 
 async function updateState(id, estado) {
-  const ref = orders.doc(id);
-  const snapshot = await ref.get();
-  if (!snapshot.exists) throw documentNotFound('Pedido no encontrado.');
-  await ref.update({ estado, fechaActualizacion: FieldValue.serverTimestamp() });
-  return { id, estado };
+  return require('../services/state-mail.service').advance('pedido', id, estado);
 }
 
 async function getEmails(id) {

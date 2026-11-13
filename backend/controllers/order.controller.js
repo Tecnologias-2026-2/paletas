@@ -1,3 +1,4 @@
+const { notifySafely } = require('../services/notification.service');
 const orderModel = require('../models/order.model');
 const { ORDER_STATES, validateLegacyOrder, validateOrder } = require('../domain');
 const { readBody, sendJson } = require('../utils/http');
@@ -14,7 +15,9 @@ async function getById(req, res, id) {
 async function create(req, res) {
   const body = await readBody(req);
   if (!validateOrder(body)) return sendJson(res, 400, { error: 'Los datos del pedido no son válidos.' });
-  return sendJson(res, 201, await orderModel.create(body));
+  const order = await orderModel.create(body);
+  await notifySafely('compras', order.id, {asunto:'Nuevo pedido en Paletas de Hielo', titulo:'Recibiste un pedido', mensaje: 'Cliente: ' + body.cliente.nombre + '\nReferencia: ' + order.numero});
+  return sendJson(res, 201, order);
 }
 
 async function updateState(req, res, id) {
@@ -51,9 +54,9 @@ async function sendEmail(req, res, id) {
     }, order.numero, body, 'Referencia del pedido');
   } catch (error) {
     await orderModel.updateEmail(id, emailId, { estado: 'fallido' });
-    if (error.status === 503) throw error;
+    if (error.status) throw error;
     throw Object.assign(
-      new Error('Gmail no pudo enviar el correo. Verifica la configuración de la cuenta y SMTP.'),
+      new Error('El servicio de correo no pudo enviar el mensaje. Revisa la configuración del servidor.'),
       { status: 502 }
     );
   }
@@ -62,6 +65,7 @@ async function sendEmail(req, res, id) {
     estado: 'enviado',
     messageId: result.messageId
   });
+  await notifySafely('correos', id, {asunto:'Correo enviado a un cliente', titulo:'Correo de pedido enviado', mensaje:'Destinatario: ' + order.cliente.correo + '\nAsunto: ' + body.asunto});
   return sendJson(res, 201, { id: emailId, estado: 'enviado' });
 }
 

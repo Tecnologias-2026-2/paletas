@@ -34,15 +34,7 @@ async function getById(id) {
 }
 
 async function updateState(id, estado) {
-  const ref = reservations.doc(id);
-  const snapshot = await ref.get();
-  if (!snapshot.exists) throw documentNotFound('Reserva no encontrada.');
-  await ref.update({
-    estado,
-    fechaActualizacion: FieldValue.serverTimestamp(),
-    actualizadoPor: process.env.FIREBASE_ADMIN_UID
-  });
-  return { id, estado };
+  return require('../services/state-mail.service').advance('reserva', id, estado);
 }
 
 async function getEmails(id) {

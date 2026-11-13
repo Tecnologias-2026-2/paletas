@@ -4,6 +4,9 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const { db } = require('./database/connection');
+const notificationRoutes = require('./routes/notification.routes');
+const contactRoutes = require('./routes/contact.routes');
+const stateTemplateRoutes = require('./routes/state-template.routes');
 const adminRoutes = require('./routes/admin.routes');
 const orderRoutes = require('./routes/order.routes');
 const productRoutes = require('./routes/product.routes');
@@ -83,6 +86,9 @@ async function handleApi(req, res, pathname) {
   if (pathname === '/api/health' && req.method === 'GET') {
     return sendJson(res, 200, { status: 'ok', service: 'paletas-backend' });
   }
+  if (pathname.startsWith('/api/admin/state-template/')) return stateTemplateRoutes(req,res,pathname);
+  if (pathname === '/api/contact') return contactRoutes(req, res);
+  if (pathname === '/api/admin/notifications' || pathname === '/api/admin/notifications/test') return notificationRoutes(req, res, pathname);
   if (pathname === '/api/admin') return adminRoutes(req, res, pathname);
   if (pathname === '/api/products' || pathname.startsWith('/api/products/')) {
     return productRoutes(req, res, pathname);

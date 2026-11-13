@@ -26,6 +26,8 @@ try {
   escribir("pedido-correo", cliente.correo);
   escribir("pedido-telefono", cliente.telefono);
   escribir("pedido-ciudad", cliente.municipio);
+  const metodos = {tarjeta: "Tarjeta de crédito/débito", cuenta: "Cuenta bancaria", pse: "PSE", qr: "Código QR"};
+  document.querySelector(".pedido-pago__detalle strong").textContent = metodos[pedido.metodoPago] || pedido.metodoPago || "No registrado";
   const enlaceCorreos = document.querySelector(".pedido-resumen__correos");
   enlaceCorreos.href = `perfiladministrador-correos.html?pedido=${encodeURIComponent(pedido.id)}`;
 } catch (error) {

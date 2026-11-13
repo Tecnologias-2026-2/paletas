@@ -1,3 +1,4 @@
+import { opcionesEstado, confirmarAvance, mensajeEstado } from "./estado-flujo.js";
 import {
   estados,
   guardarEstado,
@@ -52,6 +53,7 @@ function mostrar(datos) {
   contenido.hidden = false;
   mensaje.textContent = "";
   selector.disabled = boton.disabled = guardando;
+  if (!guardando) { opcionesEstado(selector, datos.estado || "pendiente", true); boton.disabled = selector.disabled; }
 }
 
 if (!id || id.includes("/")) {
@@ -75,19 +77,21 @@ formulario.addEventListener("submit", async evento => {
     feedback.textContent = "La reserva ya tiene ese estado.";
     return;
   }
+  if (!confirmarAvance(anterior, siguiente)) { selector.value = anterior; return; }
   guardando = true;
   selector.disabled = boton.disabled = true;
   feedback.textContent = "Guardando...";
   try {
-    await guardarEstado(id, siguiente);
+    const resultado = await guardarEstado(id, siguiente);
     reserva.estado = siguiente;
     document.getElementById("estado-actual").textContent = siguiente;
-    feedback.textContent = "Estado guardado correctamente.";
+    feedback.textContent = mensajeEstado(resultado);
   } catch (error) {
     selector.value = reserva.estado || anterior;
     feedback.textContent = error.message;
   } finally {
     guardando = false;
     selector.disabled = boton.disabled = !reserva;
+    if (reserva) { opcionesEstado(selector, reserva.estado, true); boton.disabled = selector.disabled; }
   }
 });
