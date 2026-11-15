@@ -8325,3 +8325,109 @@ html {
         width: 100%;
     }
 }
+
+/* ==========================================================================
+   Responsive móvil: tarjetas del inicio y pie de página (prototipo Figma)
+   ========================================================================== */
+
+/* Tarjetas del inicio: se apilan en una columna, con la imagen sobre la tarjeta.
+   Antes seguían en 3 columnas y ensanchaban la página (el header se movía al hacer scroll). */
+@media (max-width: 800px) {
+    .destacados {
+        padding: 36px 16px 32px;
+    }
+
+    .destacados__titulo {
+        font-size: clamp(1.35rem, 5.4vw, 2rem);
+    }
+
+    .destacados__contenedor {
+        width: min(100%, 420px);
+        grid-template-columns: 1fr;
+        gap: 28px;
+        align-items: stretch;
+        margin-top: 24px;
+    }
+
+    .tarjeta__imagen-wrapper {
+        height: 170px;
+        margin-bottom: 4px;
+    }
+
+    .tarjeta__imagen {
+        max-width: min(200px, 60%);
+        max-height: 170px;
+        transform: none;
+    }
+
+    .tarjeta__contenido {
+        min-height: 0;
+        padding: 28px 22px 26px;
+        border-radius: 20px;
+    }
+
+    .tarjeta__titulo {
+        max-width: none;
+        font-size: clamp(1.9rem, 7.4vw, 3rem);
+    }
+
+    .tarjeta__descripcion {
+        max-width: 300px;
+        margin: 14px 0 22px;
+        font-size: clamp(1.1rem, 4.6vw, 1.6rem);
+    }
+
+    .tarjeta__boton {
+        min-height: 48px;
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* Pie de página: tres columnas de información en una fila y, debajo,
+   redes sociales y acceso de administrador centrados. */
+@media (max-width: 900px) {
+    .footer {
+        padding: 30px 16px 34px;
+    }
+
+    .footer__contenedor {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px 12px;
+        text-align: left;
+    }
+
+    .footer__titulo {
+        margin-bottom: 12px;
+        font-size: clamp(0.95rem, 4vw, 1.65rem);
+        overflow-wrap: anywhere;
+    }
+
+    .footer__direccion,
+    .footer__lista a {
+        font-size: clamp(0.8125rem, 2.9vw, 1rem);
+        overflow-wrap: anywhere;
+    }
+
+    .footer__lista li + li {
+        margin-top: 4px;
+    }
+
+    .footer__social {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 22px;
+        border-top: 2px solid rgba(21, 159, 189, 0.25);
+        text-align: center;
+    }
+
+    .footer__social .footer__titulo {
+        margin-bottom: 14px;
+    }
+
+    .footer__redes {
+        justify-content: center;
+    }
+}
