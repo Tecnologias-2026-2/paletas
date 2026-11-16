@@ -30,10 +30,9 @@ function mostrarCuenta() {
     if (saludo) saludo.textContent = `Hola, ${primero}!`;
     const acceso = document.querySelector('[data-cuenta-header]');
     if (acceso) {
-        acceso.href = admin ? "#cerrar-sesion" : "entradaadministrador.html";
-        acceso.dataset.cerrarSesion = admin ? "true" : "false";
-        acceso.setAttribute("aria-label", admin ? "Cerrar sesión" : "Acceder al administrador");
-        acceso.title = admin ? "Cerrar sesión" : "Acceder al administrador";
+        acceso.href = admin ? "perfiladministrador.html" : "entradaadministrador.html";
+        acceso.setAttribute("aria-label", admin ? "Ir a mi perfil de administrador" : "Acceder al administrador");
+        acceso.title = admin ? "Ir a mi perfil de administrador" : "Acceder al administrador";
     }
 }
 
