@@ -157,3 +157,8 @@ cargarComponente(
     "components/sidebar.html"
 );
 import("./admin-account.js").catch(error => console.error("No se pudo cargar la cuenta:", error));
+
+// Carga el banner y la memoria de cookies en todas las páginas
+const scriptCookies = document.createElement("script");
+scriptCookies.src = "js/cookies.js";
+document.body.appendChild(scriptCookies);
