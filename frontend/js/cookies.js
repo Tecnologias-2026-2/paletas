@@ -4,6 +4,15 @@
   // Limita las cookies a tu carpeta en GitHub Pages (en local usa "/")
   const RUTA = location.pathname.startsWith("/paletas/") ? "/paletas/" : "/";
 
+  // Secciones que se recuerdan: [lo que estaba haciendo, texto del enlace]
+  const SECCIONES = {
+    "mi-carrito.html":    ["Dejaste una compra pendiente.", "¿Continuar con tu compra?"],
+    "detalles-pago.html": ["Dejaste un pago sin terminar.", "¿Continuar con tu compra?"],
+    "eventos.html":       ["Estabas viendo nuestros eventos.", "Volver a eventos"],
+    "paletas.html":       ["Estabas explorando nuestras paletas.", "Seguir viendo paletas"],
+    "contactanos.html":   ["Estabas en la sección de contacto.", "Volver a contáctanos"]
+  };
+
   // ---- Funciones de cookies ----
   function setCookie(nombre, valor, dias) {
     const f = new Date();
@@ -18,35 +27,44 @@
     document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${RUTA}`;
   }
 
+  function archivoActual() {
+    return location.pathname.split("/").pop() || "index.html";
+  }
+
   // ---- Experiencia para usuarios que aceptaron ----
   function experienciaUsuario() {
     setCookie(NOMBRE, "aceptadas", DIAS); // renueva el consentimiento
 
-    const ruta = location.pathname;
-    const enCompra = /mi-carrito|detalles-pago/.test(ruta);
+    const actual = archivoActual();
     const yaNosConocia = getCookie("clienteFrecuente");
-    const compraPendiente = getCookie("compraEnCurso");
+    const anterior = getCookie("ultimaSeccion"); // se lee antes de actualizarla
 
-    if (enCompra) setCookie("compraEnCurso", ruta, 3);
+    // Solo se recuerdan las secciones de la lista (7 días)
+    if (SECCIONES[actual]) setCookie("ultimaSeccion", actual, 7);
     setCookie("clienteFrecuente", "si", DIAS);
 
+    // Saludo solo para quien ya había visitado antes, una vez por sesión
     if (yaNosConocia && !sessionStorage.getItem("saludoMostrado")) {
       sessionStorage.setItem("saludoMostrado", "1");
-      mostrarSaludo(enCompra ? null : compraPendiente);
+      mostrarSaludo(anterior && anterior !== actual ? anterior : null);
     }
   }
 
   // Llamar cuando el pedido se confirme: window.finalizarCompra()
   window.finalizarCompra = function () {
-    deleteCookie("compraEnCurso");
+    const s = getCookie("ultimaSeccion");
+    if (s === "mi-carrito.html" || s === "detalles-pago.html") deleteCookie("ultimaSeccion");
   };
 
-  function mostrarSaludo(rutaCompra) {
+  function mostrarSaludo(seccion) {
     const aviso = document.createElement("div");
-    let html = "¡Qué bueno volver a verte!";
-    if (rutaCompra && /^\/[\w\-\/\.]*\.html$/.test(rutaCompra)) {
-      html += `<br><span style="font-size:.9rem;">Dejaste una compra pendiente.</span>
-        <br><a href="${rutaCompra}" style="color:#f7b731; font-weight:700;">¿Continuar con tu compra?</a>`;
+    let html = "¡Qué bueno verte de nuevo!";
+
+    // Solo se aceptan nombres de la lista (evita enlaces manipulados)
+    if (seccion && SECCIONES[seccion]) {
+      const [contexto, texto] = SECCIONES[seccion];
+      html += `<br><span style="font-size:.9rem;">${contexto}</span>
+        <br><a href="${seccion}" style="color:#f7b731; font-weight:700;">${texto}</a>`;
     }
     aviso.innerHTML = html;
     aviso.style.cssText = `
@@ -56,7 +74,7 @@
       box-shadow:0 4px 20px rgba(0,0,0,.3);
     `;
     document.body.appendChild(aviso);
-    setTimeout(() => aviso.remove(), rutaCompra ? 10000 : 5000);
+    setTimeout(() => aviso.remove(), seccion ? 10000 : 5000);
   }
 
   // ---- Capa que bloquea toda la página ----
@@ -87,7 +105,7 @@
 
   function mostrarPregunta() {
     caja.innerHTML = `
-      <h2 style="margin-top:0;">🍦 Antes de entrar</h2>
+      <h2 style="margin-top:0;"> Antes de entrar</h2>
       <p>En Paletas de Hielo usamos cookies para recordar tus preferencias y mejorar tu experiencia.</p>
       <button class="btn-ok" id="c-aceptar">Aceptar</button>
       <button class="btn-no" id="c-rechazar">Rechazar</button>
