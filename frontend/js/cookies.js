@@ -1,56 +1,62 @@
 (function () {
   const NOMBRE = "cookiesPaletas";
-  const DIAS = 30; // duración de la cookie de consentimiento
+  const DIAS = 30;
+  // Limita las cookies a tu carpeta en GitHub Pages (en local usa "/")
+  const RUTA = location.pathname.startsWith("/paletas/") ? "/paletas/" : "/";
 
   // ---- Funciones de cookies ----
   function setCookie(nombre, valor, dias) {
     const f = new Date();
     f.setTime(f.getTime() + dias * 24 * 60 * 60 * 1000);
-    document.cookie = `${nombre}=${encodeURIComponent(valor)}; expires=${f.toUTCString()}; path=/; SameSite=Lax`;
+    document.cookie = `${nombre}=${encodeURIComponent(valor)}; expires=${f.toUTCString()}; path=${RUTA}; SameSite=Lax`;
   }
   function getCookie(nombre) {
     const par = document.cookie.split("; ").find(c => c.startsWith(nombre + "="));
     return par ? decodeURIComponent(par.split("=")[1]) : null;
   }
   function deleteCookie(nombre) {
-    document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    document.cookie = `${nombre}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${RUTA}`;
   }
 
   // ---- Experiencia para usuarios que aceptaron ----
   function experienciaUsuario() {
-    // Renueva el consentimiento (expiración deslizante)
-    setCookie(NOMBRE, "aceptadas", DIAS);
+    setCookie(NOMBRE, "aceptadas", DIAS); // renueva el consentimiento
 
-    // Contador de visitas
-    const visitas = parseInt(getCookie("visitasPaletas") || "0", 10) + 1;
-    setCookie("visitasPaletas", visitas, DIAS);
+    const ruta = location.pathname;
+    const enCompra = /mi-carrito|detalles-pago/.test(ruta);
+    const yaNosConocia = getCookie("clienteFrecuente");
+    const compraPendiente = getCookie("compraEnCurso");
 
-    // Última página visitada (se lee antes de actualizarla)
-    const anterior = getCookie("ultimaPagina");
-    setCookie("ultimaPagina", location.pathname, DIAS);
+    if (enCompra) setCookie("compraEnCurso", ruta, 3);
+    setCookie("clienteFrecuente", "si", DIAS);
 
-    // Saludo para clientes frecuentes (una vez por sesión del navegador)
-    if (visitas >= 2 && !sessionStorage.getItem("saludoMostrado")) {
+    if (yaNosConocia && !sessionStorage.getItem("saludoMostrado")) {
       sessionStorage.setItem("saludoMostrado", "1");
-      mostrarSaludo(visitas, anterior);
+      mostrarSaludo(enCompra ? null : compraPendiente);
     }
   }
 
-  function mostrarSaludo(visitas, anterior) {
+  // Llamar cuando el pedido se confirme: window.finalizarCompra()
+  window.finalizarCompra = function () {
+    deleteCookie("compraEnCurso");
+  };
+
+  function mostrarSaludo(rutaCompra) {
     const aviso = document.createElement("div");
-    let texto = `🍦 ¡Qué bueno verte de nuevo! Esta es tu visita número ${visitas}.`;
-    if (anterior && anterior !== location.pathname) {
-      texto += ` <a href="${anterior}" style="color:#f7b731;">Continuar donde lo dejaste</a>`;
+    let html = "¡Qué bueno volver a verte!";
+    if (rutaCompra && /^\/[\w\-\/\.]*\.html$/.test(rutaCompra)) {
+      html += `<br><span style="font-size:.9rem;">Dejaste una compra pendiente.</span>
+        <br><a href="${rutaCompra}" style="color:#f7b731; font-weight:700;">¿Continuar con tu compra?</a>`;
     }
-    aviso.innerHTML = texto;
+    aviso.innerHTML = html;
     aviso.style.cssText = `
       position:fixed; bottom:1rem; right:1rem; max-width:320px;
       background:#222; color:#fff; padding:1rem 1.2rem; border-radius:12px;
-      font-family:'Inter',sans-serif; font-size:.95rem; z-index:9999;
+      font-family:'Inter',sans-serif; font-size:1rem; z-index:9999;
       box-shadow:0 4px 20px rgba(0,0,0,.3);
     `;
     document.body.appendChild(aviso);
-    setTimeout(() => aviso.remove(), 6000);
+    setTimeout(() => aviso.remove(), rutaCompra ? 10000 : 5000);
   }
 
   // ---- Capa que bloquea toda la página ----
