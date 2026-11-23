@@ -1,16 +1,20 @@
 (function () {
   const NOMBRE = "cookiesPaletas";
   const DIAS = 30;
-  // Limita las cookies a tu carpeta en GitHub Pages (en local usa "/")
   const RUTA = location.pathname.startsWith("/paletas/") ? "/paletas/" : "/";
 
-  // Secciones que se recuerdan: [lo que estaba haciendo, texto del enlace]
-  const SECCIONES = {
+  // FLUJOS: cosas a medias. Se recuerdan hasta que terminen (compra, reserva).
+  // IMPORTANTE: cambia "reservas.html" por el nombre real de tu página de reservas.
+  const FLUJOS = {
     "mi-carrito.html":    ["Dejaste una compra pendiente.", "¿Continuar con tu compra?"],
     "detalles-pago.html": ["Dejaste un pago sin terminar.", "¿Continuar con tu compra?"],
-    "eventos.html":       ["Estabas viendo nuestros eventos.", "Volver a eventos"],
-    "paletas.html":       ["Estabas explorando nuestras paletas.", "Seguir viendo paletas"],
-    "contactanos.html":   ["Estabas en la sección de contacto.", "Volver a contáctanos"]
+    "solicitud_cotizacion.html":      ["Dejaste una reserva sin terminar.", "¿Continuar con tu reserva?"]
+  };
+  // SECCIONES: navegación normal. Solo se recuerda la última.
+  const SECCIONES = {
+    "eventos.html":     ["Estabas viendo nuestros eventos.", "Volver a eventos"],
+    "paletas.html":     ["Estabas explorando nuestras paletas.", "Seguir viendo paletas"],
+    "contactanos.html": ["Estabas en la sección de contacto.", "Volver a contáctanos"]
   };
 
   // ---- Funciones de cookies ----
@@ -30,51 +34,113 @@
   function archivoActual() {
     return location.pathname.split("/").pop() || "index.html";
   }
+  function archivoDe(destino) {
+    return destino.split(/[?#]/)[0];
+  }
+  // Solo se aceptan destinos de la lista (evita enlaces manipulados)
+  function destinoValido(d) {
+    const a = archivoDe(d || "");
+    return !!(FLUJOS[a] || SECCIONES[a]) && /^[\w\-]+\.html([?#][\w\-=&%.\/]*)?$/.test(d);
+  }
+
+  // ---- Borradores de formularios (reserva, pago, etc.) ----
+  function esCampoSensible(el) {
+    const t = (el.autocomplete || "") + (el.name || "") + (el.id || "");
+    return ["password", "hidden", "file", "checkbox", "radio"].includes(el.type) ||
+           /cc-|tarjeta|card|cvv|cvc|clave|pass/i.test(t);
+  }
+  function autoguardarFormularios() {
+    const archivo = archivoActual();
+    if (!FLUJOS[archivo]) return;
+    const clave = "borrador_" + archivo;
+    let datos = {};
+    try { datos = JSON.parse(localStorage.getItem(clave) || "{}"); } catch (e) {}
+
+    document.querySelectorAll("input, textarea, select").forEach(el => {
+      if (esCampoSensible(el)) return;           // nunca guarda contraseñas ni tarjetas
+      const k = el.id || el.name;
+      if (!k) return;
+      if (datos[k] !== undefined && !el.value) { // restaura lo que ya había escrito
+        el.value = datos[k];
+        el.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+      el.addEventListener("input", () => {
+        datos[k] = el.value;
+        try { localStorage.setItem(clave, JSON.stringify(datos)); } catch (e) {}
+      });
+    });
+  }
+
+  // Llamar cuando la compra o la reserva se confirmen
+  function finalizarFlujo() {
+    deleteCookie("flujoEnCurso");
+    Object.keys(localStorage).forEach(k => {
+      if (k.startsWith("borrador_")) localStorage.removeItem(k);
+    });
+  }
+  window.finalizarCompra = finalizarFlujo;
+  window.finalizarReserva = finalizarFlujo;
 
   // ---- Experiencia para usuarios que aceptaron ----
   function experienciaUsuario() {
     setCookie(NOMBRE, "aceptadas", DIAS); // renueva el consentimiento
 
-    const actual = archivoActual();
+    const archivo = archivoActual();
+    const destinoActual = archivo + location.search + location.hash;
     const yaNosConocia = getCookie("clienteFrecuente");
-    const anterior = getCookie("ultimaSeccion"); // se lee antes de actualizarla
+    const enCurso = getCookie("flujoEnCurso");
+    const ultima = getCookie("ultimaSeccion");
 
-    // Solo se recuerdan las secciones de la lista (7 días)
-    if (SECCIONES[actual]) setCookie("ultimaSeccion", actual, 7);
+    // Se guarda donde está AHORA (después de leer lo anterior)
+    if (FLUJOS[archivo]) setCookie("flujoEnCurso", destinoActual, 7);
+    else if (SECCIONES[archivo]) setCookie("ultimaSeccion", destinoActual, 7);
     setCookie("clienteFrecuente", "si", DIAS);
 
-    // Saludo solo para quien ya había visitado antes, una vez por sesión
-    if (yaNosConocia && !sessionStorage.getItem("saludoMostrado")) {
-      sessionStorage.setItem("saludoMostrado", "1");
-      mostrarSaludo(anterior && anterior !== actual ? anterior : null);
+    autoguardarFormularios();
+
+    const conSaludo = !sessionStorage.getItem("saludoMostrado");
+
+    // 1) Prioridad: algo a medias (compra / reserva)
+    if (destinoValido(enCurso) && archivoDe(enCurso) !== archivo &&
+        !sessionStorage.getItem("avisoFlujoCerrado")) {
+      mostrarAviso(enCurso, true, conSaludo);
+      return;
     }
+    // 2) Si no, la última sección vista (solo una vez por sesión)
+    if (conSaludo && destinoValido(ultima) && archivoDe(ultima) !== archivo) {
+      mostrarAviso(ultima, false, true);
+      return;
+    }
+    // 3) Si no, solo el saludo
+    if (yaNosConocia && conSaludo) mostrarAviso(null, false, true);
   }
 
-  // Llamar cuando el pedido se confirme: window.finalizarCompra()
-  window.finalizarCompra = function () {
-    const s = getCookie("ultimaSeccion");
-    if (s === "mi-carrito.html" || s === "detalles-pago.html") deleteCookie("ultimaSeccion");
-  };
-
-  function mostrarSaludo(seccion) {
+  function mostrarAviso(destino, esFlujo, conSaludo) {
+    sessionStorage.setItem("saludoMostrado", "1");
     const aviso = document.createElement("div");
-    let html = "¡Qué bueno verte de nuevo!";
-
-    // Solo se aceptan nombres de la lista (evita enlaces manipulados)
-    if (seccion && SECCIONES[seccion]) {
-      const [contexto, texto] = SECCIONES[seccion];
-      html += `<br><span style="font-size:.9rem;">${contexto}</span>
-        <br><a href="${seccion}" style="color:#f7b731; font-weight:700;">${texto}</a>`;
+    let html = "";
+    if (conSaludo) html += "<strong>¡Qué bueno verte de nuevo!</strong><br>";
+    if (destino) {
+      const [contexto, texto] = FLUJOS[archivoDe(destino)] || SECCIONES[archivoDe(destino)];
+      html += `<span style="font-size:.9rem;">${contexto}</span><br>
+        <a href="${destino}" style="color:#f7b731; font-weight:700;">${texto}</a>`;
     }
+    html += `<button aria-label="Cerrar" style="position:absolute; top:.3rem; right:.5rem; background:none; border:none; color:#fff; font-size:1.1rem; cursor:pointer;">✕</button>`;
     aviso.innerHTML = html;
     aviso.style.cssText = `
-      position:fixed; bottom:1rem; right:1rem; max-width:320px;
-      background:#222; color:#fff; padding:1rem 1.2rem; border-radius:12px;
+      position:fixed; bottom:1rem; right:1rem; max-width:330px;
+      background:#222; color:#fff; padding:1rem 2rem 1rem 1.2rem; border-radius:12px;
       font-family:'Inter',sans-serif; font-size:1rem; z-index:9999;
       box-shadow:0 4px 20px rgba(0,0,0,.3);
     `;
     document.body.appendChild(aviso);
-    setTimeout(() => aviso.remove(), seccion ? 10000 : 5000);
+
+    aviso.querySelector("button").onclick = function () {
+      aviso.remove();
+      if (esFlujo) sessionStorage.setItem("avisoFlujoCerrado", "1");
+    };
+    // Un flujo a medias queda visible hasta que lo cierren; lo demás se quita solo
+    if (!esFlujo) setTimeout(() => aviso.remove(), 12000);
   }
 
   // ---- Capa que bloquea toda la página ----
@@ -105,7 +171,7 @@
 
   function mostrarPregunta() {
     caja.innerHTML = `
-      <h2 style="margin-top:0;"> Antes de entrar</h2>
+      <h2 style="margin-top:0;">Antes de entrar</h2>
       <p>En Paletas de Hielo usamos cookies para recordar tus preferencias y mejorar tu experiencia.</p>
       <button class="btn-ok" id="c-aceptar">Aceptar</button>
       <button class="btn-no" id="c-rechazar">Rechazar</button>
